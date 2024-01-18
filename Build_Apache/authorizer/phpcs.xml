@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<ruleset name="DCDC_WordPress">
+	<description>WordPress Coding Standards</description>
+
+	<!-- Use WordPress as a base -->
+	<rule ref="WordPress">
+		<!-- Allow: while ( have_posts() ) : the_post(); -->
+		<exclude name="Squiz.ControlStructures.ControlSignature.NewlineAfterOpenBrace"/>
+
+		<!-- Disable overly picky rules -->
+		<exclude name="WordPress.WP.CapitalPDangit"/>
+		<exclude name="WordPress.PHP.DiscouragedPHPFunctions.serialize_serialize"/>
+		<exclude name="WordPress.PHP.DiscouragedPHPFunctions.serialize_unserialize"/>
+
+		<!-- Allow function( 'something', array(
+			'something',
+		) ); -->
+		<exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket"/>
+		<exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine"/>
+		<exclude name="PEAR.Functions.FunctionCallSignature.MultipleArguments"/>
+	</rule>
+
+	<!-- Add custom sanitizing function(s). -->
+	<rule ref="WordPress.Security.ValidatedSanitizedInput">
+		<properties>
+			<property name="customSanitizingFunctions" type="array">
+				<element value="sanitize_update_auth_users" />
+			</property>
+		</properties>
+	</rule>
+</ruleset>

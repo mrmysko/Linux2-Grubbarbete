@@ -42,8 +42,6 @@ require_once ABSPATH . 'wp-settings.php';
 EOF
 
 mv wp-config.php /var/www/wordpress/wp-config.php
-
-wp --allow-root --path=/var/www/wordpress plugin install authldap
 fi
 
 service apache2 start && tail --follow=name /var/log/apache2/error.log

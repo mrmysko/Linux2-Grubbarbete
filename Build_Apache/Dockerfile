@@ -1,13 +1,11 @@
-FROM ubuntu:22.04
-
-COPY wordpress.tar.gz .
-COPY wp-cli.phar .
+FROM debian:12-slim
 
 ARG DEBIAN_FRONTEND=noninteractive 
-RUN apt update && apt install -y --no-install-recommends tzdata apache2 php php-mysql libapache2-mod-php php-ldap php-xml ldap-account-manager ca-certificates curl
+RUN apt update && apt install -y apache2 php php-mysql libapache2-mod-php php-ldap php-xml ldap-account-manager ca-certificates curl
+
+COPY . .
 
 ARG SITENAME=wordpress
-COPY wordpress.sh .
 RUN chmod +x wordpress.sh
 RUN ./wordpress.sh
 
