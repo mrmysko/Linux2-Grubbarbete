@@ -1,0 +1,29 @@
+Done:
+- Dockerfile som bygger en image med apache och wordpress.
+- En compose-fil som startar en MySQL-server och Apache+Wordpress.
+- Apache port 80 öppen, MySQL port 3306. Wordpress kan hitta MySQL via namn mysql.
+- En .env-fil med MySQL och Wordpress variabler som läses in på docker-compose up.
+- /var/www/wordpress och /var/lib/mysql sparas på namngedda volymer.
+
+Todo: 
+
+Starta en OpenLDAP-server.
+
+Känsliga variabler i .env stannar som variabler i containers. Och i start.sh i /
+Kommentera scripts.
+Schemalägg build-script.
+
+Lägg in docker-entrypoint-init.b i imagen.
+Automatisera installationen av ldap wp-plugin.
+Importera användare till WP via script -> LDAP -> WP.
+SSH-server med nyckelautentisering på host.
+Själv-signerat SSL cert till Apache. 
+Apache server config
+
+Backup-script på host.
+ - Backa upp vad? /var/lib/mysql
+
+Containers kör som root...
+IP-tables för att droppa trafik som inte kommer mellan containers.
+Fail2Ban på apache, ssh, mysql och openldap.
+Let's encrypt

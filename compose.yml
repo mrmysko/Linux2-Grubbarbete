@@ -1,0 +1,56 @@
+services: 
+  mysql:
+    image: mysql
+    container_name: mysql
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - /home/mysko/bin/Grupparbete:/etc/mysql/script
+    env_file:
+      - .env
+    ports:
+      - 3306:3306
+    restart: "unless-stopped"
+  
+  ldap:
+    image: ldap_custom:latest
+    container_name: ldap
+    volumes:
+      - ldap_conf:/etc/openldap
+      - ldap_data:/var/lib/ldap
+    env_file:
+      - .env
+    ports:
+      - 389:389
+      - 389:389/udp
+      - 636:636
+      - 636:636/udp
+    restart: "unless-stopped"
+
+  wordpress:
+    image: wp_custom:latest
+    container_name: wordpress
+    volumes:
+      - wordpress_data:/var/www/wordpress
+    env_file:
+      - .env
+    ports:
+      - 80:80
+    links:
+      - "mysql:mysql"
+    depends_on:
+      - mysql
+    restart: "unless-stopped"
+
+volumes:
+  mysql_data:
+    name: "mysql_data"
+    external: false
+  wordpress_data:
+    name: "wordpress_data"
+    external: false
+  ldap_data:
+    name: "ldap_data"
+    external: false
+  ldap_conf:
+    name: "ldap_conf"
+    external: false
