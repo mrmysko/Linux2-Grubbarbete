@@ -1,9 +1,9 @@
-FROM ubuntu:22.04
+FROM debian:12-slim
 
 ARG DEBIAN_FRONTEND=noninteractive 
-RUN apt update && apt install -y --no-install-recommends tzdata ldap-utils slapd
+RUN apt update && apt install -y ldap-utils slapd
 
-COPY start.sh .
+COPY . .
 RUN chmod +x start.sh
 ENTRYPOINT [ "/bin/bash", "-c", "./start.sh" ]
 

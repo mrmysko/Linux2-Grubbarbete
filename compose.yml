@@ -4,7 +4,7 @@ services:
     container_name: mysql
     volumes:
       - mysql_data:/var/lib/mysql
-      - /home/mysko/bin/Grupparbete:/etc/mysql/script
+      - /etc/timezone:/etc/timezone:ro
     env_file:
       - .env
     ports:
@@ -17,6 +17,7 @@ services:
     volumes:
       - ldap_conf:/etc/openldap
       - ldap_data:/var/lib/ldap
+      - /etc/timezone:/etc/timezone:ro
     env_file:
       - .env
     ports:
@@ -31,6 +32,7 @@ services:
     container_name: wordpress
     volumes:
       - wordpress_data:/var/www/wordpress
+      - /etc/timezone:/etc/timezone:ro
     env_file:
       - .env
     ports:
