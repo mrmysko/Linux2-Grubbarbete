@@ -1,6 +1,7 @@
 #!/bin/bash
 
-if [[ ! -f /var/www/wordpress/wp-config.php ]]
+# Run everything in this if if the file /usr/old doesnt exist.
+if [[ ! -f /usr/old.file ]]
 then
 cat > "wp-config.php" << EOF
 <?php
@@ -42,6 +43,9 @@ require_once ABSPATH . 'wp-settings.php';
 EOF
 
 mv wp-config.php /var/www/wordpress/wp-config.php
+
+# Create file signifying that the container has brun before.
+touch /usr/old.file
 fi
 
 service apache2 start && tail --follow=name /var/log/apache2/error.log
