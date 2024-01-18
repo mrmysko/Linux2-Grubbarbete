@@ -25,20 +25,19 @@ Rensa miljövariabler efter start. Start-scriptet kan skapa en fil med ett värd
 Automatiserad installation av slapd får inget lösenord, så man kan inte logga in på admin-kontot för config.
 Samma sak för dpkg-reconfigure slapd, måste skriva in domän och adminlösen manuellt.
 
+
+
 Känsliga variabler i .env stannar som variabler i containers. Och i start.sh i /
 Kommentera scripts.
 Schemalägg build-script.
-
 Lägg in docker-entrypoint-init.b i imagen.
-Automatisera installationen av ldap wp-plugin.
+Starta och konfigurera ldap plugin automatiskt.
 Importera användare till WP via script -> LDAP -> WP.
 SSH-server med nyckelautentisering på host.
 Själv-signerat SSL cert till Apache. 
 Apache server config
-
 Backup-script på host.
  - Backa upp vad? /var/lib/mysql
-
 Containers kör som root...
 IP-tables för att droppa trafik som inte kommer mellan containers.
 Fail2Ban på apache, ssh, mysql och openldap.
