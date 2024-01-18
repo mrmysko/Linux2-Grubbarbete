@@ -2,11 +2,11 @@ Sending build context to Docker daemon  41.73MB
 Step 1/11 : FROM debian:12-slim
  ---> 971072c49252
 Step 2/11 : ARG DEBIAN_FRONTEND=noninteractive
- ---> Running in a25cc3517fe8
-Removing intermediate container a25cc3517fe8
- ---> 90eb266e5ced
+ ---> Running in 821f8ee61ec5
+Removing intermediate container 821f8ee61ec5
+ ---> 63ccd2f6779f
 Step 3/11 : RUN apt update && apt install -y apache2 php php-mysql libapache2-mod-php php-ldap php-xml ldap-account-manager ca-certificates curl
- ---> Running in 3542594d9f0d
+ ---> Running in a821f2a3bade
 [91m
 WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
 
@@ -16,7 +16,7 @@ Get:3 http://deb.debian.org/debian-security bookworm-security InRelease [48.0 kB
 Get:4 http://deb.debian.org/debian bookworm/main amd64 Packages [8787 kB]
 Get:5 http://deb.debian.org/debian bookworm-updates/main amd64 Packages [12.7 kB]
 Get:6 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages [134 kB]
-Fetched 9185 kB in 2s (6079 kB/s)
+Fetched 9185 kB in 2s (5955 kB/s)
 Reading package lists...
 Building dependency tree...
 Reading state information...
@@ -200,7 +200,7 @@ Get:119 http://deb.debian.org/debian bookworm/main amd64 php-mysql all 2:8.2+93 
 Get:120 http://deb.debian.org/debian bookworm/main amd64 publicsuffix all 20230209.2326-1 [126 kB]
 Get:121 http://deb.debian.org/debian bookworm/main amd64 ssl-cert all 1.1.2 [21.1 kB]
 [91mdebconf: delaying package configuration, since apt-utils is not installed
-[0mFetched 74.4 MB in 6s (11.8 MB/s)
+[0mFetched 74.4 MB in 6s (11.9 MB/s)
 Selecting previously unselected package perl-modules-5.36.
 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 6098 files and directories currently installed.)
 Preparing to unpack .../000-perl-modules-5.36_5.36.0-7+deb12u1_all.deb ...
@@ -812,41 +812,41 @@ Running hooks in /etc/ca-certificates/update.d...
 done.
 Processing triggers for php8.2-cli (8.2.7-1~deb12u1) ...
 Processing triggers for libapache2-mod-php8.2 (8.2.7-1~deb12u1) ...
-Removing intermediate container 3542594d9f0d
- ---> 98d19e29e280
+Removing intermediate container a821f2a3bade
+ ---> 45ecd9219cd8
 Step 4/11 : COPY . .
- ---> 26e4fc5abc35
+ ---> 472813b81fd4
 Step 5/11 : ARG SITENAME=wordpress
- ---> Running in ad9aade1c96b
-Removing intermediate container ad9aade1c96b
- ---> 5b040f16e8fc
+ ---> Running in 24095eae38b6
+Removing intermediate container 24095eae38b6
+ ---> ba693b03eee8
 Step 6/11 : RUN chmod +x wordpress.sh
- ---> Running in ec1f9e2d14d7
-Removing intermediate container ec1f9e2d14d7
- ---> 7a6453375d82
+ ---> Running in 7d0d19a3aed4
+Removing intermediate container 7d0d19a3aed4
+ ---> d7b5cc734708
 Step 7/11 : RUN ./wordpress.sh
- ---> Running in 2c92c26ddc1b
+ ---> Running in 2383473f2d12
 Site 000-default disabled.
 To activate the new configuration, you need to run:
   service apache2 reload
 Enabling site wordpress.
 To activate the new configuration, you need to run:
   service apache2 reload
-Removing intermediate container 2c92c26ddc1b
- ---> 6765d5e47564
+Removing intermediate container 2383473f2d12
+ ---> 01d141f895d2
 Step 8/11 : COPY start.sh .
- ---> 5218cd985b6a
+ ---> 42496b3b767c
 Step 9/11 : RUN chmod +x start.sh
- ---> Running in bc7fe1246cd4
-Removing intermediate container bc7fe1246cd4
- ---> 875fdf57f0be
+ ---> Running in e1a18aee254f
+Removing intermediate container e1a18aee254f
+ ---> 44d58c1e3418
 Step 10/11 : ENTRYPOINT [ "/bin/bash", "-c", "./start.sh" ]
- ---> Running in a37438583008
-Removing intermediate container a37438583008
- ---> 72284612fe13
+ ---> Running in 5611a7ab16d4
+Removing intermediate container 5611a7ab16d4
+ ---> 854a321aad4e
 Step 11/11 : EXPOSE 80/tcp
- ---> Running in cbc5823fcb4d
-Removing intermediate container cbc5823fcb4d
- ---> 9ea9479580e1
-Successfully built 9ea9479580e1
+ ---> Running in abbb294d5299
+Removing intermediate container abbb294d5299
+ ---> e0559a9c33e5
+Successfully built e0559a9c33e5
 Successfully tagged wp_custom:latest

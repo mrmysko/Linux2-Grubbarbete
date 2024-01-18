@@ -1,7 +1,7 @@
 FROM debian:12-slim
 
 ARG DEBIAN_FRONTEND=noninteractive 
-RUN apt update && apt install -y ldap-utils slapd
+RUN apt update && apt install -y -q ldap-utils slapd
 
 COPY . .
 RUN chmod +x start.sh

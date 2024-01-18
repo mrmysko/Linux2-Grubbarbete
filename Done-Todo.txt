@@ -4,10 +4,12 @@ Done:
 - Apache port 80 öppen, MySQL port 3306. Wordpress kan hitta MySQL via namn mysql.
 - En .env-fil med MySQL och Wordpress variabler som läses in på docker-compose up.
 - /var/www/wordpress och /var/lib/mysql sparas på namngedda volymer.
+- Starta en OpenLDAP-server. Dela ut portar 389 och 636. Apache kan nå med namn ldap.
 
 Todo: 
 
-Starta en OpenLDAP-server.
+Automatiserad installation av slapd får inget lösenord, så man kan inte logga in på admin-kontot för config.
+Samma sak för dpkg-reconfigure slapd, måste skriva in domän och adminlösen manuellt.
 
 Känsliga variabler i .env stannar som variabler i containers. Och i start.sh i /
 Kommentera scripts.

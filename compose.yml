@@ -39,6 +39,7 @@ services:
       - 80:80
     links:
       - "mysql:mysql"
+      - "ldap:ldap"
     depends_on:
       - mysql
     restart: "unless-stopped"

@@ -1,19 +1,12 @@
 Sending build context to Docker daemon  4.096kB
 Step 1/10 : FROM debian:12-slim
-12-slim: Pulling from library/debian
-2f44b7a888fa: Pulling fs layer
-2f44b7a888fa: Verifying Checksum
-2f44b7a888fa: Download complete
-2f44b7a888fa: Pull complete
-Digest: sha256:f4a83aa865a2b4a064ff142aa91c713180df9fcb86ce676b5de2981029379c37
-Status: Downloaded newer image for debian:12-slim
  ---> 971072c49252
 Step 2/10 : ARG DEBIAN_FRONTEND=noninteractive
- ---> Running in 2bdc5499afd6
-Removing intermediate container 2bdc5499afd6
- ---> 9ddbd224062e
-Step 3/10 : RUN apt update && apt install -y ldap-utils slapd
- ---> Running in 6f98af787ddb
+ ---> Running in d57c5c35431f
+Removing intermediate container d57c5c35431f
+ ---> 094637e4e0a9
+Step 3/10 : RUN apt update && apt install -y -q ldap-utils slapd
+ ---> Running in 66df54806d77
 [91m
 WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
 
@@ -23,7 +16,7 @@ Get:3 http://deb.debian.org/debian-security bookworm-security InRelease [48.0 kB
 Get:4 http://deb.debian.org/debian bookworm/main amd64 Packages [8787 kB]
 Get:5 http://deb.debian.org/debian bookworm-updates/main amd64 Packages [12.7 kB]
 Get:6 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages [134 kB]
-Fetched 9185 kB in 2s (6065 kB/s)
+Fetched 9185 kB in 1s (6125 kB/s)
 Reading package lists...
 Building dependency tree...
 Reading state information...
@@ -84,7 +77,7 @@ Get:26 http://deb.debian.org/debian bookworm/main amd64 ldap-utils amd64 2.5.13+
 Get:27 http://deb.debian.org/debian bookworm/main amd64 libldap-common all 2.5.13+dfsg-5 [29.3 kB]
 Get:28 http://deb.debian.org/debian bookworm/main amd64 libsasl2-modules amd64 2.1.28+dfsg-10 [66.6 kB]
 [91mdebconf: delaying package configuration, since apt-utils is not installed
-[0mFetched 13.0 MB in 1s (8757 kB/s)
+[0mFetched 13.0 MB in 1s (10.6 MB/s)
 Selecting previously unselected package perl-modules-5.36.
 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 6098 files and directories currently installed.)
 Preparing to unpack .../00-perl-modules-5.36_5.36.0-7+deb12u1_all.deb ...
@@ -204,33 +197,33 @@ Setting up slapd (2.5.13+dfsg-5) ...
 invoke-rc.d: could not determine current runlevel
 invoke-rc.d: policy-rc.d denied execution of start.
 Processing triggers for libc-bin (2.36-9+deb12u3) ...
-Removing intermediate container 6f98af787ddb
- ---> 5b002a630f21
+Removing intermediate container 66df54806d77
+ ---> b29f7fe1d81c
 Step 4/10 : COPY . .
- ---> b2629480a676
+ ---> 44d0301f8f7d
 Step 5/10 : RUN chmod +x start.sh
- ---> Running in fe66ef1efc46
-Removing intermediate container fe66ef1efc46
- ---> 8b71f13d501a
+ ---> Running in 9adf136d9539
+Removing intermediate container 9adf136d9539
+ ---> 286e70c3026b
 Step 6/10 : ENTRYPOINT [ "/bin/bash", "-c", "./start.sh" ]
- ---> Running in bdfcb805ea60
-Removing intermediate container bdfcb805ea60
- ---> 45b9bea9a84e
+ ---> Running in 5cbe68a91b78
+Removing intermediate container 5cbe68a91b78
+ ---> 02a674debce3
 Step 7/10 : EXPOSE 389
- ---> Running in 144440f4a72b
-Removing intermediate container 144440f4a72b
- ---> 195c1ad6641b
+ ---> Running in 55d44b446d47
+Removing intermediate container 55d44b446d47
+ ---> f99ff7e299e1
 Step 8/10 : EXPOSE 389/udp
- ---> Running in d9c176a7ae5a
-Removing intermediate container d9c176a7ae5a
- ---> ac754f98b644
+ ---> Running in a4a0dfcaeedd
+Removing intermediate container a4a0dfcaeedd
+ ---> d0dd7e3dec7b
 Step 9/10 : EXPOSE 636
- ---> Running in 836cd9eddec6
-Removing intermediate container 836cd9eddec6
- ---> d4ede53e8098
+ ---> Running in 3a3aa30fcd1b
+Removing intermediate container 3a3aa30fcd1b
+ ---> a57a5878e3bf
 Step 10/10 : EXPOSE 636/udp
- ---> Running in 402e055ab44c
-Removing intermediate container 402e055ab44c
- ---> decb716310b3
-Successfully built decb716310b3
+ ---> Running in 733b19fc92b5
+Removing intermediate container 733b19fc92b5
+ ---> bde979a58ee7
+Successfully built bde979a58ee7
 Successfully tagged ldap_custom:latest
