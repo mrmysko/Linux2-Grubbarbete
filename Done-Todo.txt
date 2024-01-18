@@ -20,6 +20,8 @@ Done:
 
 Todo: 
 
+Rensa miljövariabler efter start. Start-scriptet kan skapa en fil med ett värde som den läser varje boot, om värdet inte finns så vet scriptet att det är första booten och köra igenom första-boot-grejer.
+
 Automatiserad installation av slapd får inget lösenord, så man kan inte logga in på admin-kontot för config.
 Samma sak för dpkg-reconfigure slapd, måste skriva in domän och adminlösen manuellt.
 
