@@ -6,20 +6,20 @@ services:
       - mysql_data:/var/lib/mysql
       - /etc/timezone:/etc/timezone:ro
     env_file:
-      - .env
+      - .env_mysql
     ports:
       - 3306:3306
     restart: "unless-stopped"
   
   ldap:
-    image: ldap_custom:latest
+    image: osixia/openldap:latest
     container_name: ldap
     volumes:
-      - ldap_conf:/etc/openldap
+      - ldap_conf:/etc/ldap/slapd.d
       - ldap_data:/var/lib/ldap
       - /etc/timezone:/etc/timezone:ro
     env_file:
-      - .env
+      - .env_ldap
     ports:
       - 389:389
       - 389:389/udp
@@ -34,7 +34,7 @@ services:
       - wordpress_data:/var/www/wordpress
       - /etc/timezone:/etc/timezone:ro
     env_file:
-      - .env
+      - .env_mysql
     ports:
       - 80:80
     links:

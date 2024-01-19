@@ -9,24 +9,24 @@ Done:
     - Officiell Docker image.
     - Skapar en wordpress databas, användare och lösen via miljövariabler.
     OpenLDAP:
-    - Bygger en image med slapd.
+    - osixia/open_ldap image.
+    - Sätter domän, organisation och lösen med .env-fil.
 
     Docker-compose:
     - Lägger alla containrar på samma nätverk. Länkar containers via containernamn.
     - Mappar portar 80, 389, 636 och 3306. 
-        (Egentligen borde kanske inte 389, 636 och 3306 mappas utåt, kommunikation sker ju inom nätverket.)
     - Tar miljövariabler från en .env-fil
     - Skapar namngedda volymer för viktiga mappar.
 
 Todo: 
 
-Rensa miljövariabler efter start. Start-scriptet kan skapa en fil med ett värde som den läser varje boot, om värdet inte finns så vet scriptet att det är första booten och köra igenom första-boot-grejer.
+Rensa miljövariabler efter start. Start-scriptet kan skapa en fil den letar efter varje boot, om filen inte finns så vet scriptet att det är första booten och köra igenom första-boot-grejer.
 
 Automatiserad installation av slapd får inget lösenord, så man kan inte logga in på admin-kontot för config.
 Samma sak för dpkg-reconfigure slapd, måste skriva in domän och adminlösen manuellt.
 
 
-
+Docker secrets för lösenord.
 Känsliga variabler i .env stannar som variabler i containers. Och i start.sh i /
 Kommentera scripts.
 Schemalägg build-script.
