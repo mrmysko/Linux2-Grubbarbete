@@ -1,0 +1,31 @@
+Sending build context to Docker daemon  4.096kB
+Step 1/8 : FROM debian:12-slim
+ ---> 971072c49252
+Step 2/8 : COPY . .
+ ---> 74329ef7b4ed
+Step 3/8 : RUN chmod +x start.sh
+ ---> Running in 96f08493b619
+Removing intermediate container 96f08493b619
+ ---> bc4eb986de30
+Step 4/8 : ENTRYPOINT [ "/bin/bash", "-c", "./start.sh" ]
+ ---> Running in 91c8ecbca707
+Removing intermediate container 91c8ecbca707
+ ---> 597130c6c0e7
+Step 5/8 : EXPOSE 389
+ ---> Running in 91e8e0488958
+Removing intermediate container 91e8e0488958
+ ---> c5a582c52ad3
+Step 6/8 : EXPOSE 389/udp
+ ---> Running in 4c736b90a262
+Removing intermediate container 4c736b90a262
+ ---> c30aaa5885d1
+Step 7/8 : EXPOSE 636
+ ---> Running in 96c3c164c04a
+Removing intermediate container 96c3c164c04a
+ ---> e525c2ae4912
+Step 8/8 : EXPOSE 636/udp
+ ---> Running in da02adf93574
+Removing intermediate container da02adf93574
+ ---> 32505e17d247
+Successfully built 32505e17d247
+Successfully tagged ldap_custom:latest

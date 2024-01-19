@@ -1,2 +1,5 @@
-build.log
+./Old/Build_LDAP/build.log
+./Build_Apache/build.log
+.env_mysql
+.env_ldap
 .env
