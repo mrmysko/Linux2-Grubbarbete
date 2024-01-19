@@ -1,0 +1,3 @@
+Kan man byta mail/lösen på en användare i ldap och de reflekteras i WP?
+
+Kan användare med /bin/false logga in på WP? Är det bara för nån slags domänjoinad linux-klient?

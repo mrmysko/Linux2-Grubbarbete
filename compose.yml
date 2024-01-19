@@ -4,7 +4,6 @@ services:
     container_name: mysql
     volumes:
       - mysql_data:/var/lib/mysql
-      - /etc/timezone:/etc/timezone:ro
     env_file:
       - .env_mysql
     ports:
@@ -17,12 +16,13 @@ services:
     volumes:
       - ldap_conf:/etc/ldap/slapd.d
       - ldap_data:/var/lib/ldap
-      - /etc/timezone:/etc/timezone:ro
     env_file:
       - .env_ldap
     ports:
       - 389:389
+      - 389:389/udp
       - 636:636
+      - 636:636/udp
     restart: "unless-stopped"
 
   wordpress:
@@ -30,7 +30,6 @@ services:
     container_name: wordpress
     volumes:
       - wordpress_data:/var/www/wordpress
-      - /etc/timezone:/etc/timezone:ro
     env_file:
       - .env_mysql
     ports:
