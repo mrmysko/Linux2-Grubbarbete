@@ -22,12 +22,8 @@ Todo:
 
 Rensa miljövariabler efter start. Start-scriptet kan skapa en fil den letar efter varje boot, om filen inte finns så vet scriptet att det är första booten och köra igenom första-boot-grejer.
 
-Automatiserad installation av slapd får inget lösenord, så man kan inte logga in på admin-kontot för config.
-Samma sak för dpkg-reconfigure slapd, måste skriva in domän och adminlösen manuellt.
-
-
 Docker secrets för lösenord.
-Känsliga variabler i .env stannar som variabler i containers. Och i start.sh i /
+Känsliga variabler i .env stannar som variabler i containers. Och i start.sh i / (splitta start.sh till ett annat script som tar bort sig själv efter första boot.)
 Kommentera scripts.
 Schemalägg build-script.
 Lägg in docker-entrypoint-init.b i imagen.
