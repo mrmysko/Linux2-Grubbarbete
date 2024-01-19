@@ -12,7 +12,7 @@ services:
     restart: "unless-stopped"
   
   ldap:
-    image: osixia/openldap:latest
+    image: osixia/openldap
     container_name: ldap
     volumes:
       - ldap_conf:/etc/ldap/slapd.d
@@ -22,9 +22,7 @@ services:
       - .env_ldap
     ports:
       - 389:389
-      - 389:389/udp
       - 636:636
-      - 636:636/udp
     restart: "unless-stopped"
 
   wordpress:
