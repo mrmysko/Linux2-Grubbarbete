@@ -7,6 +7,7 @@ Done:
     - TLS on och redirectar till HTTPS på $DOMAIN.
     WP:
     - Genererar och kopplar till MySQL automatiskt via wp-conf.sh
+    - Skapar första hemsidan och en admin-användare med wp-cli.
     - Installerar (men inte aktiverar) 3 ldap plugins automatiskt.
     - Hämtar användare från ldap och sätter rollen efter grupptillhörighet. (Med authLdap)
     MySQL:

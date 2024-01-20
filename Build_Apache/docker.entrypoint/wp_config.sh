@@ -9,7 +9,7 @@ cat > "wp-config.php" << EOF
 define( 'DB_NAME', '$MYSQL_DATABASE' );
 define( 'DB_USER', '$MYSQL_USER' );
 define( 'DB_PASSWORD', '$MYSQL_PASSWORD' );
-define( 'DB_HOST', '$DB_HOST' );
+define( 'DB_HOST', '$MYSQL_DB_HOST' );
 
 define( 'DB_CHARSET', 'utf8' );
 define( 'DB_COLLATE', '' );
@@ -33,6 +33,8 @@ EOF
 
 # Move file to wordpress.
 mv wp-config.php /var/www/"$DOMAIN"/wp-config.php
+
+wp --allow-root --path=/var/www/"$DOMAIN" core install --url=www."$DOMAIN" --title=Homepage --admin_user="$WP_ADMIN_USER" --admin_email="$WP_ADMIN_USER"@"$DOMAIN" --admin_password="$WP_ADMIN_PASS" --skip-email
 
 # Remove itself.
 rm "$0"
