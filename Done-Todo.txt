@@ -2,10 +2,11 @@ Done:
     Apache:
     - Bygger en image med Wordpress och ldap-account-manager.
     - Skapar en wordpress.conf fil och enablear den.
+    - TLS on och redirectar till HTTPS.
     WP:
-    - Genererar och kopplar till MySQL automatiskt via start.sh
+    - Genererar och kopplar till MySQL automatiskt via wp-conf.sh
     - Installerar (men inte aktiverar) 3 ldap plugins automatiskt.
-    - Hämtar användare från ldap och sätter rollen efter grupptillhörighet.
+    - Hämtar användare från ldap och sätter rollen efter grupptillhörighet. (Med authLdap)
     MySQL:
     - Officiell Docker image.
     - Skapar en wordpress databas, användare och lösen via miljövariabler.
@@ -15,12 +16,14 @@ Done:
 
     Docker-compose:
     - Lägger alla containrar på samma nätverk. Länkar containers via containernamn.
-    - Mappar portar 80, 389, 636 och 3306. 
+    - Mappar portar 80, 389, 443, 636 och 3306. 
     - Tar miljövariabler från en .env-fil
     - Skapar namngedda volymer för viktiga mappar.
 
 Todo: 
 
+
+Vad är separationen mellan Dockerfile och entrypoint, vad ska köras vid build resp när containern startar?
 authldap ska hämta roll från primary group fältet.(gidNumber)
 authldap uppdaterar inte grupptillhörighet om man ändrar grupp i lam.
 Göm adminlösen i authldap
@@ -35,7 +38,6 @@ Lägg in docker-entrypoint-init.b i imagen.
 Starta och konfigurera ldap plugin automatiskt.
 Importera användare till WP via script -> LDAP -> WP.
 SSH-server med nyckelautentisering på host.
-Själv-signerat SSL cert till Apache. 
 Apache server config
 Backup-script på host.
  - Backa upp vad? /var/lib/mysql

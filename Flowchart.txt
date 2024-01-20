@@ -1,0 +1,4 @@
+Ny burk -> Bygg apache img -> Starta docker-compose -> 
+
+
+Dela upp flowchart i nätverk/kommunikation och "services" som gör saker med varandra?

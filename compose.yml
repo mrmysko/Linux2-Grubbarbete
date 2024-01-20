@@ -28,12 +28,11 @@ services:
   wordpress:
     image: wp_custom:latest
     container_name: wordpress
-    volumes:
-      - wordpress_data:/var/www/wordpress
     env_file:
       - .env_mysql
     ports:
       - 80:80
+      - 443:443
     links:
       - "mysql:mysql"
       - "ldap:ldap"
@@ -44,9 +43,6 @@ services:
 volumes:
   mysql_data:
     name: "mysql_data"
-    external: false
-  wordpress_data:
-    name: "wordpress_data"
     external: false
   ldap_data:
     name: "ldap_data"
