@@ -1,8 +1,10 @@
 Done:
-    Apache:
-    - Bygger en image med Wordpress och ldap-account-manager.
+    Docker:
+    - Bygger en image med Apache, Wordpress och ldap-account-manager.
     - Skapar en wordpress.conf fil och enablear den.
-    - TLS on och redirectar till HTTPS.
+    - Kör alla scripts i /docker.entrypoint/ automatiskt.
+    Apache:
+    - TLS on och redirectar till HTTPS på $DOMAIN.
     WP:
     - Genererar och kopplar till MySQL automatiskt via wp-conf.sh
     - Installerar (men inte aktiverar) 3 ldap plugins automatiskt.
@@ -16,7 +18,7 @@ Done:
 
     Docker-compose:
     - Lägger alla containrar på samma nätverk. Länkar containers via containernamn.
-    - Mappar portar 80, 389, 443, 636 och 3306. 
+    - Mappar portar 80, 389, 443, 636 och 3306.
     - Tar miljövariabler från en .env-fil
     - Skapar namngedda volymer för viktiga mappar.
 
@@ -33,9 +35,9 @@ Rensa miljövariabler efter start. Start-scriptet kan skapa en fil den letar eft
 Docker secrets för lösenord.
 Känsliga variabler i .env stannar som variabler i containers. Och i start.sh i / (splitta start.sh till ett annat script som tar bort sig själv efter första boot.)
 Kommentera scripts.
+Välj port (ldap) 389 med STARTTLS eller (ldaps) 636 med certifikat.
 Schemalägg build-script.
 Timezone
-Lägg in docker-entrypoint-init.b i imagen.
 Starta och konfigurera ldap plugin automatiskt.
 Importera användare till WP via script -> LDAP -> WP.
 SSH-server med nyckelautentisering på host.
