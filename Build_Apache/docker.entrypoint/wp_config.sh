@@ -34,7 +34,7 @@ require_once ABSPATH . 'wp-settings.php';
 EOF
 
 # Move file to wordpress.
-mv wp-config.php /var/www/wordpress/wp-config.php
+mv wp-config.php /var/www/"$DOMAIN"/wp-config.php
 
 # Create file signifying that the container has run before.
 touch /docker.entrypoint/old.file

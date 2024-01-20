@@ -6,14 +6,20 @@ cat > /etc/apache2/sites-available/"$DOMAIN".conf << EOF
     ServerName $DOMAIN
     ServerAlias www.$DOMAIN
 
-    Redirect permanent / https://example.com/
+    Redirect permanent / https://$DOMAIN/
 </VirtualHost>
 
 <VirtualHost *:443>
     DocumentRoot /var/www/$DOMAIN
+    ServerName $DOMAIN
+    ServerAlias www.$DOMAIN
 
     ErrorLog /var/log/apache2/error.log
     CustomLog /var/log/apache2/access.log combined
+
+    SSLEngine on
+    SSLCertificateFile /etc/ssl/certs/$DOMAIN.crt
+    SSLCertificateKeyFile /etc/ssl/private/$DOMAIN.key
 </VirtualHost>
 EOF
 
@@ -34,6 +40,9 @@ rm -r /var/www/"$DOMAIN"/wp-content/plugins/akismet
 # Install WP-CLI.
 chmod +x wp-cli.phar
 mv wp-cli.phar /usr/local/bin/wp
+
+# Enable SSL
+a2enmod ssl
 
 # Enable wordpress.
 a2dissite 000-default.conf
