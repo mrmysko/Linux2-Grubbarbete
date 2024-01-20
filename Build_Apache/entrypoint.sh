@@ -13,4 +13,4 @@ for SCRIPT in /docker.entrypoint/*; do
     fi
 done
 
-service apache2 start && tail --follow=name /var/log/apache2/error.log
+service apache2 start && tail --follow=name /var/log/apache2/access.log

@@ -1,8 +1,6 @@
 #!/bin/bash
 
-# Run everything in this if if the file /usr/old doesnt exist.
-if [[ ! -f /docker.entrypoint/old.file ]]
-then
+echo "Generating wp-conf.php"
 
 # Create wp-config.php
 cat > "wp-config.php" << EOF
@@ -17,7 +15,7 @@ define( 'DB_CHARSET', 'utf8' );
 define( 'DB_COLLATE', '' );
 EOF
 
-curl https://api.wordpress.org/secret-key/1.1/salt/ >> wp-config.php
+curl -s https://api.wordpress.org/secret-key/1.1/salt/ >> wp-config.php
 
 cat >> "wp-config.php" << "EOF"
 
@@ -36,6 +34,5 @@ EOF
 # Move file to wordpress.
 mv wp-config.php /var/www/"$DOMAIN"/wp-config.php
 
-# Create file signifying that the container has run before.
-touch /docker.entrypoint/old.file
-fi
+# Remove itself.
+rm "$0"

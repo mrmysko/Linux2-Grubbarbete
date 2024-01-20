@@ -6,10 +6,9 @@ RUN apt update && apt install -y apache2 php php-mysql libapache2-mod-php php-ld
 COPY . .
 
 ENV DOMAIN=hemlis.com
-RUN chmod +x wordpress.sh
-RUN ./wordpress.sh
+RUN chmod +x apache_setup.sh
+RUN ./apache_setup.sh
 
-COPY entrypoint.sh .
 RUN chmod +x entrypoint.sh
 ENTRYPOINT [ "/bin/bash", "-c", "./entrypoint.sh" ]
 

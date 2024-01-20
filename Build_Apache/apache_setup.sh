@@ -1,18 +1,23 @@
 #!/bin/bash
 
-# Create apache wordpress config file.
+# Create apache wordpress config.
+echo "ServerName $DOMAIN" >> /etc/apache2/apache2.conf 
+
 cat > /etc/apache2/sites-available/"$DOMAIN".conf << EOF
 <VirtualHost *:80> 
-    ServerName $DOMAIN
-    ServerAlias www.$DOMAIN
+    ServerName www.$DOMAIN
+    ServerAlias $DOMAIN
+
+    CustomLog /var/log/apache2/access.log combined
 
     Redirect permanent / https://$DOMAIN/
 </VirtualHost>
 
 <VirtualHost *:443>
+    ServerName www.$DOMAIN
+    ServerAlias $DOMAIN
+
     DocumentRoot /var/www/$DOMAIN
-    ServerName $DOMAIN
-    ServerAlias www.$DOMAIN
 
     ErrorLog /var/log/apache2/error.log
     CustomLog /var/log/apache2/access.log combined

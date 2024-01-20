@@ -1,6 +1,4 @@
 build.log
-hemlis.com.crt
-hemlis.com.key
 .env_mysql
 .env_ldap
 .env_apache

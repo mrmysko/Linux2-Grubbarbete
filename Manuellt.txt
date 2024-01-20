@@ -1,7 +1,3 @@
-Vad måste man göra manuellt innan man bygger imagen?
-
-- Skapa TLS certifikat.
-
 Vad måst man göra manuellt INNAN man startar docker-compose?
 
 - Kör build.sh i Build_Apache foldern.
