@@ -11,6 +11,6 @@ RUN ./wordpress.sh
 
 COPY start.sh .
 RUN chmod +x start.sh
-ENTRYPOINT [ "/bin/bash", "-c", "./start.sh" ]
+ENTRYPOINT [ "/bin/bash", "-c", "./entrypoint.sh" ]
 
 EXPOSE 80/tcp

@@ -2,4 +2,5 @@
 ./Build_Apache/build.log
 .env_mysql
 .env_ldap
+.env_apache
 .env

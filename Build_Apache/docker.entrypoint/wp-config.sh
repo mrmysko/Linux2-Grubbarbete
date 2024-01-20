@@ -36,5 +36,3 @@ mv wp-config.php /var/www/wordpress/wp-config.php
 # Create file signifying that the container has run before.
 touch /usr/old.file
 fi
-
-service apache2 start && tail --follow=name /var/log/apache2/error.log
