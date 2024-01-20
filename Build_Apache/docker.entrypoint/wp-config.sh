@@ -1,8 +1,10 @@
 #!/bin/bash
 
 # Run everything in this if if the file /usr/old doesnt exist.
-if [[ ! -f /usr/old.file ]]
+if [[ ! -f /docker.entrypoint/old.file ]]
 then
+
+# Create wp-config.php
 cat > "wp-config.php" << EOF
 <?php
 
@@ -31,8 +33,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once ABSPATH . 'wp-settings.php';
 EOF
 
+# Move file to wordpress.
 mv wp-config.php /var/www/wordpress/wp-config.php
 
 # Create file signifying that the container has run before.
-touch /usr/old.file
+touch /docker.entrypoint/old.file
 fi

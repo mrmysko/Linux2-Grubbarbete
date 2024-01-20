@@ -1,0 +1,5 @@
+authldap: ldap://cn=admin,dc=hemlis,dc=com:password@ldap/dc=hemlis,dc=com
+
+Förkonfigurera LAM i /usr/share/ldap-account-manager/config/lam.conf
+
+sed '/^ServerName: /s/ .*$/ <namn>/' <fil> -> Lägger till <namn> efter ServerName: i fil tills EOL.

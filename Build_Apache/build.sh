@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Todo - Versioning, Tagga nya builds med högre nummer på nått sätt.
-# Todo - Kolla om det ens finns uppdateringar innan ny build.
+# Todo - Kolla om det ens finns apt uppdateringar innan ny build.
 
 # Check for wordpress update
 wget -q https://wordpress.org/latest.tar.gz.md5

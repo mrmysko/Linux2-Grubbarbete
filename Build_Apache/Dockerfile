@@ -5,7 +5,7 @@ RUN apt update && apt install -y apache2 php php-mysql libapache2-mod-php php-ld
 
 COPY . .
 
-ARG SITENAME=wordpress
+ENV DOMAIN=hemlis.com
 RUN chmod +x wordpress.sh
 RUN ./wordpress.sh
 
@@ -14,3 +14,4 @@ RUN chmod +x start.sh
 ENTRYPOINT [ "/bin/bash", "-c", "./entrypoint.sh" ]
 
 EXPOSE 80/tcp
+EXPOSE 443/tcp
