@@ -1,7 +1,6 @@
-Old/Build_LDAP/build.log
-Build_Apache/build.log
-Build_Apache/hemlis.com.crt
-Build_Apache/hemlis.com.key
+build.log
+hemlis.com.crt
+hemlis.com.key
 .env_mysql
 .env_ldap
 .env_apache
