@@ -41,8 +41,7 @@ Docker secrets för lösenord.
 Känsliga variabler i .env stannar som variabler i containers. Och i start.sh i / (splitta start.sh till ett annat script som tar bort sig själv efter första boot.)
 Välj port (ldap) 389 med STARTTLS eller (ldaps) 636 med certifikat.
 Schemalägg build-script.
-Timezone
-Starta och konfigurera ldap plugin automatiskt.
+Konfigurera ldap plugin automatiskt.
 Importera användare till WP via script -> LDAP -> WP.
 SSH-server med nyckelautentisering på host.
 Apache server config
@@ -53,3 +52,5 @@ Subdomäner
 IP-tables för att droppa trafik som inte kommer mellan containers.
 Fail2Ban på apache, ssh, mysql och openldap.
 Let's encrypt
+
+Timezone - Nvm, UTC är standard och bra.
