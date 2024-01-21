@@ -7,16 +7,18 @@ Done:
     - TLS on och redirectar till HTTPS på $DOMAIN.
     WP:
     - Genererar och kopplar till MySQL automatiskt via wp-conf.sh
-    - Skapar första hemsidan och en admin-användare med wp-cli.
-    - Installerar (men inte aktiverar) 3 ldap plugins automatiskt.
-    - Hämtar användare från ldap och sätter rollen efter grupptillhörighet. (Med authLdap)
+    - Skapar första hemsidan och en admin-användare automatiskt.
+    - Aktiverar authldap automatiskt.
+    - Hämtar användare från ldap och sätter rollen efter grupptillhörighet. (Efter authLdap config)
     MySQL:
     - Officiell Docker image.
     - Skapar en wordpress databas, användare och lösen via miljövariabler.
+    - Skapar en LAM databas från docker-entrypoint-init.d.
     OpenLDAP:
     - osixia/open_ldap image.
     - Sätter domän, organisation och lösen med .env-fil.
-
+    LAM:
+    - Kopplar konfigurationen till MySQL automatiskt.
     Docker-compose:
     - Lägger alla containrar på samma nätverk. Länkar containers via containernamn.
     - Mappar portar 80, 389, 443, 636 och 3306.
@@ -26,6 +28,8 @@ Done:
 Todo: 
 
 
+Hårdkoda inte LAM master password i config.cfg och LAM mysql-databasen.
+Kolla andra backends för LDAP https://www.openldap.org/doc/admin24/backends.html testa LMDB?
 Vad är separationen mellan Dockerfile och entrypoint, vad ska köras vid build resp när containern startar?
 authldap ska hämta roll från primary group fältet.(gidNumber)
 authldap uppdaterar inte grupptillhörighet om man ändrar grupp i lam.
@@ -35,7 +39,6 @@ Installera/Avinstallera plugins i wp ger nån ftp prompt?
 Rensa miljövariabler efter start. Start-scriptet kan skapa en fil den letar efter varje boot, om filen inte finns så vet scriptet att det är första booten och köra igenom första-boot-grejer.
 Docker secrets för lösenord.
 Känsliga variabler i .env stannar som variabler i containers. Och i start.sh i / (splitta start.sh till ett annat script som tar bort sig själv efter första boot.)
-Kommentera scripts.
 Välj port (ldap) 389 med STARTTLS eller (ldaps) 636 med certifikat.
 Schemalägg build-script.
 Timezone
