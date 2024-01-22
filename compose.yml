@@ -6,7 +6,7 @@ services:
       - mysql_data:/var/lib/mysql
       - ./mysql_db:/docker-entrypoint-initdb.d/
     env_file:
-      - .env_mysql
+      - .env
     ports:
       - 3306:3306
     restart: "unless-stopped"
@@ -18,7 +18,7 @@ services:
       - ldap_conf:/etc/ldap/slapd.d
       - ldap_data:/var/lib/ldap
     env_file:
-      - .env_ldap
+      - .env
     ports:
       - 389:389
       - 389:389/udp
@@ -30,7 +30,7 @@ services:
     image: wp_custom:latest
     container_name: wordpress
     env_file:
-      - .env_mysql
+      - .env
     ports:
       - 80:80
       - 443:443

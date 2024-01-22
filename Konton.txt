@@ -1,13 +1,15 @@
 Vilka konton finns de atm?
 
-Mysql containerns root.
+Mysql containerns root. root:mysql_password
 
-Wordpress databasens admin.
-Default Wordpress admin.
+Wordpress databasens admin. wp_admin:wp_password
+Default Wordpress admin. admin:wp_password
 
-LDAP config admin. (cn=admin,dc=config)
-LDAP directory manager. (cn=admin,dc=<domän>)
+LDAP config admin?
+LDAP directory manager. cn=admin:ldap_admin
 
-LAM har ett master password för att konfigurera sig själv.
+LAM har ett master password för att konfigurera sig själv. lam
+
 Och varje Server Profile som innehåller konfiguration för olika LDAP-servrar har sitt eget lösen.
-Kopplas LAM ihop med MySQL behövs en databas och ett konto med lösen där också.
+
+Kopplas LAM ihop med MySQL behövs en databas och ett konto med lösen där också. (lam_admin:lam_password)

@@ -3,9 +3,9 @@ Backup på:
 MySQL databasenr - /var/lib/mysql vs mysqldump.
     - Wordpress
     - LAM
-LAM config -    /var/lib/ldap-account-manager/config/?
-                /etc/ldap-account-manager/? <- Det här är den riktiga config.cfg-filen.
-                /usr/share/ldap-account-manager/config?
+LAM config -    /var/lib/ldap-account-manager/config/? <- Båda är samma, men inte softlänkade?
+                /etc/ldap-account-manager/?
+                /usr/share/ldap-account-manager/config? <- Båda är samma, men inte softlänkade?
 
 LDAP databas - Var?
 

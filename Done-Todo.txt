@@ -13,19 +13,19 @@ Done:
     MySQL:
     - Officiell Docker image.
     - Skapar en wordpress databas, användare och lösen via miljövariabler.
-    - Skapar en LAM databas från docker-entrypoint-init.d.
+    - Skapar en LAM-config databas med docker-entrypoint-init.b
     OpenLDAP:
     - osixia/open_ldap image.
     - Sätter domän, organisation och lösen med .env-fil.
     LAM:
-    - Kopplar konfigurationen till MySQL automatiskt.
+    - Kopplar till MySQL och sparar config där.
     Docker-compose:
     - Lägger alla containrar på samma nätverk. Länkar containers via containernamn.
     - Mappar portar 80, 389, 443, 636 och 3306.
     - Tar miljövariabler från en .env-fil
     - Skapar namngedda volymer för viktiga mappar.
 
-Todo: 
+Todo:
 
 
 Hårdkoda inte LAM master password i config.cfg och LAM mysql-databasen.

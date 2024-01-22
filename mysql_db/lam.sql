@@ -1,4 +1,4 @@
-CREATE USER lam_admin IDENTIFIED BY 'password';
+CREATE USER lam_admin IDENTIFIED BY 'lam_password';
 CREATE DATABASE lam;
 GRANT ALL PRIVILEGES ON lam.* TO lam_admin;
 FLUSH PRIVILEGES;
