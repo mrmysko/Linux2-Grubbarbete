@@ -5,11 +5,17 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
       - ./mysql_db:/docker-entrypoint-initdb.d/
+    environment:
+      - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/mysql_root_password
+      - MYSQL_PASSWORD_FILE=/run/secrets/wp_admin_password
     env_file:
       - .env
     ports:
       - 3306:3306
     restart: "unless-stopped"
+    secrets:
+      - mysql_root_password
+      - wp_admin_password
   
   ldap:
     image: osixia/openldap
@@ -17,6 +23,8 @@ services:
     volumes:
       - ldap_conf:/etc/ldap/slapd.d
       - ldap_data:/var/lib/ldap
+    environment:
+      - LDAP_PASSWORD=/run/secrets/ldap_password
     env_file:
       - .env
     ports:
@@ -25,10 +33,17 @@ services:
       - 636:636
       - 636:636/udp
     restart: "unless-stopped"
+    secrets:
+      - ldap_password
 
   wordpress:
-    image: wp_custom:latest
+    build:
+      context: ./Build_Apache
+      dockerfile: Dockerfile
+    image: wp_custom
     container_name: wordpress
+    environment:
+      - WP_ADMIN_PASSWORD=/run/secrets/wp_admin_password
     env_file:
       - .env
     ports:
@@ -40,6 +55,17 @@ services:
     depends_on:
       - mysql
     restart: "unless-stopped"
+    secrets:
+      - wp_admin_password
+
+secrets:
+  mysql_root_password:
+    file: ./secrets/mysql_root_password.txt
+  ldap_password:
+    file: ./secrets/ldap_password.txt
+  wp_admin_password:
+    file: ./secrets/wp_admin_password.txt
+
 
 volumes:
   mysql_data:

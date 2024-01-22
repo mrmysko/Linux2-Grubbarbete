@@ -1,3 +1,6 @@
+ldap_password.txt
+mysql_root_password.txt
+wp_admin_password.txt
 build.log
 .env_mysql
 .env_ldap

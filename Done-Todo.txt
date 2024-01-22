@@ -1,15 +1,15 @@
 Done:
-    Docker:
+    wp_custom image:
+    - Kör alla scripts i /docker.entrypoint/ automatiskt.
     - Bygger en image med Apache, Wordpress och ldap-account-manager.
     - Skapar en wordpress.conf fil och enablear den.
-    - Kör alla scripts i /docker.entrypoint/ automatiskt.
     Apache:
     - TLS on och redirectar till HTTPS på $DOMAIN.
     WP:
     - Genererar och kopplar till MySQL automatiskt via wp-conf.sh
     - Skapar första hemsidan och en admin-användare automatiskt.
     - Aktiverar authldap automatiskt.
-    - Hämtar användare från ldap och sätter rollen efter grupptillhörighet. (Efter authLdap config)
+    - Hämtar användare från ldap och sätter rollen INITIALT efter grupptillhörighet. (Efter authLdap config)
     MySQL:
     - Officiell Docker image.
     - Skapar en wordpress databas, användare och lösen via miljövariabler.
@@ -20,14 +20,16 @@ Done:
     LAM:
     - Kopplar till MySQL och sparar config där.
     Docker-compose:
+    - Bygger apache-imagen.
     - Lägger alla containrar på samma nätverk. Länkar containers via containernamn.
     - Mappar portar 80, 389, 443, 636 och 3306.
+    - Implementerar secrets för lösenord.
     - Tar miljövariabler från en .env-fil
     - Skapar namngedda volymer för viktiga mappar.
 
 Todo:
 
-
+Apache imagen kollar inte längre efter senaste wordpress iom att build.sh inte körs längre.
 Hårdkoda inte LAM master password i config.cfg och LAM mysql-databasen.
 Kolla andra backends för LDAP https://www.openldap.org/doc/admin24/backends.html testa LMDB?
 Vad är separationen mellan Dockerfile och entrypoint, vad ska köras vid build resp när containern startar?
@@ -53,4 +55,7 @@ IP-tables för att droppa trafik som inte kommer mellan containers.
 Fail2Ban på apache, ssh, mysql och openldap.
 Let's encrypt
 
+# Tankar
 Timezone - Nvm, UTC är standard och bra.
+Docker secrets - Hur är dom mer säkra än miljövariabler om man bara kan cat /run/secrets på filerna och ändå få ut datan.
+Dumpa LAM och gå på phpLDAPadmin istället? - LAM kräver onödig konfiguration.

@@ -1,7 +1,3 @@
-Vad måst man göra manuellt INNAN man startar docker-compose?
-
-- Kör build.sh i Build_Apache foldern.
-
 Vad måste man göra manuellt när man startar docker-compose första gången?
 
 - Konfigurera wp-ldap plugin.

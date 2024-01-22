@@ -1,0 +1,14 @@
+dn: cn=Admins,ou=Groups,dc=hemlis,dc=com
+objectClass: top
+objectClass: posixGroup
+gidNumber: 1002
+
+dn: cn=HR,ou=Groups,dc=hemlis,dc=com
+objectClass: top
+objectClass: posixGroup
+gidNumber: 1003
+
+dn: cn=Editors,ou=Groups,dc=hemlis,dc=com
+objectClass: top
+objectClass: posixGroup
+gidNumber: 1004
