@@ -34,6 +34,7 @@ require_once ABSPATH . 'wp-settings.php';
 EOF
 
 # Move file to wordpress.
+chown www-data: wp-config.php
 mv wp-config.php /var/www/"$DOMAIN"/wp-config.php
 
 echo "Creating Wordpress admin."

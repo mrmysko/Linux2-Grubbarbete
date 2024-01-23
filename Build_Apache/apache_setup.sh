@@ -42,6 +42,9 @@ mv ldap-login-for-intranet-sites /var/www/"$DOMAIN"/wp-content/plugins
 rm /var/www/"$DOMAIN"/wp-content/plugins/hello.php
 rm -r /var/www/"$DOMAIN"/wp-content/plugins/akismet
 
+# Give owner of wordpress to webserver.
+chown -R www-data: /var/www/"$DOMAIN"
+
 # Install WP-CLI.
 chmod +x wp-cli.phar
 mv wp-cli.phar /usr/local/bin/wp

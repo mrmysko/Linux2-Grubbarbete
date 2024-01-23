@@ -40,14 +40,9 @@ Apache imagen kollar inte längre efter senaste wordpress iom att build.sh inte 
 Hårdkoda inte LAM master password i config.cfg och LAM mysql-databasen.
 authldap ska hämta roll från primary group fältet.(gidNumber)
 authldap uppdaterar inte grupptillhörighet om man ändrar grupp i lam.
-TLS på LDAP
-Installera/Avinstallera plugins i wp ger nån ftp prompt?
-Rensa miljövariabler efter start. Start-scriptet kan skapa en fil den letar efter varje boot, om filen inte finns så vet scriptet att det är första booten och köra igenom första-boot-grejer.
-Känsliga variabler i .env stannar som variabler i containers. Och i start.sh i / (splitta start.sh till ett annat script som tar bort sig själv efter första boot.)
 Välj port (ldap) 389 med STARTTLS eller (ldaps) 636 med certifikat.
 Schemalägg build-script.
 Konfigurera ldap plugin automatiskt.
-Importera användare till LDAP via script.
 SSH-server med nyckelautentisering på host.
 Apache server config
 Backup-script på host.
