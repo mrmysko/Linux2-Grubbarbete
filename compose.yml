@@ -4,7 +4,7 @@ services:
     container_name: mysql
     volumes:
       - mysql_data:/var/lib/mysql
-      - ./mysql_db:/docker-entrypoint-initdb.d/
+      - ./MySQL_DB:/docker-entrypoint-initdb.d/
     environment:
       - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/mysql_root_password
       - MYSQL_PASSWORD_FILE=/run/secrets/wp_admin_password
@@ -60,11 +60,11 @@ services:
 
 secrets:
   mysql_root_password:
-    file: ./secrets/mysql_root_password.txt
+    file: ./Secrets/mysql_root_password.txt
   ldap_admin_password:
-    file: ./secrets/ldap_admin_password.txt
+    file: ./Secrets/ldap_admin_password.txt
   wp_admin_password:
-    file: ./secrets/wp_admin_password.txt
+    file: ./Secrets/wp_admin_password.txt
 
 
 volumes:
