@@ -27,6 +27,10 @@ Done:
     - Tar miljövariabler från en .env-fil
     - Secrets för lösenord.
     - Skapar namngedda volymer för viktiga mappar.
+    Scripts:
+    -
+    Host:
+    -
 
 Todo:
 

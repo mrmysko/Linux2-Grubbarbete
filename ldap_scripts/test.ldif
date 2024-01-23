@@ -1,39 +1,3 @@
-dn: uid=uid cn sn givenName mail telephoneNumber uidNumber gidNumber userPassword,ou=Users,dc=hemlis,dc=com
-objectClass: posixAccount
-objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: person
-uid: uid cn sn givenName mail telephoneNumber uidNumber gidNumber userPassword
-cn: 
-loginShell: /bin/false
-homeDirectory: /home/uid cn sn givenName mail telephoneNumber uidNumber gidNumber userPassword
-uidNumber: 
-description: Party in the back.
-sn: 
-givenName: 
-mail: 
-telephoneNumber: 
-userPassword:: 
-gidNumber: 
-
-dn: uid=,ou=Users,dc=hemlis,dc=com
-objectClass: posixAccount
-objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: person
-uid: 
-cn: 
-loginShell: /bin/false
-homeDirectory: /home/
-uidNumber: 
-description: Party in the back.
-sn: 
-givenName: 
-mail: 
-telephoneNumber: 
-userPassword:: 
-gidNumber: 
-
 dn: uid=ibra,ou=Users,dc=hemlis,dc=com
 objectClass: posixAccount
 objectClass: inetOrgPerson
@@ -44,12 +8,12 @@ cn: Inge Bra
 loginShell: /bin/false
 homeDirectory: /home/ibra
 uidNumber: 1456
-description: Party in the back.
+description: Temp Description
 sn: Bra
 givenName: Inge
 mail: inge@hemlis.com
 telephoneNumber: 07070707
-userPassword:: 
+userPassword:: e1NTSEF9ZS9RR2JHcGNrb0RhOEx0R1lOZFgvY1dObG9CaFNFZGs=
 gidNumber: 1002
 
 dn: uid=tbefriare,ou=Users,dc=hemlis,dc=com
@@ -62,12 +26,12 @@ cn: Tengil Befriare
 loginShell: /bin/false
 homeDirectory: /home/tbefriare
 uidNumber: 1457
-description: Party in the back.
+description: Temp Description
 sn: Tengil
 givenName: Befriare
 mail: tengil@hemlis.com
 telephoneNumber: 0764757325
-userPassword:: 
+userPassword:: e1NTSEF9ZS9RR2JHcGNrb0RhOEx0R1lOZFgvY1dObG9CaFNFZGs=
 gidNumber: 1003
 
 dn: uid=zkung,ou=Users,dc=hemlis,dc=com
@@ -80,12 +44,12 @@ cn: Zebra Kung
 loginShell: /bin/false
 homeDirectory: /home/zkung
 uidNumber: 1458
-description: Party in the back.
+description: Temp Description
 sn: Zebra
 givenName: Kung
 mail: zebra@hemlis.com
 telephoneNumber: 747346092
-userPassword:: 
+userPassword:: e1NTSEF9ZS9RR2JHcGNrb0RhOEx0R1lOZFgvY1dObG9CaFNFZGs=
 gidNumber: 1003
 
 dn: uid=lfisk,ou=Users,dc=hemlis,dc=com
@@ -98,12 +62,12 @@ cn: Luktar Fisk
 loginShell: /bin/false
 homeDirectory: /home/lfisk
 uidNumber: 1489
-description: Party in the back.
+description: Temp Description
 sn: Luktar
 givenName: Fisk
 mail: fisk@hemlis.com
 telephoneNumber: 27126714
-userPassword:: 
+userPassword:: e1NTSEF9ZS9RR2JHcGNrb0RhOEx0R1lOZFgvY1dObG9CaFNFZGs=
 gidNumber: 1002
 
 dn: uid=uburk,ou=Users,dc=hemlis,dc=com
@@ -116,12 +80,12 @@ cn: Urk på Burk
 loginShell: /bin/false
 homeDirectory: /home/uburk
 uidNumber: 1460
-description: Party in the back.
+description: Temp Description
 sn: Urk
 givenName: På burk
 mail: usch@hemlis.com
 telephoneNumber: 77839402
-userPassword:: 
+userPassword:: e1NTSEF9ZS9RR2JHcGNrb0RhOEx0R1lOZFgvY1dObG9CaFNFZGs=
 gidNumber: 1002
 
 dn: uid=kkeno,ou=Users,dc=hemlis,dc=com
@@ -134,12 +98,12 @@ cn: Kung Keno
 loginShell: /bin/false
 homeDirectory: /home/kkeno
 uidNumber: 1461
-description: Party in the back.
+description: Temp Description
 sn: Kung
 givenName: Keno
 mail: keno@hemlis.com
 telephoneNumber: 4763425
-userPassword:: 
+userPassword:: e1NTSEF9ZS9RR2JHcGNrb0RhOEx0R1lOZFgvY1dObG9CaFNFZGs=
 gidNumber: 1004
 
 dn: uid=gglennson,ou=Users,dc=hemlis,dc=com
@@ -152,11 +116,11 @@ cn: Glenn Glennson
 loginShell: /bin/false
 homeDirectory: /home/gglennson
 uidNumber: 1462
-description: Party in the back.
+description: Temp Description
 sn: Glenn
 givenName: Glennson
 mail: glenn@hemlis.com
 telephoneNumber: 7638295
-userPassword:: 
+userPassword:: e1NTSEF9ZS9RR2JHcGNrb0RhOEx0R1lOZFgvY1dObG9CaFNFZGs=
 gidNumber: 1005
 
