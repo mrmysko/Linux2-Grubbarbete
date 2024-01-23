@@ -1,5 +1,5 @@
 Vad måste man göra manuellt när man startar docker-compose första gången?
 
-- Konfigurera wp-ldap plugin.
-- Gå in på LAM och koppla till ldap-servern under LAM configuration -> Edit server profiles.
-- Logga in i lam och konfigurera allt. (Har man backup av en db så kanske man kan importera den här.)
+- Konfigurera authldap plugin.
+- Importera lam-config.zip i lam.
+- Importera ldap-databasen med script.

@@ -15,98 +15,173 @@ objectClass: top
 objectClass: organizationalUnit
 ou: Groups
 
-dn: cn=John,ou=Users,dc=hemlis,dc=com
-cn: John
-mail: john@hemlis.com
-givenName: John Jackson
-homeDirectory: /home/John
+dn: uid=ibra,ou=Users,dc=hemlis,dc=com
+objectClass: posixAccount
 objectClass: inetOrgPerson
 objectClass: organizationalPerson
 objectClass: person
-objectClass: posixAccount
 objectClass: top
-userPassword:: e1NIQTI1Nn1sdGxqTHpZMVpNd3dNbElVQ2M4aXFGTHlBeTdzQ1o3Vmxud05BQXp
- zWUhvPQ==
-sn: Jackson
-uidNumber: 2576
-uid: John
-gidNumber: 1001
-loginShell: /bin/bash
-
-dn: uid=inge,ou=Users,dc=hemlis,dc=com
-objectClass: top
-objectClass: account
-objectClass: posixAccount
-objectClass: shadowAccount
-cn: inge
-uid: inge
-uidNumber: 16859
+uid: ibra
+cn: Inge Bra
 loginShell: /bin/false
-gecos: inge
-userPassword:: e2NyeXB0fXg=
-shadowLastChange: 0
-shadowMax: 0
-shadowWarning: 0
+homeDirectory: /home/ibra
+uidNumber: 1456
+description: Temp Description
+sn: Bra
+givenName: Inge
+mail: inge@hemlis.com
+telephoneNumber: 07070707
+userPassword:: e1NTSEF9ZS9RR2JHcGNrb0RhOEx0R1lOZFgvY1dObG9CaFNFZGs=
 gidNumber: 1002
-homeDirectory: /home/inge
 
-dn: uid=kaur,ou=Users,dc=hemlis,dc=com
+dn: uid=kkeno,ou=Users,dc=hemlis,dc=com
 objectClass: posixAccount
 objectClass: inetOrgPerson
 objectClass: organizationalPerson
 objectClass: person
-uid: kaur
-cn: Kent Aur
-loginShell: /bin/bash
-homeDirectory: /home/kaur
-uidNumber: 16860
-description: Party in the back.
-sn: Aur
-givenName: Kent
-mail: kentaur@hemlis.com
-initials: KA
-userPassword:: e1NTSEF9ZS9RR2JHcGNrb0RhOEx0R1lOZFgvY1dObG9CaFNFZGs=
-gidNumber: 1001
-
-dn: cn=tengil,ou=Users,dc=hemlis,dc=com
-cn: tengil
-displayName: Tengil Befriare
-mail: tengil@hemlis.com
-givenName: Tengil
-labeledURI: www.hemlis.com
-objectClass: inetOrgPerson
 objectClass: top
-userPassword:: e1NIQTI1Nn1TYTBQZ0htbU43ZGR5cGdxQ1hNcE9mbTRHTjJCL0w4dzF6djRmTmt
- MVHNVPQ==
+uid: kkeno
+cn: Kung Keno
+loginShell: /bin/false
+homeDirectory: /home/kkeno
+uidNumber: 1461
+description: Temp Description
+sn: Keno
+givenName: Kung
+mail: keno@hemlis.com
+telephoneNumber: 4763425
+userPassword:: e1NTSEF9ZS9RR2JHcGNrb0RhOEx0R1lOZFgvY1dObG9CaFNFZGs=
+gidNumber: 1004
+
+dn: uid=lfisk,ou=Users,dc=hemlis,dc=com
+objectClass: posixAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: lfisk
+cn: Luktar Fisk
+loginShell: /bin/false
+homeDirectory: /home/lfisk
+uidNumber: 1489
+description: Temp Description
+sn: Fisk
+givenName: Luktar
+mail: fisk@hemlis.com
+telephoneNumber: 27126714
+userPassword:: e1NTSEF9ZS9RR2JHcGNrb0RhOEx0R1lOZFgvY1dObG9CaFNFZGs=
+gidNumber: 1002
+
+dn: uid=uburk,ou=Users,dc=hemlis,dc=com
+objectClass: posixAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: uburk
+cn:: VXJrIHDDpSBCdXJr
+loginShell: /bin/false
+homeDirectory: /home/uburk
+uidNumber: 1460
+description: Temp Description
+sn:: UMOlIGJ1cms=
+givenName: Urk
+mail: usch@hemlis.com
+telephoneNumber: 77839402
+userPassword:: e1NTSEF9ZS9RR2JHcGNrb0RhOEx0R1lOZFgvY1dObG9CaFNFZGs=
+gidNumber: 1002
+
+dn: uid=zkung,ou=Users,dc=hemlis,dc=com
+objectClass: posixAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: zkung
+cn: Zebra Kung
+loginShell: /bin/false
+homeDirectory: /home/zkung
+uidNumber: 1458
+description: Temp Description
+sn: Kung
+givenName: Zebra
+mail: zebra@hemlis.com
+telephoneNumber: 747346092
+userPassword:: e1NTSEF9ZS9RR2JHcGNrb0RhOEx0R1lOZFgvY1dObG9CaFNFZGs=
+gidNumber: 1003
+
+dn: uid=gglennson,ou=Users,dc=hemlis,dc=com
+objectClass: posixAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: gglennson
+cn: Glenn Glennson
+loginShell: /bin/false
+homeDirectory: /home/gglennson
+uidNumber: 1462
+description: Temp Description
+sn: Glennson
+givenName: Glenn
+mail: glenn@hemlis.com
+telephoneNumber: 7638295
+userPassword:: e1NTSEF9ZS9RR2JHcGNrb0RhOEx0R1lOZFgvY1dObG9CaFNFZGs=
+gidNumber: 1005
+
+dn: uid=tbefriare,ou=Users,dc=hemlis,dc=com
+objectClass: posixAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: tbefriare
+cn: Tengil Befriare
+loginShell: /bin/false
+homeDirectory: /home/tbefriare
+uidNumber: 1457
+description: Temp Description
 sn: Befriare
+givenName: Tengil
+mail: tengil@hemlis.com
+telephoneNumber: 0764757325
+userPassword:: e1NTSEF9ZS9RR2JHcGNrb0RhOEx0R1lOZFgvY1dObG9CaFNFZGs=
+gidNumber: 1003
 
 dn: cn=Authors,ou=Groups,dc=hemlis,dc=com
 objectClass: posixGroup
 description: Wordpress Authors
 gidNumber: 1003
 cn: Authors
+memberUid: lfisk
+memberUid: tbefriare
 
 dn: cn=Editors,ou=Groups,dc=hemlis,dc=com
 objectClass: posixGroup
 description: Wordpress Editors
 gidNumber: 1002
 cn: Editors
+memberUid: ibra
 
 dn: cn=Subscribers,ou=Groups,dc=hemlis,dc=com
 objectClass: posixGroup
 description: Wordpress Subscribers
 gidNumber: 1005
 cn: Subscribers
+memberUid: gglennson
 
 dn: cn=Contributors,ou=Groups,dc=hemlis,dc=com
 objectClass: posixGroup
 description: Wordpress Contributors
 gidNumber: 1004
 cn: Contributors
+memberUid: kkeno
 
 dn: cn=Administrators,ou=Groups,dc=hemlis,dc=com
 objectClass: posixGroup
 description: Wordpress Administrators
 gidNumber: 1001
 cn: Administrators
+memberUid: uburk
+memberUid: zkung
 

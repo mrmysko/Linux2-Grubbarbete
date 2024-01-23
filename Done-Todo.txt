@@ -23,7 +23,6 @@ Done:
     - Bygger apache-imagen.
     - Lägger alla containrar på samma nätverk. Länkar containers via containernamn.
     - Mappar portar 80, 389, 443, 636 och 3306.
-    - Implementerar secrets för lösenord.
     - Tar miljövariabler från en .env-fil
     - Secrets för lösenord.
     - Skapar namngedda volymer för viktiga mappar.
