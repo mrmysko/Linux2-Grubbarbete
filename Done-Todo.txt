@@ -34,6 +34,7 @@ Done:
 
 Todo:
 
+ldap mysql config pass ligger öppet i config.cfg filen.
 Hur ställer jag in authldap lösenord i wordpress? Jag kan skriva lösen i klartext eller skicka en env variabel, men inte en secret.
 Apache imagen kollar inte längre efter senaste wordpress iom att build.sh inte körs längre.
 Hårdkoda inte LAM master password i config.cfg och LAM mysql-databasen.
@@ -62,3 +63,8 @@ Let's encrypt
 # Tankar
 Timezone - Nvm, UTC är standard och bra.
 Dumpa LAM och gå på phpLDAPadmin istället? - LAM kräver onödig konfiguration. (phpLDAPadmin suger tho)
+
+Import problem:
+https://github.com/nextcloud/server/issues/2640 -> Konverterar jag en csv med användare så kanske dom har ett gidNumber, det är deras primary group.
+Men om användarna inte är med i memberUid i grupperna själva så har dom en primary group men är inte medlemmar i den.
+authLdap letar efter grupptillhörighet i memberUid, så man måste manuellt gå in och lägga till användare i grupper.
