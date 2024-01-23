@@ -25,6 +25,7 @@ services:
       - ldap_data:/var/lib/ldap
     environment:
       - LDAP_ADMIN_PASSWORD_FILE=/run/secrets/ldap_admin_password
+      - LDAP_READONLY_USER_PASSWORD_FILE=/run/secrets/ldap_readonly_password
     env_file:
       - .env
     ports:
@@ -35,6 +36,7 @@ services:
     restart: "unless-stopped"
     secrets:
       - ldap_admin_password
+      - ldap_readonly_password
 
   wordpress:
     build:
@@ -63,6 +65,8 @@ secrets:
     file: ./Secrets/mysql_root_password.txt
   ldap_admin_password:
     file: ./Secrets/ldap_admin_password.txt
+  ldap_readonly_password:
+    file: ./Secrets/ldap_readonly_password
   wp_admin_password:
     file: ./Secrets/wp_admin_password.txt
 
