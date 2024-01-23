@@ -37,7 +37,7 @@ EOF
 mv wp-config.php /var/www/"$DOMAIN"/wp-config.php
 
 echo "Creating Wordpress admin."
-wp --allow-root --path=/var/www/"$DOMAIN" core install --url=www."$DOMAIN" --title=Homepage --admin_user="$WP_ADMIN_USER" --admin_email="$WP_ADMIN_USER"@"$DOMAIN" --admin_password="$WP_ADMIN_PASS" --skip-email
+wp --allow-root --path=/var/www/"$DOMAIN" core install --url=www."$DOMAIN" --title=Homepage --admin_user="$WP_ADMIN_USER" --admin_email="$WP_ADMIN_USER"@"$DOMAIN" --admin_password="$(cat "$WP_ADMIN_PASSWORD")" --skip-email
 wp --allow-root --path=/var/www/"$DOMAIN" plugin activate authldap
 
 # Remove itself.

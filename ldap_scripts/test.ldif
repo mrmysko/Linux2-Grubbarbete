@@ -1,0 +1,162 @@
+dn: uid=uid cn sn givenName mail telephoneNumber uidNumber gidNumber userPassword,ou=Users,dc=hemlis,dc=com
+objectClass: posixAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: uid cn sn givenName mail telephoneNumber uidNumber gidNumber userPassword
+cn: 
+loginShell: /bin/false
+homeDirectory: /home/uid cn sn givenName mail telephoneNumber uidNumber gidNumber userPassword
+uidNumber: 
+description: Party in the back.
+sn: 
+givenName: 
+mail: 
+telephoneNumber: 
+userPassword:: 
+gidNumber: 
+
+dn: uid=,ou=Users,dc=hemlis,dc=com
+objectClass: posixAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: 
+cn: 
+loginShell: /bin/false
+homeDirectory: /home/
+uidNumber: 
+description: Party in the back.
+sn: 
+givenName: 
+mail: 
+telephoneNumber: 
+userPassword:: 
+gidNumber: 
+
+dn: uid=ibra,ou=Users,dc=hemlis,dc=com
+objectClass: posixAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: ibra
+cn: Inge Bra
+loginShell: /bin/false
+homeDirectory: /home/ibra
+uidNumber: 1456
+description: Party in the back.
+sn: Bra
+givenName: Inge
+mail: inge@hemlis.com
+telephoneNumber: 07070707
+userPassword:: 
+gidNumber: 1002
+
+dn: uid=tbefriare,ou=Users,dc=hemlis,dc=com
+objectClass: posixAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: tbefriare
+cn: Tengil Befriare
+loginShell: /bin/false
+homeDirectory: /home/tbefriare
+uidNumber: 1457
+description: Party in the back.
+sn: Tengil
+givenName: Befriare
+mail: tengil@hemlis.com
+telephoneNumber: 0764757325
+userPassword:: 
+gidNumber: 1003
+
+dn: uid=zkung,ou=Users,dc=hemlis,dc=com
+objectClass: posixAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: zkung
+cn: Zebra Kung
+loginShell: /bin/false
+homeDirectory: /home/zkung
+uidNumber: 1458
+description: Party in the back.
+sn: Zebra
+givenName: Kung
+mail: zebra@hemlis.com
+telephoneNumber: 747346092
+userPassword:: 
+gidNumber: 1003
+
+dn: uid=lfisk,ou=Users,dc=hemlis,dc=com
+objectClass: posixAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: lfisk
+cn: Luktar Fisk
+loginShell: /bin/false
+homeDirectory: /home/lfisk
+uidNumber: 1489
+description: Party in the back.
+sn: Luktar
+givenName: Fisk
+mail: fisk@hemlis.com
+telephoneNumber: 27126714
+userPassword:: 
+gidNumber: 1002
+
+dn: uid=uburk,ou=Users,dc=hemlis,dc=com
+objectClass: posixAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: uburk
+cn: Urk på Burk
+loginShell: /bin/false
+homeDirectory: /home/uburk
+uidNumber: 1460
+description: Party in the back.
+sn: Urk
+givenName: På burk
+mail: usch@hemlis.com
+telephoneNumber: 77839402
+userPassword:: 
+gidNumber: 1002
+
+dn: uid=kkeno,ou=Users,dc=hemlis,dc=com
+objectClass: posixAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: kkeno
+cn: Kung Keno
+loginShell: /bin/false
+homeDirectory: /home/kkeno
+uidNumber: 1461
+description: Party in the back.
+sn: Kung
+givenName: Keno
+mail: keno@hemlis.com
+telephoneNumber: 4763425
+userPassword:: 
+gidNumber: 1004
+
+dn: uid=gglennson,ou=Users,dc=hemlis,dc=com
+objectClass: posixAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: gglennson
+cn: Glenn Glennson
+loginShell: /bin/false
+homeDirectory: /home/gglennson
+uidNumber: 1462
+description: Party in the back.
+sn: Glenn
+givenName: Glennson
+mail: glenn@hemlis.com
+telephoneNumber: 7638295
+userPassword:: 
+gidNumber: 1005
+

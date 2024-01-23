@@ -24,7 +24,7 @@ services:
       - ldap_conf:/etc/ldap/slapd.d
       - ldap_data:/var/lib/ldap
     environment:
-      - LDAP_PASSWORD=/run/secrets/ldap_password
+      - LDAP_ADMIN_PASSWORD_FILE=/run/secrets/ldap_admin_password
     env_file:
       - .env
     ports:
@@ -34,7 +34,7 @@ services:
       - 636:636/udp
     restart: "unless-stopped"
     secrets:
-      - ldap_password
+      - ldap_admin_password
 
   wordpress:
     build:
@@ -61,8 +61,8 @@ services:
 secrets:
   mysql_root_password:
     file: ./secrets/mysql_root_password.txt
-  ldap_password:
-    file: ./secrets/ldap_password.txt
+  ldap_admin_password:
+    file: ./secrets/ldap_admin_password.txt
   wp_admin_password:
     file: ./secrets/wp_admin_password.txt
 

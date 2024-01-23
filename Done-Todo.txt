@@ -12,11 +12,11 @@ Done:
     - Hämtar användare från ldap och sätter rollen INITIALT efter grupptillhörighet. (Efter authLdap config)
     MySQL:
     - Officiell Docker image.
-    - Skapar en wordpress databas, användare och lösen via miljövariabler.
+    - Skapar en wordpress databas och användare via miljövariabler.
     - Skapar en LAM-config databas med docker-entrypoint-init.b
     OpenLDAP:
     - osixia/open_ldap image.
-    - Sätter domän, organisation och lösen med .env-fil.
+    - Sätter domän med .env-fil.
     LAM:
     - Kopplar till MySQL och sparar config där.
     Docker-compose:
@@ -25,13 +25,14 @@ Done:
     - Mappar portar 80, 389, 443, 636 och 3306.
     - Implementerar secrets för lösenord.
     - Tar miljövariabler från en .env-fil
+    - Secrets för lösenord.
     - Skapar namngedda volymer för viktiga mappar.
 
 Todo:
 
+Hur ställer jag in authldap lösenord i wordpress? Jag kan skriva lösen i klartext eller skicka en env variabel, men inte en secret.
 Apache imagen kollar inte längre efter senaste wordpress iom att build.sh inte körs längre.
 Hårdkoda inte LAM master password i config.cfg och LAM mysql-databasen.
-Kolla andra backends för LDAP https://www.openldap.org/doc/admin24/backends.html testa LMDB?
 Vad är separationen mellan Dockerfile och entrypoint, vad ska köras vid build resp när containern startar?
 authldap ska hämta roll från primary group fältet.(gidNumber)
 authldap uppdaterar inte grupptillhörighet om man ändrar grupp i lam.
@@ -39,12 +40,11 @@ Göm adminlösen i authldap
 TLS på LDAP
 Installera/Avinstallera plugins i wp ger nån ftp prompt?
 Rensa miljövariabler efter start. Start-scriptet kan skapa en fil den letar efter varje boot, om filen inte finns så vet scriptet att det är första booten och köra igenom första-boot-grejer.
-Docker secrets för lösenord.
 Känsliga variabler i .env stannar som variabler i containers. Och i start.sh i / (splitta start.sh till ett annat script som tar bort sig själv efter första boot.)
 Välj port (ldap) 389 med STARTTLS eller (ldaps) 636 med certifikat.
 Schemalägg build-script.
 Konfigurera ldap plugin automatiskt.
-Importera användare till WP via script -> LDAP -> WP.
+Importera användare till LDAP via script.
 SSH-server med nyckelautentisering på host.
 Apache server config
 Backup-script på host.
@@ -57,5 +57,4 @@ Let's encrypt
 
 # Tankar
 Timezone - Nvm, UTC är standard och bra.
-Docker secrets - Hur är dom mer säkra än miljövariabler om man bara kan cat /run/secrets på filerna och ändå få ut datan.
-Dumpa LAM och gå på phpLDAPadmin istället? - LAM kräver onödig konfiguration.
+Dumpa LAM och gå på phpLDAPadmin istället? - LAM kräver onödig konfiguration. (phpLDAPadmin suger tho)

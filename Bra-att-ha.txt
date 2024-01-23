@@ -21,3 +21,8 @@ $servers->setValue('server','name','Hemlis LDAP Server');
 $servers->setValue('server','host','ldap');
 $servers->setValue('server','base',array('dc=hemlis,dc=com'));
 $servers->setValue('login','bind_id','cn=admin,dc=hemlis,dc=com');
+
+objectClass: posixAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
