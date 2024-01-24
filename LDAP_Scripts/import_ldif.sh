@@ -18,3 +18,5 @@ DN=${DN::-1}
 docker cp "$1" ldap:.
 docker exec ldap ldapadd -c -x -y /run/secrets/ldap_admin_password -D "cn=admin,$DN" -f "$1"
 docker exec ldap rm "$1"
+
+# ldapadd -c -x -W -H ldap://localhost:389 -D "cn=admin,dc=hemlis,dc=com" -f defaultDB.ldif

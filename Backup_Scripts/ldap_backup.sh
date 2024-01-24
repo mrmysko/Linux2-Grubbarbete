@@ -1,28 +1,36 @@
 #!/bin/bash
 
-# Backup on the entire ldap database.
+# Depends on ldap-utils
 
-usage() { echo "Usage: $0 [options -ogu]" 1>&2; exit 0; }
 
-scope=""
-while getopts "hogu" o; do
+# OK, de här börjar i fel ände...få backup att funka först.
+DOMAIN="localhost"
+PORT=389
+
+while getopts "hdpsu" o; do
     case "${o}" in
         h)
-            usage
+            help
             ;;
-        o)
+        s)
+            if $o 
             scope="objectClass=organizationalUnit"
             ;;
-        g)
-            scope="objectClass=posixGroup"
-            ;;
         u)
-            scope="objectClass=posixAccount"
-            ;;
-        *)
-            usage
-            ;;
+            USER=$o
     esac
 done
 
-docker exec ldap ldapsearch -x -y /run/secrets/ldap_readonly_password -D "cn=readonly,dc=hemlis,dc=com" -b "dc=hemlis,dc=com" -LLL ${scope:-"objectClass=top"}
+echo "ldapsearch -x -W \
+    --hostname ${DOMAIN:-"localhost"} \
+    -p ${PORT:-"389"} \
+    -D "cn=${USER:-"readonly"},dc=hemlis,dc=com" \
+    -b "dc=hemlis,dc=com" \
+    -LLL objectClass=${SCOPE:-"top"}"
+
+help() {
+    printf "-d - Domain name, Default: localhost. \n
+    -p - Port,  Default: 389 \n
+    -s - Scope of backup, Default: top \n
+    -u - User to authenticate with,  Default: readonly"
+}

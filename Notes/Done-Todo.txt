@@ -35,7 +35,6 @@ Todo:
 
 Kryptera openldap och mysql uppkopplingar.
 ldap mysql config pass ligger öppet i config.cfg filen.
-Hur ställer jag in authldap lösenord i wordpress? Jag kan skriva lösen i klartext eller skicka en env variabel, men inte en secret.
 Apache imagen kollar inte längre efter senaste wordpress iom att build.sh inte körs längre.
 Hårdkoda inte LAM master password i config.cfg och LAM mysql-databasen.
 authldap ska hämta roll från primary group fältet.(gidNumber)
