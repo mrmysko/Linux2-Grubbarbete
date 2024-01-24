@@ -23,7 +23,8 @@ services:
     volumes:
       - ldap_conf:/etc/ldap/slapd.d
       - ldap_data:/var/lib/ldap
-      - ./ldap_db:/container/service/slapd/assets/config/bootstrap/ldif
+      - ./ldap_db:/ldif_test
+    command: --copy-service
     environment:
       - LDAP_ADMIN_PASSWORD_FILE=/run/secrets/ldap_admin_password
       - LDAP_READONLY_USER_PASSWORD_FILE=/run/secrets/ldap_readonly_password
