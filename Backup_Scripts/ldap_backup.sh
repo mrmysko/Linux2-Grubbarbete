@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Backup on the entire ldap database.
+
 usage() { echo "Usage: $0 [options -ogu]" 1>&2; exit 0; }
 
 scope=""

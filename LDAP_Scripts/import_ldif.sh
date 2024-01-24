@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Todo - Om jag importerar en användare sså har den en gidNumber, måste kolla om användarna är med i gruppen (gidNumber) \
+# Todo - Om jag importerar en användare så har den en gidNumber, måste kolla om användarna är med i gruppen (gidNumber) \
 #        om inte: Lägg till användarens uid till objectClass=posixGroup memberUid
 #        Sök efter (&(objectClass=posixGroup)(gidNumber=$USER_GID)) testa om uid finns i memberUid. ldapmodify om den inte finns.
 
