@@ -20,6 +20,7 @@ services:
   ldap:
     image: osixia/openldap
     container_name: ldap
+    hostname: hemlis.com
     volumes:
       - ldap_conf:/etc/ldap/slapd.d
       - ldap_data:/var/lib/ldap
@@ -31,8 +32,6 @@ services:
     ports:
       - 389:389
       - 389:389/udp
-      - 636:636
-      - 636:636/udp
     restart: "unless-stopped"
     secrets:
       - ldap_admin_password

@@ -22,7 +22,7 @@ Done:
     Docker-compose:
     - Bygger apache-imagen.
     - Lägger alla containrar på samma nätverk. Länkar containers via containernamn.
-    - Mappar portar 80, 389, 443, 636 och 3306.
+    - Mappar portar 80, 389, 443 och 3306.
     - Tar miljövariabler från en .env-fil
     - Secrets för lösenord.
     - Skapar namngedda volymer för viktiga folders.
@@ -33,30 +33,31 @@ Done:
 
 Todo:
 
+Problem:    Överallt...var man än vänder sig så är det något som är trasigt.
+
+Problem:    https://github.com/nextcloud/server/issues/2640
+            Konverterar man en csv med användare så har dom har ett gidNumber, det är deras primary group.
+            Men om användarna inte är med i memberUid i grupperna själva så har dom en primary group men är inte medlemmar i den.
+            authLdap letar efter grupptillhörighet i memberUid, så man måste manuellt gå in och lägga till användare i grupper.
+
+Problem:    Lösenord står i klartext på diverse ställen. config.cfg för LAM. authLdap settings. Backup-scripts.
+
+Problem:    Exporterar man LDAP-databasen med readonly-användaren så får man inte med lösenord. Men på nått sätt
+            så kan den läsa dom i authLdap.
+
+Problem:    Skript som ligger i entrypoint körs på ny image även om det inte är första boot. (sätt en miljövariabel?)
+
+Fixa backupscripts.
 Kryptera openldap och mysql uppkopplingar.
 ldap mysql config pass ligger öppet i config.cfg filen.
 Apache imagen kollar inte längre efter senaste wordpress iom att build.sh inte körs längre.
 Hårdkoda inte LAM master password i config.cfg och LAM mysql-databasen.
 authldap ska hämta roll från primary group fältet.(gidNumber)
 authldap uppdaterar inte grupptillhörighet om man ändrar grupp i lam.
-Välj port (ldap) 389 med STARTTLS eller (ldaps) 636 med certifikat.
-Schemalägg build-script.
-Konfigurera ldap plugin automatiskt.
 SSH-server med nyckelautentisering på host.
 Apache server config
-Backup-script på host.
- - Backa upp vad? /var/lib/mysql
 Containers kör som root...
 Subdomäner
 IP-tables för att droppa trafik som inte kommer mellan containers.
 Fail2Ban på apache, ssh, mysql och openldap.
 Let's encrypt
-
-# Tankar
-Timezone - Nvm, UTC är standard och bra.
-Dumpa LAM och gå på phpLDAPadmin istället? - LAM kräver onödig konfiguration. (phpLDAPadmin suger tho)
-
-Import problem:
-https://github.com/nextcloud/server/issues/2640 -> Konverterar jag en csv med användare så kanske dom har ett gidNumber, det är deras primary group.
-Men om användarna inte är med i memberUid i grupperna själva så har dom en primary group men är inte medlemmar i den.
-authLdap letar efter grupptillhörighet i memberUid, så man måste manuellt gå in och lägga till användare i grupper.

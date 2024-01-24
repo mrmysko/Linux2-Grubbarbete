@@ -1,36 +1,53 @@
 #!/bin/bash
 
+# ldapsearch vs slapd https://serverfault.com/a/584609
+
+# Backup a ldap directory.
+
 # Depends on ldap-utils
 
+#DOMAIN
+#LDAP_USER
+#OUT_FILE
+#PASS
+#PORT
 
-# OK, de här börjar i fel ände...få backup att funka först.
-DOMAIN="localhost"
-PORT=389
-
-while getopts "hdpsu" o; do
+while getopts "hdpu" o; do
     case "${o}" in
         h)
             help
             ;;
-        s)
-            if $o 
-            scope="objectClass=organizationalUnit"
+        d)
+            DOMAIN=
+
+            IFS=. read -r -a DOMAIN_ARRAY <<< "$DOMAIN"
+            unset IFS
+
+            for item in "${DOMAIN_ARRAY[@]}"; do
+                DN=$DN"dc=$item,"
+            done
+
+            # Remove last comma
+            DN=${DN::-1}
+            ;;
+        p)
+            PORT=
             ;;
         u)
-            USER=$o
+            USER=
+            ;;
+        *)
+            ;;
     esac
 done
 
-echo "ldapsearch -x -W \
-    --hostname ${DOMAIN:-"localhost"} \
-    -p ${PORT:-"389"} \
-    -D "cn=${USER:-"readonly"},dc=hemlis,dc=com" \
-    -b "dc=hemlis,dc=com" \
-    -LLL objectClass=${SCOPE:-"top"}"
+DB=$(ldapsearch -x -w "${PASS:-"readonly"}" -H ldap://"${DOMAIN:-"localhost"}":"${PORT:-"389"}" -D "cn=${LDAP_USER:-"readonly"},${DN:-"dc=hemlis,dc=com"}" -b "${DN:-"dc=hemlis,dc=com"}" objectClass=top -LLL)
+
+echo "$DB"
+# Put $DB in a ldif file and encrypt it.
 
 help() {
     printf "-d - Domain name, Default: localhost. \n
     -p - Port,  Default: 389 \n
-    -s - Scope of backup, Default: top \n
     -u - User to authenticate with,  Default: readonly"
 }

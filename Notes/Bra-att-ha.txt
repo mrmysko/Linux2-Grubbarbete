@@ -1,7 +1,3 @@
-authldap: ldap://cn=admin,dc=hemlis,dc=com:password@ldap/dc=hemlis,dc=com
-
-Förkonfigurera LAM i /usr/share/ldap-account-manager/config/lam.conf
-
 sed '/^ServerName: /s/ .*$/ <namn>/' <fil> -> Lägger till <namn> efter ServerName: i fil tills EOL.
 
 openssl genrsa -out notEncodedPk.key 3072
@@ -13,14 +9,6 @@ tr -dc A-Za-z0-9 </dev/urandom | head -c 8; echo
 
 Generera ett lösen med 8 random chars salt. (Men måste få ut salten för att kunna verifiera lösen tho.)
 echo -n password$(tr -dc A-Za-z0-9 </dev/urandom | head -c 8; echo) | sha1sum | cut -d ' ' -f 1 | base64
-
-https://wordpress.org/plugins/user-access-manager/
-
-Sätt values i phpldapadmin automatiskt:
-$servers->setValue('server','name','Hemlis LDAP Server');
-$servers->setValue('server','host','ldap');
-$servers->setValue('server','base',array('dc=hemlis,dc=com'));
-$servers->setValue('login','bind_id','cn=admin,dc=hemlis,dc=com');
 
 objectClass: posixAccount
 objectClass: inetOrgPerson

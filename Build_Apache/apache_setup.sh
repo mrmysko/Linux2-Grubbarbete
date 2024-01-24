@@ -30,6 +30,7 @@ EOF
 
 # Install wordpress.
 tar -xzf wordpress.tar.gz
+rm wordpress/wp-config.phpLDAP_TLS_VERIFY_CLIENT=try
 mv wordpress /var/www/"$DOMAIN"
 rm wordpress.tar.gz
 

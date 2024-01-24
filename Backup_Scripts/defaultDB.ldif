@@ -5,13 +5,6 @@ objectClass: organization
 o: Hemlis
 dc: hemlis
 
-dn: cn=readonly,dc=hemlis,dc=com
-cn: readonly
-objectClass: simpleSecurityObject
-objectClass: organizationalRole
-userPassword:: e1NTSEF9Z1d5OUpXd280QlJST1o1dVZpOWVWS3FFaWNCQlUzOC8=
-description: LDAP read only user
-
 dn: ou=Users,dc=hemlis,dc=com
 objectClass: top
 objectClass: organizationalUnit
@@ -38,6 +31,7 @@ sn: Bra
 givenName: Inge
 mail: inge@hemlis.com
 telephoneNumber: 07070707
+userPassword:: e1NTSEF9ZS9RR2JHcGNrb0RhOEx0R1lOZFgvY1dObG9CaFNFZGs=
 gidNumber: 1002
 
 dn: uid=kkeno,ou=Users,dc=hemlis,dc=com
@@ -56,6 +50,7 @@ sn: Keno
 givenName: Kung
 mail: keno@hemlis.com
 telephoneNumber: 4763425
+userPassword:: e1NTSEF9ZS9RR2JHcGNrb0RhOEx0R1lOZFgvY1dObG9CaFNFZGs=
 gidNumber: 1004
 
 dn: uid=lfisk,ou=Users,dc=hemlis,dc=com
@@ -74,6 +69,7 @@ sn: Fisk
 givenName: Luktar
 mail: fisk@hemlis.com
 telephoneNumber: 27126714
+userPassword:: e1NTSEF9ZS9RR2JHcGNrb0RhOEx0R1lOZFgvY1dObG9CaFNFZGs=
 gidNumber: 1002
 
 dn: uid=uburk,ou=Users,dc=hemlis,dc=com
@@ -92,6 +88,7 @@ sn:: UMOlIGJ1cms=
 givenName: Urk
 mail: usch@hemlis.com
 telephoneNumber: 77839402
+userPassword:: e1NTSEF9ZS9RR2JHcGNrb0RhOEx0R1lOZFgvY1dObG9CaFNFZGs=
 gidNumber: 1002
 
 dn: uid=zkung,ou=Users,dc=hemlis,dc=com
@@ -110,6 +107,7 @@ sn: Kung
 givenName: Zebra
 mail: zebra@hemlis.com
 telephoneNumber: 747346092
+userPassword:: e1NTSEF9ZS9RR2JHcGNrb0RhOEx0R1lOZFgvY1dObG9CaFNFZGs=
 gidNumber: 1003
 
 dn: uid=gglennson,ou=Users,dc=hemlis,dc=com
@@ -128,6 +126,7 @@ sn: Glennson
 givenName: Glenn
 mail: glenn@hemlis.com
 telephoneNumber: 7638295
+userPassword:: e1NTSEF9ZS9RR2JHcGNrb0RhOEx0R1lOZFgvY1dObG9CaFNFZGs=
 gidNumber: 1005
 
 dn: uid=tbefriare,ou=Users,dc=hemlis,dc=com
@@ -146,6 +145,7 @@ sn: Befriare
 givenName: Tengil
 mail: tengil@hemlis.com
 telephoneNumber: 0764757325
+userPassword:: e1NTSEF9ZS9RR2JHcGNrb0RhOEx0R1lOZFgvY1dObG9CaFNFZGs=
 gidNumber: 1003
 
 dn: cn=Authors,ou=Groups,dc=hemlis,dc=com

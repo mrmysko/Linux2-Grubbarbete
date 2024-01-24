@@ -23,12 +23,12 @@ readarray -d, -t HEADER < <(printf "%s" "$LINE") # Read line into an array.
         echo loginShell: /bin/false
         echo homeDirectory: /home/"$uid"
         echo uidNumber: "$uidNumber"
-        echo description: Temp Description
+        echo description: "${description:-"No Description"}"
         echo sn: "$sn"
         echo givenName: "$givenName"
         echo mail: "$mail"
         echo telephoneNumber: "$telephoneNumber"
-        echo userPassword:: e1NTSEF9ZS9RR2JHcGNrb0RhOEx0R1lOZFgvY1dObG9CaFNFZGs=
+        echo userPassword:: "${password:-"e1NTSEF9ZS9RR2JHcGNrb0RhOEx0R1lOZFgvY1dObG9CaFNFZGs="}" # kent
         echo gidNumber: "$gidNumber"
         echo
 done 
