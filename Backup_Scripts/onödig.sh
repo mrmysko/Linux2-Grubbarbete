@@ -12,13 +12,20 @@
 #PASS
 #PORT
 
-while getopts "hdpu" o; do
+help() {
+    echo "-d - Domain name, Default: localhost."
+    echo "-p - Port,  Default: 389"
+    echo "-u - User to authenticate with,  Default: readonly"
+}
+
+while getopts "hd:p:u:" o; do
     case "${o}" in
         h)
             help
+            exit 0
             ;;
         d)
-            DOMAIN=
+            DOMAIN=${OPTARG}
 
             IFS=. read -r -a DOMAIN_ARRAY <<< "$DOMAIN"
             unset IFS
@@ -31,12 +38,13 @@ while getopts "hdpu" o; do
             DN=${DN::-1}
             ;;
         p)
-            PORT=
+            PORT=${OPTARG}
             ;;
         u)
-            USER=
+            USER=${OPTARG}
             ;;
         *)
+            help
             ;;
     esac
 done
@@ -45,9 +53,3 @@ DB=$(ldapsearch -x -w "${PASS:-"readonly"}" -H ldap://"${DOMAIN:-"localhost"}":"
 
 echo "$DB"
 # Put $DB in a ldif file and encrypt it.
-
-help() {
-    printf "-d - Domain name, Default: localhost. \n
-    -p - Port,  Default: 389 \n
-    -u - User to authenticate with,  Default: readonly"
-}
