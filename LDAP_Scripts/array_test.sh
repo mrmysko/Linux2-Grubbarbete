@@ -18,3 +18,5 @@ echo "$DN"
 
 # Ett script som tar en csv-fil, och konverterar csvn till användare i den domänen? Hur vet vi vilket ou dom ska vara med i?
 # En användare har cn/uid=,ou=,dc= minst.
+
+# Script som byter domän på en databas.
