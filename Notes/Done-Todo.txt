@@ -34,9 +34,9 @@ Done:
 
 Todo:
 
-Fixa:       Installera och konfigurera fail2ban på host.
+Fixa:       Skicka backupen med scp till en "annan" server.
 
-Fixa:       Installera, konfigurera och härda SSH-server på host.
+Fixa:       Installera och konfigurera fail2ban på host.
 
 Problem:    Överallt...var man än vänder sig så är det något som är trasigt.
 
@@ -75,3 +75,8 @@ Härda ssh:
 - Stäng av password authentication.
 - Byt port (security by obscurity).
 - Sätt på nyckelautentisering.
+
+Remote backup:
+- Användare på remote-servern som bara har hand om backuper.
+- Är chrootad till backup-foldern.
+- /bin/false shell och ingen home.

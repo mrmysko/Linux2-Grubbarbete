@@ -15,6 +15,7 @@
 #PASS
 #PORT
 
+BACKUP_DIR=/mnt/Backups
 CONTAINER_NAME="ldap"
 DB_DATE=$(date +'%m-%d-%R')
 DB_NAME="$DB_DATE-${DOMAIN:-"db"}.ldif"
@@ -35,13 +36,15 @@ if [ "$(docker container inspect -f '{{.State.Running}}' $CONTAINER_NAME)" = tru
         -b "${DN:-"dc=hemlis,dc=com"}" objectClass=top -LLL > "$DB_NAME"
 
     # Encrypt file.
-    openssl enc -aes-256-cbc -pbkdf2 -in "$DB_NAME" -out /mnt/Backups/"$DB_NAME".crypt -pass file:/root/crypt.key
+    openssl enc -aes-256-cbc -pbkdf2 -in "$DB_NAME" -out "$BACKUP_DIR"/"$DB_NAME".crypt -pass file:/root/crypt.key
 
     # Mer lätt överskådligt, men skriver till filsystemet mellan kryptering.
     # Hur pipar jag output från ldapsearch till openssl -in ?
     rm "$DB_NAME"
 
-    find /mnt/Backups -type f -name "*.ldif.crypt" | sort -r | tail -n +15 | xargs -d '\n' rm 2>/dev/null
+    rsync "$BACKUP_DIR"/"$DB_NAME".crypt mysko@hemlis.com:50:/mnt/rsync_Backups/
+
+    find "$BACKUP_DIR" -type f -name "*.ldif.crypt" | sort -r | tail -n +15 | xargs -d '\n' rm 2>/dev/null
 
     # rsync off-site.
     # rsync 
