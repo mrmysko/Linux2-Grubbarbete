@@ -2,7 +2,7 @@ Done:
     wp_custom image:
     - Kör alla scripts i /docker.entrypoint/ automatiskt.
     - Bygger en image med Apache, Wordpress och ldap-account-manager.
-    - Skapar en wordpress.conf fil och enablear den.
+    - Skapar en $DOMAIN.conf fil och enablear den.
     Apache:
     - TLS on och redirectar till HTTPS på $DOMAIN.
     WP:
@@ -27,11 +27,16 @@ Done:
     - Secrets för lösenord.
     - Skapar namngedda volymer för viktiga folders.
     Scripts:
-    -
+    - Backup-script av LDAP som krypterar databasen. (Cronjob)
+    - Script för att läsa in en krypterad LDAP-databas.
     Host:
     -
 
 Todo:
+
+Fixa:       Installera och konfigurera fail2ban på host.
+
+Fixa:       Installera, konfigurera och härda SSH-server på host.
 
 Problem:    Överallt...var man än vänder sig så är det något som är trasigt.
 
@@ -47,14 +52,15 @@ Problem:    Exporterar man LDAP-databasen med readonly-användaren så får man 
 
 Problem:    Skript som ligger i entrypoint körs på ny image även om det inte är första boot. (sätt en miljövariabel?)
 
-Fixa backupscripts.
+Problem:    LAM kan inte hitta en användare att logga in med om man sätter LDAP Search istället för en Fixed List. 
+            Även om man söker med samma sträng.
+
+Fixa mysql backup-scripts.
 Kryptera openldap och mysql uppkopplingar.
 ldap mysql config pass ligger öppet i config.cfg filen.
 Apache imagen kollar inte längre efter senaste wordpress iom att build.sh inte körs längre.
 Hårdkoda inte LAM master password i config.cfg och LAM mysql-databasen.
 authldap ska hämta roll från primary group fältet.(gidNumber)
-authldap uppdaterar inte grupptillhörighet om man ändrar grupp i lam.
-SSH-server med nyckelautentisering på host.
 Apache server config
 Containers kör som root...
 Subdomäner

@@ -20,10 +20,10 @@ services:
   ldap:
     image: osixia/openldap
     container_name: ldap
-    hostname: hemlis.com
     volumes:
       - ldap_conf:/etc/ldap/slapd.d
       - ldap_data:/var/lib/ldap
+      #- ./certs:/container/service/slapd/assets/certs
     environment:
       - LDAP_ADMIN_PASSWORD_FILE=/run/secrets/ldap_admin_password
       - LDAP_READONLY_USER_PASSWORD_FILE=/run/secrets/ldap_readonly_password
@@ -32,6 +32,8 @@ services:
     ports:
       - 389:389
       - 389:389/udp
+      #- 636:636
+      #- 636:636/udp
     restart: "unless-stopped"
     secrets:
       - ldap_admin_password
@@ -58,6 +60,12 @@ services:
     restart: "unless-stopped"
     secrets:
       - wp_admin_password
+
+  py_import:
+    container_name: py_import
+    image: andreas_python:latest
+    volumes: 
+      - ./db:/app
 
 secrets:
   mysql_root_password:

@@ -1,0 +1,17 @@
+dn: ou=workers,dc=hemlis,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: workers
+
+
+dn: uid=andreasgrahn,ou=workers,dc=hemlis,dc=com
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: Andreas Grahn
+sn: Grahn
+givenName: Andreas
+mail: andreasgrahn@linux.com
+uid: andreasgrahn
+userPassword: 123

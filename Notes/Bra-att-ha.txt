@@ -14,3 +14,9 @@ objectClass: posixAccount
 objectClass: inetOrgPerson
 objectClass: organizationalPerson
 objectClass: person
+
+mysql -p -u[user] [database] < db_backup.dump
+
+ssh-keygen -t ed25519 -C <comment> -f <outfile> -N <password>
+
+openssl enc -aes-256-cbc -pbkdf2 -in 01-24-21:53-db.ldif -out crypt.db.ldif -pass file:password.txt

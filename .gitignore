@@ -3,5 +3,6 @@ ldap_readonly_password.txt
 mysql_root_password.txt
 wp_admin_password.txt
 build.log
+crypt.key
 hemlis.com.key
 hemlis.com.crt
