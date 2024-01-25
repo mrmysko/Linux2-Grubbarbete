@@ -30,7 +30,7 @@ Done:
     - Backup-script av LDAP som krypterar databasen. (Cronjob)
     - Script för att läsa in en krypterad LDAP-databas.
     Host:
-    -
+    - OpenSSH-server med nyckelautentisering.
 
 Todo:
 
@@ -67,3 +67,11 @@ Subdomäner
 IP-tables för att droppa trafik som inte kommer mellan containers.
 Fail2Ban på apache, ssh, mysql och openldap.
 Let's encrypt
+Vad gör config-databasen i ldap?
+
+Härda ssh:
+- Stäng av root login.
+- Stäng av X11 forwarding.
+- Stäng av password authentication.
+- Byt port (security by obscurity).
+- Sätt på nyckelautentisering.

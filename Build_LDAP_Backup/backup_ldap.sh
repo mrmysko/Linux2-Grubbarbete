@@ -15,19 +15,12 @@
 #PASS
 #PORT
 
-CONTAINER_NAME="ldap"
+# Inte adapted för docker-container än.
+
 DB_DATE=$(date +'%m-%d-%R')
 DB_NAME="$DB_DATE-${DOMAIN:-"db"}.ldif"
 
-# Check for root privilegies.
-if [ $EUID -ne "0" ]; then
-    sudo "$0"
-    # This gets the exit code from the previously executed line, if script is not run with sudo privilegies,
-    # the if-statement runs the script again with sudo. And then exit with that runs exit-code.
-    exit $?
-fi
-
-if [ "$(docker container inspect -f '{{.State.Running}}' $CONTAINER_NAME)" = true ]; then
+if [ "$(docker container inspect -f '{{.State.Running}}' ldap)" = true ]; then
 
     # Dumps DB.
     ldapsearch -x -w "${PASS:-"ldap_password"}" -H ldap://"${DOMAIN:-"localhost"}":"${PORT:-"389"}" \

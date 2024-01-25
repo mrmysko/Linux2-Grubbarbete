@@ -1,4 +1,5 @@
 import time
+import os
 import ldap
 import ldif
 
@@ -40,6 +41,8 @@ try:
    print("LDAP import completed. Unbinding...")
    ldap_conn.unbind_s()
    print("LDAP connection closed.")
+   # Robin was here.
+   os.remove(ldif_file)
 except ldap.SERVER_DOWN as e:
    print(f"LDAP server is down or unreachable: {e}")
 except Exception as e:

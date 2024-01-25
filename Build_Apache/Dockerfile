@@ -1,7 +1,8 @@
 FROM debian:12-slim
 
 ARG DEBIAN_FRONTEND=noninteractive 
-RUN apt update && apt install -y apache2 php php-mysql libapache2-mod-php php-ldap php-xml ldap-account-manager curl file
+RUN apt update && apt install -y --no-install-recommends \
+    apache2 php php-mysql libapache2-mod-php php-ldap php-xml ldap-account-manager curl file openssl
 
 COPY . .
 

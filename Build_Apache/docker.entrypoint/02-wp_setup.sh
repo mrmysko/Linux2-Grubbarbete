@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# wp-cli tried creating wp admin at the same time mysql restarted.
-sleep 5
+# Waiting for mysql to restart on first boot.
+sleep 10
 
 if [ ! -f "/var/www/$DOMAIN/wp-config.php" ]; then
 

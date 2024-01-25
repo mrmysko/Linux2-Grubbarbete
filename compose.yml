@@ -63,7 +63,7 @@ services:
 
   py_import:
     container_name: py_import
-    image: andreas_python:latest
+    image: py_import:latest
     volumes: 
       - ./db:/app
 
