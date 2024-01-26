@@ -86,6 +86,7 @@ Remote backup:
     - Det här förutsätter sftp, men sftp är långsamt.
 
 Vad finns inte backup på:
+- lösenordsfiler/krypteringsnycklar/ssh-nycklar.
 - SSH-server config.
 - Apache-config.
 - (Vad är ens önskvärt att ha backup på? Har man databaserna så kan man ju bygga upp nya system runt dom.)
