@@ -50,8 +50,6 @@ Problem:    Lösenord står i klartext på diverse ställen. config.cfg för LAM
 Problem:    Exporterar man LDAP-databasen med readonly-användaren så får man inte med lösenord. Men på nått sätt
             så kan den läsa dom i authLdap.
 
-Problem:    Skript som ligger i entrypoint körs på ny image även om det inte är första boot. (sätt en miljövariabel?)
-
 Problem:    LAM kan inte hitta en användare att logga in med om man sätter LDAP Search istället för en Fixed List. 
             Även om man söker med samma sträng.
 
