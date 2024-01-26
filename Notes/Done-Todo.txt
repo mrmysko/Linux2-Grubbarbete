@@ -34,6 +34,8 @@ Done:
 
 Todo:
 
+Fixa:       MySQL backup-script. Göm root_lösenord, standardisera namn med ldap-backup. Sätt ip-på mysql-containern.
+
 Fixa:       Backa upp krypteringsnycklar och ssh-nycklar någonstans.
 
 Fixa:       Installera och konfigurera fail2ban på host.

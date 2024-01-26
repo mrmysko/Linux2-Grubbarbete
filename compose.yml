@@ -16,6 +16,8 @@ services:
     secrets:
       - mysql_root_password
       - wp_admin_password
+    networks:
+      - defaultNet
   
   ldap:
     image: osixia/openldap
@@ -38,6 +40,8 @@ services:
     secrets:
       - ldap_admin_password
       - ldap_readonly_password
+    networks:
+      - defaultNet
 
   wordpress:
     build:
@@ -60,12 +64,16 @@ services:
     restart: "unless-stopped"
     secrets:
       - wp_admin_password
+    networks:
+      - defaultNet
 
   py_import:
     container_name: py_import
     image: py_import:latest
     volumes: 
       - ./db:/app
+    networks:
+      - defaultNet
 
 secrets:
   mysql_root_password:
@@ -85,3 +93,7 @@ volumes:
     name: "ldap_data"
   ldap_conf:
     name: "ldap_conf"
+
+networks:
+  defaultNet:
+    name: defaultNet
