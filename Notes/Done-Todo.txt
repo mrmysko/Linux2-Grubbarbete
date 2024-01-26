@@ -69,6 +69,7 @@ Subdomäner
 IP-tables för att droppa trafik som inte kommer mellan containers.
 Fail2Ban på apache, ssh, mysql och openldap.
 Let's encrypt
+övervakning
 Vad gör config-databasen i ldap?
 
 Härda ssh:

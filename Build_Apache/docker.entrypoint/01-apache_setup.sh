@@ -32,14 +32,12 @@ EOF
 
 # Install wordpress.
 tar -xzf wordpress.tar.gz
-rm wordpress/wp-config.php
+#rm wordpress/wp-config.php
 mv wordpress /var/www/"$DOMAIN"
 rm wordpress.tar.gz
 
 # Move plugins to folder.
 mv authldap /var/www/"$DOMAIN"/wp-content/plugins
-mv authorizer /var/www/"$DOMAIN"/wp-content/plugins
-mv ldap-login-for-intranet-sites /var/www/"$DOMAIN"/wp-content/plugins
 
 # Uninstall default plugins.
 rm /var/www/"$DOMAIN"/wp-content/plugins/hello.php

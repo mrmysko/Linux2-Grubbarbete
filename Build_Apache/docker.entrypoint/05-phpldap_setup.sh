@@ -23,6 +23,6 @@ sed -i "/^\$servers->setValue('server','base',array/s/'[^']*'/'$DN'/3" $PHP_LDAP
 
 sed -i "/^\$servers->setValue('login','bind_id'/s/'[^']*'/'cn=$LDAP_ADMIN_USERNAME,$DN'/3" $PHP_LDAP_CONF
 
-cat '$config->custom->appearance['hide_template_warning'] = true;' >> $PHP_LDAP_CONF
+echo "\$config->custom->appearance['hide_template_warning'] = true;" >> $PHP_LDAP_CONF
 
 rm "$0"
