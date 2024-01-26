@@ -1,0 +1,4 @@
+Tänkte att istället för ett cronjob på host, så kan man ha en container med ldap-utils installerat \
+som mountar ldap-databasen och en backup-dir och kör backup-scriptet i en container. Sen kan man schemalägga det...
+
+Fördelar?...Det är "konsekvent", imagen är skild från host-systemet och kommer fungera likadant varje gång.
