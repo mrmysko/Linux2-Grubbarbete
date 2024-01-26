@@ -20,3 +20,8 @@ mysql -p -u[user] [database] < db_backup.dump
 ssh-keygen -t ed25519 -C <comment> -f <outfile> -N <password>
 
 openssl enc -aes-256-cbc -pbkdf2 -in 01-24-21:53-db.ldif -out crypt.db.ldif -pass file:password.txt
+
+
+$servers->setValue('server','name','My LDAP Server');
+$servers->setValue('server','host','127.0.0.1');
+$servers->setValue('login','bind_id','cn=admin,dc=example,dc=com');

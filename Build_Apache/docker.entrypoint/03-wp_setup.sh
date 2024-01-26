@@ -3,8 +3,6 @@
 # Waiting for mysql to restart on first boot.
 sleep 10
 
-if [ ! -f "/var/www/$DOMAIN/wp-config.php" ]; then
-
 echo "Generating wp-conf.php"
 
 # Create wp-config.php
@@ -42,7 +40,6 @@ mv wp-config.php /var/www/"$DOMAIN"/wp-config.php
 echo "Creating Wordpress admin."
 wp --allow-root --path=/var/www/"$DOMAIN" core install --url=www."$DOMAIN" --title=Homepage --admin_user="$WP_ADMIN_USER" --admin_email="$WP_ADMIN_USER"@"$DOMAIN" --admin_password="$(cat "$WP_ADMIN_PASSWORD")" --skip-email
 wp --allow-root --path=/var/www/"$DOMAIN" plugin activate authldap
-fi
 
 # Remove itself.
 rm "$0"

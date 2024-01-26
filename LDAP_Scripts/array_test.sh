@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Arranges a domain into a search base.
+# Arranges a domain into bind-dn.
 
 IFS=. read -r -a DOMAIN_ARRAY <<< "$1"
 unset IFS

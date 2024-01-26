@@ -55,9 +55,11 @@ Problem:    Skript som ligger i entrypoint körs på ny image även om det inte 
 Problem:    LAM kan inte hitta en användare att logga in med om man sätter LDAP Search istället för en Fixed List. 
             Även om man söker med samma sträng.
 
+Problem:    Egen dockerfile hanterar inte uppdateringar av t.ex. wordpress.
+
 Fixa mysql backup-scripts.
 Kryptera openldap och mysql uppkopplingar.
-ldap mysql config pass ligger öppet i config.cfg filen.
+lam mysql config pass ligger öppet i config.cfg filen.
 Apache imagen kollar inte längre efter senaste wordpress iom att build.sh inte körs längre.
 Hårdkoda inte LAM master password i config.cfg och LAM mysql-databasen.
 authldap ska hämta roll från primary group fältet.(gidNumber)
@@ -85,4 +87,4 @@ Remote backup:
 Vad finns inte backup på:
 - SSH-server config.
 - Apache-config.
-- (Vad är ens önskvärt att ha backup på? Har man databaserna så bygger man ju upp nya system runt dom.)
+- (Vad är ens önskvärt att ha backup på? Har man databaserna så kan man ju bygga upp nya system runt dom.)
