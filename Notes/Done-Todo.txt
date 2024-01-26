@@ -27,14 +27,14 @@ Done:
     - Secrets för lösenord.
     - Skapar namngedda volymer för viktiga folders.
     Scripts:
-    - Backup-script av LDAP som krypterar databasen. (Cronjob)
+    - Backup-script av LDAP som krypterar databasen, och skickar den off-site. (Cronjob)
     - Script för att läsa in en krypterad LDAP-databas.
     Host:
     - OpenSSH-server med nyckelautentisering.
 
 Todo:
 
-Fixa:       Skicka backupen med scp till en "annan" server.
+Fixa:       Backa upp krypteringsnycklar och ssh-nycklar någonstans.
 
 Fixa:       Installera och konfigurera fail2ban på host.
 
@@ -80,3 +80,9 @@ Remote backup:
 - Användare på remote-servern som bara har hand om backuper.
 - Är chrootad till backup-foldern.
 - /bin/false shell och ingen home.
+    - Det här förutsätter sftp, men sftp är långsamt.
+
+Vad finns inte backup på:
+- SSH-server config.
+- Apache-config.
+- (Vad är ens önskvärt att ha backup på? Har man databaserna så bygger man ju upp nya system runt dom.)

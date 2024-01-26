@@ -8,6 +8,9 @@
 
 # Todo - Lägg krypterings-nyckeln på ett säkert ställe.
 # Todo - Rsynca backupen till off-site.
+# Todo - Ändra backup_dir ska ändra den både remote och lokalt. Men chroot användare kan inte skapa folders i jailet.
+# Todo - Mer dynamiskt, specificera host,port,utfil, etc...med getopts.
+# Todo - Failsafes, testa så saker fungerar och hantera errors. Är remote-servern nere? Gör en retry kanske?
 
 #DOMAIN
 #LDAP_USER
@@ -42,12 +45,11 @@ if [ "$(docker container inspect -f '{{.State.Running}}' $CONTAINER_NAME)" = tru
     # Hur pipar jag output från ldapsearch till openssl -in ?
     rm "$DB_NAME"
 
-    rsync "$BACKUP_DIR"/"$DB_NAME".crypt mysko@hemlis.com:50:/mnt/rsync_Backups/
+    # Send backup off-site.
+    scp -P 50 -i /root/backup.key "$BACKUP_DIR"/"$DB_NAME".crypt backup_user@hemlis.com:./Backups
 
     find "$BACKUP_DIR" -type f -name "*.ldif.crypt" | sort -r | tail -n +15 | xargs -d '\n' rm 2>/dev/null
 
-    # rsync off-site.
-    # rsync 
 else 
     echo "Error: Container not found."
     exit 1
