@@ -42,7 +42,7 @@ try:
    ldap_conn.unbind_s()
    print("LDAP connection closed.")
    # Robin was here.
-   os.remove(ldif_file)
+   os.rename(ldif_file, ldif_file+".old")
 except ldap.SERVER_DOWN as e:
    print(f"LDAP server is down or unreachable: {e}")
 except Exception as e:

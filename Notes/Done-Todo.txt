@@ -53,7 +53,9 @@ Problem:    Exporterar man LDAP-databasen med readonly-användaren så får man 
 Problem:    LAM kan inte hitta en användare att logga in med om man sätter LDAP Search istället för en Fixed List. 
             Även om man söker med samma sträng.
 
-Problem:    Egen dockerfile hanterar inte uppdateringar av t.ex. wordpress.
+Problem:    Egen dockerfile hanterar inte uppdateringar. Ändras variabler så kan script breaka.
+
+Problem: 
 
 Fixa mysql backup-scripts.
 Kryptera openldap och mysql uppkopplingar.
