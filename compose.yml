@@ -81,7 +81,7 @@ secrets:
   ldap_admin_password:
     file: ./Secrets/ldap_admin_password.txt
   ldap_readonly_password:
-    file: ./Secrets/ldap_readonly_password
+    file: ./Secrets/ldap_readonly_password.txt
   wp_admin_password:
     file: ./Secrets/wp_admin_password.txt
 

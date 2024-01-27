@@ -2,13 +2,11 @@
 
 # ldapsearch vs slapd https://serverfault.com/a/584609
 
-# Backup a ldap directory as an encrypted file.
+# Backup a ldap directory as an encrypted file, both local and off-site.
 
 # Depends on ldap-utils
 
 # Todo - Lägg krypterings-nyckeln på ett säkert ställe.
-# Todo - Rsynca backupen till off-site.
-# Todo - Ändra backup_dir ska ändra den både remote och lokalt. Men chroot användare kan inte skapa folders i jailet.
 # Todo - Mer dynamiskt, specificera host,port,utfil, etc...med getopts.
 # Todo - Failsafes, testa så saker fungerar och hantera errors. Är remote-servern nere? Gör en retry kanske?
 

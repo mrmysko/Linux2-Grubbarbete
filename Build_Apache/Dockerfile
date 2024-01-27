@@ -6,10 +6,6 @@ RUN apt update && apt install -y --no-install-recommends \
 
 COPY . .
 
-#ENV DOMAIN=hemlis.com
-#RUN chmod +x apache_setup.sh
-#RUN ./apache_setup.sh
-
 RUN chmod +x entrypoint.sh
 ENTRYPOINT [ "./entrypoint.sh" ]
 
