@@ -2,14 +2,16 @@
 
 # Todo - Clean up tests
 
+DOMAIN="hemlis.com"
+
 # Backup storage directory 
-backup_dir=/mnt/mysql_backups
+BACKUP_DIR="/mnt/Backups/$DOMAIN"
 
 # MySQL user
-user=root
+USER=root
 
 # MySQL password 
-password=$(cat ../Secrets/mysql_root_password.txt)
+PASSWORD=$(cat ../Secrets/mysql_root_password.txt)
 
 DB_DATE=$(date +'%m-%d-%y_%H-%M')
 DB_NAME="$DB_DATE-db_dump.sql"
@@ -25,8 +27,14 @@ fi
 
 if [ "$(docker container inspect -f '{{.State.Running}}' mysql)" = true ]; then
 
+  if [ ! -d "$BACKUP_DIR" ]; then
+    mkdir "$BACKUP_DIR"
+  fi
+
+  cd "$BACKUP_DIR" || exit 2;
+
   # Create a backup 
-  mysqldump --host="$CONTAINER_IP" -u $user -p"$password" --all-databases > "$backup_dir"/"$DB_NAME"
+  mysqldump --host="$CONTAINER_IP" -u $USER -p"$PASSWORD" --all-databases > "$DB_NAME"
 
   if [ $? -eq 0 ]; then
     echo 'Sql dump created' 
@@ -36,7 +44,6 @@ if [ "$(docker container inspect -f '{{.State.Running}}' mysql)" = true ]; then
   fi 
 
   # Compress backup 
-  cd "$backup_dir" || exit 2;
   tar -czf "$ARCHIVE_NAME" "$DB_NAME"
 
   if [ $? -eq 0 ]; then
@@ -46,10 +53,12 @@ if [ "$(docker container inspect -f '{{.State.Running}}' mysql)" = true ]; then
     exit 
   fi 
 
-  rm "$backup_dir"/"$DB_NAME"
+  rm "$DB_NAME"
 
   # Encrypt backup
   openssl enc -aes-256-cbc -pbkdf2 -in "$ARCHIVE_NAME" -out "$ARCHIVE_NAME".crypt -pass file:/root/crypt.key
+
+  rm "$ARCHIVE_NAME"
 
   echo 'Backup was successfully created'  
 
@@ -57,7 +66,7 @@ if [ "$(docker container inspect -f '{{.State.Running}}' mysql)" = true ]; then
   scp -P 50 -i /root/backup.key "$ARCHIVE_NAME".crypt backup_user@hemlis.com:./Backups
 
   # Delete old backups 
-  find /mnt/mysql_backups -type f -name "*db_dump.tar.gz" | sort -r | tail -n +15 | xargs -d '\n' rm 2>/dev/null
+  find . -type f -name "$ARCHIVE_NAME".crypt | sort -r | tail -n +15 | xargs -d '\n' rm 2>/dev/null
 else
   echo "Container not found."; exit 1
 fi

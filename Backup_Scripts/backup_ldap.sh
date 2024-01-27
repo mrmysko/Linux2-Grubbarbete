@@ -9,14 +9,14 @@
 # Todo - Lägg krypterings-nyckeln på ett säkert ställe.
 # Todo - Mer dynamiskt, specificera host,port,utfil, etc...med getopts.
 # Todo - Failsafes, testa så saker fungerar och hantera errors. Är remote-servern nere? Gör en retry kanske?
+# Todo - scp skapar inte en domän-folder på remoten. Det blir en fil som heter domänen istället.
 
-#DOMAIN
 #LDAP_USER
-#OUT_FILE
-#PASS
+#PASSWORD
 #PORT
 
-BACKUP_DIR=/mnt/Backups
+DOMAIN="hemlis.com"
+BACKUP_DIR="/mnt/Backups/$DOMAIN"
 CONTAINER_NAME="ldap"
 DB_DATE=$(date +'%m-%d-%y_%H-%M')
 DB_NAME="$DB_DATE-${DOMAIN:-"db"}.ldif"
@@ -30,6 +30,11 @@ if [ $EUID -ne "0" ]; then
 fi
 
 if [ "$(docker container inspect -f '{{.State.Running}}' $CONTAINER_NAME)" = true ]; then
+
+    if [ ! -d "$BACKUP_DIR" ]; then
+        echo "Creating backup dir."
+        mkdir "$BACKUP_DIR"
+    fi
 
     cd "$BACKUP_DIR" || exit 1;
 
@@ -46,9 +51,9 @@ if [ "$(docker container inspect -f '{{.State.Running}}' $CONTAINER_NAME)" = tru
     rm "$DB_NAME"
 
     # Send backup off-site.
-    scp -P 50 -i /root/backup.key "$DB_NAME".crypt backup_user@hemlis.com:./Backups
+    scp -P 50 -i /root/backup.key "$DB_NAME".crypt backup_user@hemlis.com:./Backups/
 
-    find . -type f -name "*.ldif.crypt" | sort -r | tail -n +15 | xargs -d '\n' rm 2>/dev/null
+    find . -type f -name "$DB_NAME".crypt | sort -r | tail -n +15 | xargs -d '\n' rm 2>/dev/null
 
 else 
     echo "Error: Container not found."
