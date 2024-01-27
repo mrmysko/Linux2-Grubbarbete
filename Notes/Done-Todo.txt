@@ -27,14 +27,12 @@ Done:
     - Secrets för lösenord.
     - Skapar namngedda volymer för viktiga folders.
     Scripts:
-    - Backup-script av LDAP som krypterar databasen, och skickar den off-site. (Cronjob)
+    - Backup-script av LDAP och MySQL som krypterar databaserna, och skickar dom off-site. (Cronjob)
     - Script för att läsa in en krypterad LDAP-databas.
     Host:
     - OpenSSH-server med nyckelautentisering.
 
 Todo:
-
-Fixa:       MySQL backup-script. Göm root_lösenord, standardisera namn med ldap-backup. Sätt ip-på mysql-containern.
 
 Fixa:       Backa upp krypteringsnycklar och ssh-nycklar någonstans.
 
@@ -59,7 +57,7 @@ Problem:    Egen dockerfile hanterar inte uppdateringar. Ändras variabler så k
 
 Problem: 
 
-Fixa mysql backup-scripts.
+Kolla upp sftp reget/reput
 Kryptera openldap och mysql uppkopplingar.
 lam mysql config pass ligger öppet i config.cfg filen.
 Apache imagen kollar inte längre efter senaste wordpress iom att build.sh inte körs längre.
@@ -69,7 +67,7 @@ Apache server config
 Containers kör som root...
 Subdomäner
 IP-tables för att droppa trafik som inte kommer mellan containers.
-Fail2Ban på apache, ssh, mysql och openldap.
+Fail2Ban på apache, ssh. (iptables för mysql och openldap)
 Let's encrypt
 övervakning
 Vad gör config-databasen i ldap?
@@ -85,7 +83,7 @@ Remote backup:
 - Användare på remote-servern som bara har hand om backuper.
 - Är chrootad till backup-foldern.
 - /bin/false shell och ingen home.
-    - Det här förutsätter sftp, men sftp är långsamt.
+    - Det här förutsätter sftp, men sftp är allegedly långsamt vs rsync.
 
 Vad finns inte backup på:
 - lösenordsfiler/krypteringsnycklar/ssh-nycklar.
