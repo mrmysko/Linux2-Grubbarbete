@@ -10,6 +10,8 @@ tr -dc A-Za-z0-9 </dev/urandom | head -c 8; echo
 Generera ett lösen med 8 random chars salt. (Men måste få ut salten för att kunna verifiera lösen tho.)
 echo -n password$(tr -dc A-Za-z0-9 </dev/urandom | head -c 8; echo) | sha1sum | cut -d ' ' -f 1 | base64
 
+https://deliciousbrains.com/ssl-certificate-authority-for-local-https-development/
+
 objectClass: posixAccount
 objectClass: inetOrgPerson
 objectClass: organizationalPerson

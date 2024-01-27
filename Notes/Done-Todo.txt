@@ -1,7 +1,7 @@
 Done:
     wp_custom image:
     - Kör alla scripts i /docker.entrypoint/ automatiskt.
-    - Bygger en image med Apache, Wordpress och ldap-account-manager.
+    - Bygger en image med Apache, Wordpress, ldap-account-manager och phpLDAPadmin.
     - Skapar en $DOMAIN.conf fil och enablear den.
     Apache:
     - TLS on och redirectar till HTTPS på $DOMAIN.
@@ -36,8 +36,6 @@ Todo:
 
 Fixa:       Backa upp krypteringsnycklar och ssh-nycklar någonstans.
 
-Fixa:       Installera och konfigurera fail2ban på host.
-
 Problem:    Överallt...var man än vänder sig så är det något som är trasigt.
 
 Problem:    https://github.com/nextcloud/server/issues/2640
@@ -55,7 +53,9 @@ Problem:    LAM kan inte hitta en användare att logga in med om man sätter LDA
 
 Problem:    Egen dockerfile hanterar inte uppdateringar. Ändras variabler så kan script breaka.
 
-Problem: 
+Problem:    TLS fungerar inte i openldap containern. Mountar cert foldern på rätt plats men TLS-cert hittas inte.
+
+Problem:    py_import kan inte importera en exporterad db. objectClasses är i fel ordning eller missing.
 
 Kolla upp sftp reget/reput
 Kryptera openldap och mysql uppkopplingar.
@@ -67,9 +67,10 @@ Apache server config
 Containers kör som root...
 Subdomäner
 IP-tables för att droppa trafik som inte kommer mellan containers.
-Fail2Ban på apache, ssh. (iptables för mysql och openldap)
+Fail2Ban på apache, ssh. (iptables för mysql och openldap?)
 Let's encrypt
 övervakning
+hasha lösenord i filer?
 Vad gör config-databasen i ldap?
 
 Härda ssh:
