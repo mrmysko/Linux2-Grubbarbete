@@ -25,6 +25,7 @@ if [ $EUID -ne "0" ]; then
     exit $?
 fi
 
+# Check if container is running.
 if [ "$(docker container inspect -f '{{.State.Running}}' mysql)" = true ]; then
 
   if [ ! -d "$BACKUP_DIR" ]; then
