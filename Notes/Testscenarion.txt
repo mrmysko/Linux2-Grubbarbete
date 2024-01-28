@@ -1,7 +1,0 @@
-Kan man byta mail/lösen på en användare i ldap och de reflekteras i WP?
-
-Kan användare med /bin/false logga in på WP? Är det bara för nån slags domänjoinad linux-klient?
-
-Tar jag bort en användare i ldap, kan den logga in på WP?
-
-Tar jag bort en WP-användare, kan den logga igen med ldap credentials?
