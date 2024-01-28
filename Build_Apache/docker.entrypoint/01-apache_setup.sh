@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Så...apache pekar på $DOMAIN i /var/www. Apache backupen som ligger i wp-foldern borde byta namn till $DOMAIN då.
+
 echo "Setup apache..."
 
 # Create apache wordpress config.

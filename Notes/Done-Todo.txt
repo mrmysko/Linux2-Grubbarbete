@@ -37,6 +37,8 @@ Todo:
 
 Fixa:       Backa upp krypteringsnycklar och ssh-nycklar någonstans.
 
+Fixa:       Interaktionen mellan apache_setup, wp_setup, unpacking wp.tar.gz och mounta wordpress i docker-compose.
+
 Kolla:      Lägg till grejer i wordpress. Kör alla backups, starta en ny miljö och restorea allt. Funkar?
 
 Kolla:      Om backup-scriptsen kräver tillgång till saker i root-foldern. Isätllet för att kolla i script och köra om \
