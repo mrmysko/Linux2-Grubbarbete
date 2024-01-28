@@ -14,7 +14,7 @@ USER=root
 PASSWORD=$(cat ../Secrets/mysql_root_password.txt)
 
 DB_DATE=$(date +'%m-%d-%y_%H-%M')
-DB_NAME="$DB_DATE-db_dump.sql"
+DB_NAME="$DB_DATE-$DOMAIN.sql"
 ARCHIVE_NAME="$DB_NAME.tar.gz"
 CONTAINER_IP=$(docker inspect -f '{{.NetworkSettings.Networks.defaultNet.IPAddress}}' mysql)
 
@@ -34,7 +34,7 @@ if [ "$(docker container inspect -f '{{.State.Running}}' mysql)" = true ]; then
   cd "$BACKUP_DIR" || exit 2;
 
   # Create a backup 
-  mysqldump --host="$CONTAINER_IP" -u $USER -p"$PASSWORD" --all-databases > "$DB_NAME"
+  mysqldump --add-drop-table --host="$CONTAINER_IP" -u "$USER" -p"$PASSWORD" --all-databases > "$DB_NAME"
 
   if [ $? -eq 0 ]; then
     echo 'Sql dump created' 
