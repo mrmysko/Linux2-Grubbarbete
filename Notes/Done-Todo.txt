@@ -36,6 +36,10 @@ Todo:
 
 Fixa:       Backa upp krypteringsnycklar och ssh-nycklar någonstans.
 
+Fixa:       Wordpress behöver prolly en backup iom plugins och uploads i /wp-content.
+
+Kolla:      Lägg till lite grejer i wordpress. Kör alla backups, starta en ny miljö och restorea allt.
+
 Problem:    Överallt...var man än vänder sig så är det något som är trasigt.
 
 Problem:    https://github.com/nextcloud/server/issues/2640
@@ -56,6 +60,9 @@ Problem:    Egen dockerfile hanterar inte uppdateringar. Ändras variabler så k
 Problem:    TLS fungerar inte i openldap containern. Mountar cert foldern på rätt plats men TLS-cert hittas inte.
 
 Problem:    py_import kan inte importera en exporterad db. objectClasses är i fel ordning eller missing.
+
+Problem?:   wp-config.php har lösenordet till wordpress databasen, den är world readable i docker-volymen.
+            (Men, om man har fysisk tillgång att komma åt den filen...då är man redan inne.)
 
 Kolla upp sftp reget/reput
 Kryptera openldap och mysql uppkopplingar.
