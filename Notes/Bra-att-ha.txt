@@ -27,3 +27,7 @@ openssl enc -aes-256-cbc -pbkdf2 -in 01-24-21:53-db.ldif -out crypt.db.ldif -pas
 $servers->setValue('server','name','My LDAP Server');
 $servers->setValue('server','host','127.0.0.1');
 $servers->setValue('login','bind_id','cn=admin,dc=example,dc=com');
+
+sed -i 's/GENERATED ALWAYS AS .* VIRTUAL/NOT NULL/' 01-28-24_17-16-hemlis.com.sql ("Convert" mariadb to mysql)
+
+ldap://cn=readonly,dc=hemlis,dc=com:readonly@ldap/dc=hemlis,dc=com

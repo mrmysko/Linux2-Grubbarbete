@@ -7,5 +7,7 @@ Vad måste man göra manuellt när man startar docker-compose första gången?
 Vad måste man göra om man har backups man vill importera?
 
 - Lägg wordpress .tar.gz backup i DBs/Wordpress/
-- Lägg mysql backup i DBs/MySQL_DB/ (Fungerar inte atm)
+- Lägg mysql backup i DBs/MySQL_DB/
+- Om mysql är dumpad med mariadb, kör "sed -i 's/GENERATED ALWAYS AS .* VIRTUAL/NOT NULL/' <sql file>" på databasen.
 - Importera krypterad ldif databas med script. (Eftersom varken bootstrap eller py_import fungerar.)
+    - Vi kan skapa en ny image med osixia som bas, som kör ett script mot en mountad folder med bash import-scriptet.

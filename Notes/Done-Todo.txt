@@ -29,7 +29,7 @@ Done:
     Scripts:
     - Backup-script av LDAP och MySQL som krypterar databaserna, och skickar dom off-site. (Cronjob)
     - Script för att läsa in en krypterad LDAP-databas.
-    - Backup-script av wordpress-foldern.
+    - Backup-script av wordpress-foldern + off-site.
     Host:
     - OpenSSH-server med nyckelautentisering.
 
@@ -37,14 +37,13 @@ Todo:
 
 Fixa:       Backa upp krypteringsnycklar och ssh-nycklar någonstans.
 
-Fixa:       Interaktionen mellan apache_setup, wp_setup, unpacking wp.tar.gz och mounta wordpress i docker-compose.
-
 Fixa:       Standardisera, kommentera scripts.
-
-Kolla:      Lägg till grejer i wordpress. Kör alla backups, starta en ny miljö och restorea allt. Funkar?
 
 Kolla:      Om backup-scriptsen kräver tillgång till saker i root-foldern. Isätllet för att kolla i script och köra om \
             bara chowna scripten till root? Eller sätt setuid/setgid till root? Vad är best practice?
+
+Kolla:      mysql image, det kan bli problem om man importerar en gammal db till en ny image...så vi kanske borde välja 
+            en image och inte köra på :latest?
 
 Problem:    Överallt...var man än vänder sig så är det något som är trasigt.
 

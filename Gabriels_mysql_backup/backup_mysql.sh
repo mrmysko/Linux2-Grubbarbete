@@ -37,7 +37,10 @@ if [ "$(docker container inspect -f '{{.State.Running}}' mysql)" = true ]; then
   cd "$BACKUP_DIR" || exit 2;
 
   # Create a backup 
-  mysqldump --add-drop-table --host="$CONTAINER_IP" -u "$USER" -p"$(cat $PASSWORD_FILE)" --all-databases > "$DB_NAME"
+  mysqldump --add-drop-table --host="$CONTAINER_IP" -u "$USER" -p"$(cat $PASSWORD_FILE)" \
+  --all-databases \
+  --ignore-table=mysql.innodb_index_stats \
+  --ignore-table=mysql.innodb_table_stats > "$DB_NAME"
 
   if [ $? -eq 0 ]; then
     echo 'Sql dump created' 

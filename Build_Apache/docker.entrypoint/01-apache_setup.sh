@@ -38,26 +38,21 @@ if [ -f Import_DB/"$DOMAIN".wp.tar.gz ]; then
     cd Import_DB || return
     echo "Importing Backup..."
     tar -xf "$DOMAIN".wp.tar.gz -C /var/www
+    rm "$DOMAIN".wp.tar.gz
     cd ..
 else
 
-# Install wordpress.
-tar -xzf wordpress.tar.gz
-#rm wordpress/wp-config.php
-mv wordpress /var/www/"$DOMAIN"
-rm wordpress.tar.gz
+    # Install wordpress.
+    mv wordpress /var/www/"$DOMAIN"
 
-# Move plugins to folder.
-mv authldap /var/www/"$DOMAIN"/wp-content/plugins
+    # Uninstall default plugins.
+    rm /var/www/"$DOMAIN"/wp-content/plugins/hello.php
+    rm -r /var/www/"$DOMAIN"/wp-content/plugins/akismet
 
-# Uninstall default plugins.
-rm /var/www/"$DOMAIN"/wp-content/plugins/hello.php
-rm -r /var/www/"$DOMAIN"/wp-content/plugins/akismet
+fi
 
 # Give owner of wordpress to webserver.
 chown -R www-data: /var/www/"$DOMAIN"
-
-fi
 
 # Install WP-CLI.
 chmod +x wp-cli.phar

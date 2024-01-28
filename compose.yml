@@ -18,26 +18,6 @@ services:
       - wp_admin_password
     networks:
       - defaultNet
-
-  #mysql:
-  #  image: mariadb:latest
-  #  container_name: mysql
-  #  volumes:
-  #    - mysql_data:/var/lib/mysql
-  #    - ./DBs/MySQL_DB:/docker-entrypoint-initdb.d/
-  #  environment:
-  #    - MARIADB_ROOT_PASSWORD_FILE=/run/secrets/mysql_root_password
-  #    - MARIADB_PASSWORD_FILE=/run/secrets/wp_admin_password
-  #  env_file:
-  #    - .env
-  #  ports:
-  #    - 3306:3306
-  #  restart: "unless-stopped"
-  #  secrets:
-  #    - mysql_root_password
-  #    - wp_admin_password
-  #  networks:
-  #    - defaultNet
   
   ldap:
     image: osixia/openldap
