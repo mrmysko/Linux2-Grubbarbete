@@ -71,6 +71,11 @@ Problem:    py_import kan inte importera en exporterad db. objectClasses är i f
 Problem?:   wp-config.php har lösenordet till wordpress databasen, den är world readable i docker-volymen.
             (Men, om man har fysisk tillgång att komma åt den filen...då är man redan inne.)
 
+Problem:    Kali kör MariaDB, containern kör mysql...mysqldump på mariaDB dumpar inte en korrekt mysql-databas.
+            "The value specified for generated column 'default_value' in table 'engine_cost' is not allowed." vid import.
+            Lösningen är att antingen köra backup-scriptet på en mysql-server, köra backupen i en container eller \
+            köra en backup direkt på volymen och mounta den till containern.
+
 Kolla upp sftp reget/reput
 Kryptera openldap och mysql uppkopplingar.
 lam mysql config pass ligger öppet i config.cfg filen.

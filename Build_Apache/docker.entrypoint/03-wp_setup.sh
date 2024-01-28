@@ -3,6 +3,8 @@
 # Waiting for mysql to restart on first boot.
 sleep 10
 
+if [ ! -f /var/www/"$DOMAIN"/wp-config.php ]; then
+
 echo "Generating wp-conf.php"
 
 # Create wp-config.php
@@ -33,14 +35,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once ABSPATH . 'wp-settings.php';
 EOF
 
-# Move file to wordpress.
-mv wp-config.php /var/www/"$DOMAIN"/wp-config.php
+    # Move file to wordpress.
+    chown www-data: wp-config.php
+    mv wp-config.php /var/www/"$DOMAIN"/wp-config.php
 
-chown www-data: wp-config.php
-
-echo "Creating Wordpress admin."
-wp --allow-root --path=/var/www/"$DOMAIN" core install --url=www."$DOMAIN" --title=Homepage --admin_user="$WP_ADMIN_USER" --admin_email="$WP_ADMIN_USER"@"$DOMAIN" --admin_password="$(cat "$WP_ADMIN_PASSWORD")" --skip-email
-wp --allow-root --path=/var/www/"$DOMAIN" plugin activate authldap
+    echo "Creating Wordpress admin."
+    wp --allow-root --path=/var/www/"$DOMAIN" core install --url=www."$DOMAIN" --title=Homepage --admin_user="$WP_ADMIN_USER" --admin_email="$WP_ADMIN_USER"@"$DOMAIN" --admin_password="$(cat "$WP_ADMIN_PASSWORD")" --skip-email
+    wp --allow-root --path=/var/www/"$DOMAIN" plugin activate authldap
+else
+    echo "wp-config.php exists."
+fi
 
 # Remove itself.
 rm "$0"

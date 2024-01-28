@@ -1,12 +1,13 @@
 #!/bin/bash
 
-# Så...apache pekar på $DOMAIN i /var/www. Apache backupen som ligger i wp-foldern borde byta namn till $DOMAIN då.
+# Wordpress importerar bara en folder som heter samma som domän.
 
 echo "Setup apache..."
 
-# Create apache wordpress config.
+# Silence aoache error.
 echo "ServerName $DOMAIN" >> /etc/apache2/apache2.conf 
 
+# Create apache wordpress config.
 cat > /etc/apache2/sites-available/"$DOMAIN".conf << EOF
 <VirtualHost *:80> 
     ServerName www.$DOMAIN
@@ -32,6 +33,14 @@ cat > /etc/apache2/sites-available/"$DOMAIN".conf << EOF
 </VirtualHost>
 EOF
 
+# Check for a backup in /Import_DB, unpack that instead.
+if [ -f Import_DB/"$DOMAIN".wp.tar.gz ]; then
+    cd Import_DB || return
+    echo "Importing Backup..."
+    tar -xf "$DOMAIN".wp.tar.gz -C /var/www
+    cd ..
+else
+
 # Install wordpress.
 tar -xzf wordpress.tar.gz
 #rm wordpress/wp-config.php
@@ -47,6 +56,8 @@ rm -r /var/www/"$DOMAIN"/wp-content/plugins/akismet
 
 # Give owner of wordpress to webserver.
 chown -R www-data: /var/www/"$DOMAIN"
+
+fi
 
 # Install WP-CLI.
 chmod +x wp-cli.phar

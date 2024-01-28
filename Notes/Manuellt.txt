@@ -6,4 +6,6 @@ Vad måste man göra manuellt när man startar docker-compose första gången?
 
 Vad måste man göra om man har backups man vill importera?
 
-- Lägg wordpress .tar.gz backup i <dir> som är mountad i apache-containern.
+- Lägg wordpress .tar.gz backup i DBs/Wordpress/
+- Lägg mysql backup i DBs/MySQL_DB/ (Fungerar inte atm)
+- Importera krypterad ldif databas med script. (Eftersom varken bootstrap eller py_import fungerar.)

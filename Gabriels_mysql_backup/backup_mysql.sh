@@ -2,6 +2,8 @@
 
 # Todo - Clean up tests
 
+# Det här funkar inte eftersom kali kör mariadb och mysqldumpar inte en likadana databas.
+
 DOMAIN="hemlis.com"
 
 # Backup storage directory 
