@@ -11,10 +11,10 @@ BACKUP_DIR="/mnt/Backups/$DOMAIN"
 USER=root
 
 # MySQL password 
-PASSWORD=$(cat ../Secrets/mysql_root_password.txt)
+PASSWORD=$(cat /home/mysko/Linux2-Grupparbete/Secrets/mysql_root_password.txt)
 
 DB_DATE=$(date +'%m-%d-%y_%H-%M')
-DB_NAME="$DB_DATE-$DOMAIN.sql"
+DB_NAME="$DB_DATE-${DOMAIN:-"db"}.sql"
 ARCHIVE_NAME="$DB_NAME.tar.gz"
 CONTAINER_IP=$(docker inspect -f '{{.NetworkSettings.Networks.defaultNet.IPAddress}}' mysql)
 
@@ -66,7 +66,7 @@ if [ "$(docker container inspect -f '{{.State.Running}}' mysql)" = true ]; then
   scp -P 50 -i /root/backup.key "$ARCHIVE_NAME".crypt backup_user@hemlis.com:./Backups
 
   # Delete old backups 
-  find . -type f -name "$ARCHIVE_NAME".crypt | sort -r | tail -n +15 | xargs -d '\n' rm 2>/dev/null
+  find . -type f -name \*.sql.tar.gz.crypt | sort -r | tail -n +15 | xargs -d '\n' rm 2>/dev/null
 else
   echo "Container not found."; exit 1
 fi

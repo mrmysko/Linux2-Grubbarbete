@@ -18,7 +18,9 @@
 DOMAIN="hemlis.com"
 BACKUP_DIR="/mnt/Backups/$DOMAIN"
 CONTAINER_NAME="ldap"
+
 DB_DATE=$(date +'%m-%d-%y_%H-%M')
+
 DB_NAME="$DB_DATE-${DOMAIN:-"db"}.ldif"
 
 # Check for root privilegies.
@@ -53,7 +55,7 @@ if [ "$(docker container inspect -f '{{.State.Running}}' $CONTAINER_NAME)" = tru
     # Send backup off-site.
     scp -P 50 -i /root/backup.key "$DB_NAME".crypt backup_user@hemlis.com:./Backups/
 
-    find . -type f -name "$DB_NAME".crypt | sort -r | tail -n +15 | xargs -d '\n' rm 2>/dev/null
+    find . -type f -name \*.ldif.crypt | sort -r | tail -n +15 | xargs -d '\n' rm 2>/dev/null
 
 else 
     echo "Error: Container not found."
