@@ -29,14 +29,13 @@ Done:
     Scripts:
     - Backup-script av LDAP och MySQL som krypterar databaserna, och skickar dom off-site. (Cronjob)
     - Script för att läsa in en krypterad LDAP-databas.
+    - Backup-script av wordpress-foldern.
     Host:
     - OpenSSH-server med nyckelautentisering.
 
 Todo:
 
 Fixa:       Backa upp krypteringsnycklar och ssh-nycklar någonstans.
-
-Fixa:       Wordpress behöver prolly en backup iom plugins och uploads i /wp-content.
 
 Kolla:      Lägg till grejer i wordpress. Kör alla backups, starta en ny miljö och restorea allt. Funkar?
 

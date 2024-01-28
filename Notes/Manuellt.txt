@@ -3,3 +3,7 @@ Vad måste man göra manuellt när man startar docker-compose första gången?
 - Konfigurera authldap plugin.
 - Importera lam-config.zip i lam.
 - Importera ldap-databasen med script.
+
+Vad måste man göra om man har backups man vill importera?
+
+- Lägg wordpress .tar.gz backup i <dir> som är mountad i apache-containern.

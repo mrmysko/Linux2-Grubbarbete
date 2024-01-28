@@ -35,10 +35,10 @@ if [ "$(docker container inspect -f '{{.State.Running}}' $CONTAINER_NAME)" = tru
     tar -czf "$DB_NAME" -C "$VOL_PATH" "$DOMAIN"
 
     # Send archive off-site.
-    #scp -P 50 -i /root/backup.key "$DB_NAME" backup_user@hemlis.com:./Backups/
+    scp -P 50 -i /root/backup.key "$DB_NAME" backup_user@hemlis.com:./Backups/
 
     # Only keep 4 backups, wordpress themes etc. probably doesnt change that often.
-    #find . -type f -name \*.wp.tar.gz | sort -r | tail -n +5 | xargs -d '\n' rm 2>/dev/null
+    find . -type f -name \*.wp.tar.gz | sort -r | tail -n +5 | xargs -d '\n' rm 2>/dev/null
 
 else 
     echo "Error: Container not found."

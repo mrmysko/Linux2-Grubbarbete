@@ -11,7 +11,7 @@ BACKUP_DIR="/mnt/Backups/$DOMAIN"
 USER=root
 
 # MySQL password 
-PASSWORD=$(cat /home/mysko/Linux2-Grupparbete/Secrets/mysql_root_password.txt)
+PASSWORD_FILE="/home/mysko/Linux2-Grupparbete/Secrets/mysql_root_password.txt"
 
 DB_DATE=$(date +'%m-%d-%y_%H-%M')
 DB_NAME="$DB_DATE-${DOMAIN:-"db"}.sql"
@@ -35,7 +35,7 @@ if [ "$(docker container inspect -f '{{.State.Running}}' mysql)" = true ]; then
   cd "$BACKUP_DIR" || exit 2;
 
   # Create a backup 
-  mysqldump --add-drop-table --host="$CONTAINER_IP" -u "$USER" -p"$PASSWORD" --all-databases > "$DB_NAME"
+  mysqldump --add-drop-table --host="$CONTAINER_IP" -u "$USER" -p"$(cat $PASSWORD_FILE)" --all-databases > "$DB_NAME"
 
   if [ $? -eq 0 ]; then
     echo 'Sql dump created' 
