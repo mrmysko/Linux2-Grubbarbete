@@ -64,6 +64,8 @@ if [ "$(docker container inspect -f '{{.State.Running}}' mysql)" = true ]; then
 
   rm "$ARCHIVE_NAME"
 
+  chmod o-rwx "$ARCHIVE_NAME".crypt
+
   echo 'Backup was successfully created'  
 
   # Send backup off-site

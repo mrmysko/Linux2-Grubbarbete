@@ -31,6 +31,8 @@ if [ "$(docker container inspect -f '{{.State.Running}}' $CONTAINER_NAME)" = tru
     openssl enc -aes-256-cbc -pbkdf2 -in "$DB_NAME" -out "$DB_NAME".crypt -pass file:/home/backup_user/crypto.key
     rm "$DB_NAME"
 
+    chmod o-rwx "$DB_NAME".crypt
+
     # Send archive off-site.
     scp -P 50 -i ~/.ssh/backup.key "$DB_NAME".crypt backup_user@hemlis.com:./Backups/wordpress/
 

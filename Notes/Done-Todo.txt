@@ -37,9 +37,9 @@ Done:
 
 Todo:
 
-Fixa:       Backa upp krypteringsnycklar och ssh-nycklar någonstans.
+Fixa:       Backup-scripts kör docker exec istället. Då kommer man åt containers utan ip och kan stänga portar utåt.
 
-Fixa:       Standardisera, kommentera scripts.
+Fixa:       Hasha filen med md5sum -> Lägg hashen i arkivet med databasen. -> Verifiera md5 summan när databasen packas upp.
 
 Kolla:      Om backup-scriptsen kräver tillgång till saker i root-foldern. Isätllet för att kolla i script och köra om \
             bara chowna scripten till root? Eller sätt setuid/setgid till root? Vad är best practice?
