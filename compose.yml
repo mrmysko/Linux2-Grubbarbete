@@ -18,7 +18,7 @@ services:
       - wp_admin_password
     networks:
       - defaultNet
-  
+
   ldap:
     image: osixia/openldap
     container_name: ldap

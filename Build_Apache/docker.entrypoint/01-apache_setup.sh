@@ -43,7 +43,7 @@ if [ -f Import_DB/"$DOMAIN".wp.tar.gz ]; then
 else
 
     # Install wordpress.
-    mv wordpress /var/www/"$DOMAIN"
+    cp wordpress /var/www/"$DOMAIN"
 
     # Uninstall default plugins.
     rm /var/www/"$DOMAIN"/wp-content/plugins/hello.php
