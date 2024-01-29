@@ -1,11 +1,14 @@
 #!/bin/bash
 
-# Unpacks an encrypted mysql-db to current folder.
-
-DOMAIN="hemlis.com"
-ARCHIVE_FILE="$DOMAIN".tar.gz
+# Decrypt an encrypted mysql db.
 
 usage() { echo "Usage: $0 -f <filename>"; }
+
+# Check for root privilegies.
+if [ $EUID -ne "0" ]; then
+    echo "$0 is not running as root. Try using sudo."
+    exit 2;
+fi
 
 while getopts "f:" opt; do
     case "${opt}" in
@@ -14,8 +17,10 @@ while getopts "f:" opt; do
     esac
 done
 
+ARCHIVE_FILE="$(basename -- "$FILE" .crypt)"
+
 # Decrypt DB.
-openssl enc -d -aes-256-cbc -pbkdf2 -in "$FILE" -out "$ARCHIVE_FILE" -pass file:/root/crypt.key
+openssl enc -d -aes-256-cbc -pbkdf2 -in "$FILE" -out "$ARCHIVE_FILE" -pass file:/root/crypto.key
 
 # Unpack it and remove archive.
 tar -xzf "$ARCHIVE_FILE"

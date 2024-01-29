@@ -35,10 +35,10 @@ EOF
 
 # Check for a backup in /Import_DB, unpack that instead.
 if [ -f Import_DB/"$DOMAIN".wp.tar.gz ]; then
-    cd Import_DB || return
+
     echo "Importing Backup..."
-    tar -xf "$DOMAIN".wp.tar.gz -C /var/www
-    cd ..
+    tar -xf /Import_DB/"$DOMAIN".wp.tar.gz -C /var/www
+    chown -R www-data: /var/www/"$DOMAIN"
 else
 
     # Install wordpress.
