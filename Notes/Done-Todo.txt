@@ -84,6 +84,7 @@ Problem:    iptables för att blockera trafik till containers blockerar trafik u
 
 Problem:    Delar man inte ut portar så kan inte backup-scriptsen connecta för att dumpa dbs. Lösningen blir väl att typ \
             skapa containers som mountar databas-foldersen -> dumpar dom till en lokal folder -> stänger ner.
+            ELLER backup-scripten kör en docker exec in i containern och sen en docker cp för att kopiera ut.
 
 Kolla upp sftp reget/reput
 Kryptera openldap och mysql uppkopplingar.
