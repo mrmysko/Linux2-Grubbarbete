@@ -34,7 +34,6 @@ Done:
     - Backup-script av wordpress-foldern + off-site.
     Host:
     - OpenSSH-server med nyckelautentisering.
-    - iptables-regler för att blockera trafik utifrån till interna containers på port 389 och 3306.
 
 Todo:
 
@@ -72,6 +71,8 @@ Problem:    py_import kan inte importera en exporterad db. objectClasses är i f
 
 Problem?:   wp-config.php har lösenordet till wordpress databasen, den är world readable i docker-volymen.
             (Men, om man har fysisk tillgång att komma åt den filen...då är man redan inne.)
+
+Problem:    inte adaptat för en backup-användare som kör backup-scripts.
 
 Problem:    Kali kör MariaDB, containern kör mysql...mysqldump på mariaDB dumpar inte en korrekt mysql-databas.
             "The value specified for generated column 'default_value' in table 'engine_cost' is not allowed." vid import.
@@ -112,6 +113,7 @@ Remote backup:
 - Är chrootad till backup-foldern.
 - /bin/false shell och ingen home.
     - Det här förutsätter sftp, men sftp är allegedly långsamt vs rsync.
+- (Inte implementerat: Backup användaren kör backupsen på host.)
 
 Vad finns inte backup på:
 - lösenordsfiler/krypteringsnycklar/ssh-nycklar.
