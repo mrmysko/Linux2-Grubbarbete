@@ -7,17 +7,16 @@
 #PASS
 #PORT
 
-# Todo - Argument för att peka på vilken server man vill restora till.
-
-usage() { echo "Usage: $0 -f <filename>"; }
+usage() { echo "Usage: $0 -f <filename> -h <host>"; }
 
 if [ $# -eq 0 ]; then
     echo "Argument required."; usage; exit 2;
 fi
 
-while getopts "f:" opt; do
+while getopts "f:h:" opt; do
     case ${opt} in
         f) FILE=${OPTARG} ;;
+        h) DOMAIN=${OPTARG} ;;
         *) usage; exit 1 ;;
     esac
 done

@@ -1,0 +1,24 @@
+services:
+  ldap_backup:
+    image: ldap_backup
+    container_name: ldap_backup
+    volumes:
+      - ./Backups./Backups
+    env_file:
+      - .env
+
+  mysql:backup:
+    image: mysql_bacskup
+    container_name: mysql_backup
+    volumes:
+      - ./Backups:/Backups
+    env_file:
+      - .env
+
+  wp_backup:
+    image: wp_backup
+    container_name: wp_backup
+    volumes:
+      - ./Backups:/Backups
+    env_file:
+      - .env

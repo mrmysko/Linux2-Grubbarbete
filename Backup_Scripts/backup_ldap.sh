@@ -6,9 +6,11 @@
 
 # Depends on ldap-utils
 
-# Todo - Mer dynamiskt, specificera host,port,utfil, etc...med getopts.
+# Todo - Mer dynamiskt, specificera host,port,utfil, etc med getopts.
 # Todo - Failsafes, testa så saker fungerar och hantera errors. Är remote-servern nere? Gör en retry kanske?
-# Todo - scp skapar inte en domän-folder på remoten. Det blir en fil som heter domänen istället.
+# Todo - scp skapar inte en domän-folder på remoten. Det blir en fil som heter domänen istället. \
+        # Kan scp skapa en folder med en miljövariabel?
+# Todo - Skippa mellanlagring mellan search och kryptering.
 
 #LDAP_USER
 #PASSWORD

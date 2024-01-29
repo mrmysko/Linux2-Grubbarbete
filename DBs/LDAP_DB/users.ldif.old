@@ -9,7 +9,7 @@ dn: cn=readonly,dc=hemlis,dc=com
 cn: readonly
 objectClass: simpleSecurityObject
 objectClass: organizationalRole
-userPassword:: e1NTSEF9ZHd1TlBQeDlBUUpJNUZ3TWVNRkRIb0VkSjMzRmQzUmY=
+userPassword:: e1NTSEF9c1VLdDJnNmYyUVl2T2xqaFNsQ1R4eE5WWCtEN0Y2M1g=
 description: LDAP read only user
 
 dn: ou=Users,dc=hemlis,dc=com
@@ -27,37 +27,35 @@ objectClass: posixGroup
 description: Wordpress Authors
 gidNumber: 1003
 cn: Authors
-memberUid: lfisk
-memberUid: tbefriare
+memberUid: kagent
 
 dn: cn=Editors,ou=Groups,dc=hemlis,dc=com
 objectClass: posixGroup
 description: Wordpress Editors
 gidNumber: 1002
 cn: Editors
-memberUid: ibra
+memberUid: kanka
 
 dn: cn=Subscribers,ou=Groups,dc=hemlis,dc=com
 objectClass: posixGroup
 description: Wordpress Subscribers
 gidNumber: 1005
 cn: Subscribers
-memberUid: gglennson
 
 dn: cn=Contributors,ou=Groups,dc=hemlis,dc=com
 objectClass: posixGroup
 description: Wordpress Contributors
 gidNumber: 1004
 cn: Contributors
-memberUid: kkeno
+memberUid: fbong
 
 dn: cn=Administrators,ou=Groups,dc=hemlis,dc=com
 objectClass: posixGroup
 description: Wordpress Administrators
 gidNumber: 1001
 cn: Administrators
-memberUid: uburk
-memberUid: zkung
+memberUid: ibra
+memberUid: jjackson
 
 dn: cn=John Jackson,ou=Users,dc=hemlis,dc=com
 givenName: John
@@ -114,4 +112,18 @@ objectClass: inetOrgPerson
 objectClass: posixAccount
 objectClass: top
 mail: inge@hemlis.com
+
+dn: cn=Kalle Anka,ou=Users,dc=hemlis,dc=com
+givenName: Kalle
+sn: Anka
+cn: Kalle Anka
+uid: kanka
+userPassword:: e1NTSEF9K2JBZkJMbkhlMjBVVktjV2xqM2Q4RExpc0hseTdyNmc=
+uidNumber: 1004
+gidNumber: 1002
+homeDirectory: /home/users/kanka
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+mail: kalle@hemlis.com
 

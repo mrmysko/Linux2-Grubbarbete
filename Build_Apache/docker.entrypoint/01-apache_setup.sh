@@ -38,12 +38,14 @@ if [ -f Import_DB/"$DOMAIN".wp.tar.gz ]; then
     cd Import_DB || return
     echo "Importing Backup..."
     tar -xf "$DOMAIN".wp.tar.gz -C /var/www
-    rm "$DOMAIN".wp.tar.gz
     cd ..
 else
 
     # Install wordpress.
-    cp wordpress /var/www/"$DOMAIN"
+    tar -xf latest.tar.gz
+    rm latest.tar.gz
+    mv wordpress /var/www/"$DOMAIN"
+
 
     # Uninstall default plugins.
     rm /var/www/"$DOMAIN"/wp-content/plugins/hello.php

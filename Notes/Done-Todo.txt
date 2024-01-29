@@ -10,10 +10,12 @@ Done:
     - Skapar första hemsidan och en admin-användare automatiskt.
     - Aktiverar authldap automatiskt.
     - Hämtar användare från ldap och sätter rollen INITIALT efter grupptillhörighet. (Efter authLdap config)
+    - Importerar backup från /Import_DB om det finns.
     MySQL:
     - Officiell Docker image.
     - Skapar en wordpress databas och användare via miljövariabler.
     - Skapar en LAM-config databas med docker-entrypoint-init.b
+    - Finns det en DB i /var/lib/mysql så importeras den istället.
     OpenLDAP:
     - osixia/open_ldap image.
     - Sätter domänm admin-user och readonly-user med .env-fil.
@@ -32,6 +34,7 @@ Done:
     - Backup-script av wordpress-foldern + off-site.
     Host:
     - OpenSSH-server med nyckelautentisering.
+    - iptables-regler för att blockera trafik utifrån till interna containers på port 389 och 3306.
 
 Todo:
 
@@ -53,7 +56,7 @@ Problem:    https://github.com/nextcloud/server/issues/2640
             authLdap letar efter grupptillhörighet i memberUid, så man måste manuellt gå in och lägga till användare i grupper.
             Hade jag kunnat php så hade jag kunnat skriva om authLdap i wordpress plugin file editor att kolla en användares gid istället.
 
-Problem:    Lösenord står i klartext på diverse ställen. config.cfg för LAM. authLdap settings. Backup-scripts.
+Problem:    Lösenord står i klartext på diverse ställen. config.cfg för LAM. authLdap settings.
 
 Problem:    Exporterar man LDAP-databasen med readonly-användaren så får man inte med lösenord. Men på nått sätt
             så kan den läsa dom i authLdap.
@@ -74,6 +77,12 @@ Problem:    Kali kör MariaDB, containern kör mysql...mysqldump på mariaDB dum
             "The value specified for generated column 'default_value' in table 'engine_cost' is not allowed." vid import.
             Lösningen är att antingen köra backup-scriptet på en mysql-server, köra backupen i en container eller \
             köra en backup direkt på volymen och mounta den till containern.
+
+Problem:    iptables för att blockera trafik till containers blockerar trafik ut också. iptables komplicerat me caveman.
+            Lösning: Bara dela inte ut portar till sånt som inte behöver.
+
+Problem:    Delar man inte ut portar så kan inte backup-scriptsen connecta för att dumpa dbs. Lösningen blir väl att typ \
+            skapa containers som mountar databas-foldersen -> dumpar dom till en lokal folder -> stänger ner.
 
 Kolla upp sftp reget/reput
 Kryptera openldap och mysql uppkopplingar.

@@ -3,6 +3,9 @@
 # Backup wordpress to a tar.gz archive.
 
 # Todo - Volym-path tas ut från ett volym-namn, ta det från ett container-namn istället.
+# Todo - scp skapar inte en domän-folder på remoten. Det blir en fil som heter domänen istället. \
+        # Kan scp skapa en folder med en miljövariabel?
+# Todo - Failsafes, testa så saker fungerar och hantera errors. Är remote-servern nere? Gör en retry kanske?
 
 DOMAIN="hemlis.com"
 BACKUP_DIR="/mnt/Backups/$DOMAIN"

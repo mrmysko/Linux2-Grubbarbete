@@ -31,3 +31,11 @@ $servers->setValue('login','bind_id','cn=admin,dc=example,dc=com');
 sed -i 's/GENERATED ALWAYS AS .* VIRTUAL/NOT NULL/' 01-28-24_17-16-hemlis.com.sql ("Convert" mariadb to mysql)
 
 ldap://cn=readonly,dc=hemlis,dc=com:readonly@ldap/dc=hemlis,dc=com
+
+Chain DOCKER-USER (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  anywhere             172.50.1.0/24        tcp dpt:http
+ACCEPT     tcp  --  anywhere             172.50.1.0/24        tcp dpt:https
+ACCEPT     all  --  172.50.1.0/24        anywhere            
+DROP       all  --  anywhere             anywhere            
+RETURN     all  --  anywhere             anywhere     
