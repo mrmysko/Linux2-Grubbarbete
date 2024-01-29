@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Put this file in /home/backup_user/
+
 # Todo - Clean up tests
 
 # Det här funkar inte eftersom kali kör mariadb och mysqldumpar inte likadana databas.

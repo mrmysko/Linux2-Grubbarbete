@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Put this file in /home/backup_user/
+
 # ldapsearch vs slapd https://serverfault.com/a/584609
 
 # Backup a ldap directory as an encrypted file, both local and off-site.

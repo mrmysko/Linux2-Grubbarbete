@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Put this file in /home/backup_user/
+
 # Backup wordpress to a tar.gz archive.
 
 DOMAIN="hemlis.com"
