@@ -2,6 +2,8 @@
 
 # Decrypt an ldif backup and import it.
 
+# Todo - Check if container is up.
+
 #DOMAIN
 #LDAP_USER
 #PASS
@@ -32,7 +34,7 @@ DB_FILE="$(basename -- "$FILE" .crypt)"
 openssl enc -d -aes-256-cbc -pbkdf2 -in "$FILE" -out "$DB_FILE" -pass file:/root/crypto.key 2>/dev/null
 
 docker cp "$DB_FILE" ldap:.
-docker exec "${$CONTAINER_NAME:-"ldap"}" ldapadd -x -c -w "${PASS:-"ldap_password"}" \
+docker exec "${CONTAINER_NAME:-"ldap"}" ldapadd -x -c -w "${PASS:-"ldap_password"}" \
     -D "cn=${LDAP_USER:-"admin"},dc=hemlis,dc=com" \
     -f "$DB_FILE"
 
