@@ -29,11 +29,11 @@ Done:
     - Secrets för lösenord.
     - Skapar namngedda volymer för viktiga folders.
     Scripts:
-    - Backup-script av LDAP och MySQL som krypterar databaserna, och skickar dom off-site. (Cronjob)
+    - Backup-script av LDAP, MySQL och Wordpress som krypterar databaserna, och skickar dom off-site. (Cronjob)
     - Script för att läsa in en krypterad LDAP-databas.
-    - Backup-script av wordpress-foldern + off-site.
     Host:
     - OpenSSH-server med nyckelautentisering.
+    - backup_user kör backup-scripts.
 
 Todo:
 
@@ -108,12 +108,16 @@ Härda ssh:
 - Byt port (security by obscurity).
 - Sätt på nyckelautentisering.
 
-Remote backup:
-- Användare på remote-servern som bara har hand om backuper.
-- Är chrootad till backup-foldern.
-- /bin/false shell och ingen home.
-    - Det här förutsätter sftp, men sftp är allegedly långsamt vs rsync.
-- (Inte implementerat: Backup användaren kör backupsen på host.)
+Backup:
+- Backup-användaren kör backupsen på host.
+- Dom ligger i /home/backup_user och bara den användaren kommer åt dom.
+- Cronjob för schema.
+- Skickar dom remote med scp. 
+- Chrootad till backup-foldern på remote server.
+Caveat:
+-   backup_user är användaren som är chrootad och bara får sftpa in på ssh-servern. Det är samma server som scripten \
+    körs på och för att inte låta den användaren logga in så kan man specificera DenyUser i sshd-conf
+
 
 Vad finns inte backup på:
 - lösenordsfiler/krypteringsnycklar/ssh-nycklar.

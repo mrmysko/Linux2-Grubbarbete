@@ -2,27 +2,12 @@
 
 # Backup wordpress to a tar.gz archive.
 
-# Todo - Volym-path tas ut från ett volym-namn, ta det från ett container-namn istället.
-# Todo - scp skapar inte en domän-folder på remoten. Det blir en fil som heter domänen istället. \
-        # Kan scp skapa en folder med en miljövariabel?
-# Todo - Failsafes, testa så saker fungerar och hantera errors. Är remote-servern nere? Gör en retry kanske?
-
 DOMAIN="hemlis.com"
-BACKUP_DIR="/mnt/Backups/$DOMAIN"
+BACKUP_DIR="/mnt/Backups/wordpress/$DOMAIN"
 CONTAINER_NAME="wordpress"
-VOL_NAME="wp_data"
 
-VOL_PATH=$(docker inspect -f '{{.Mountpoint}}' $VOL_NAME)
 DB_DATE=$(date +'%m-%d-%y_%H-%M')
 DB_NAME="$DB_DATE-$DOMAIN.wp.tar.gz"
-
-# Check for root privilegies.
-if [ $EUID -ne "0" ]; then
-    sudo "$0"
-    # This gets the exit code from the previously executed line, if script is not run with sudo privilegies,
-    # the if-statement runs the script again with sudo. And then exit with that runs exit-code.
-    exit $?
-fi
 
 # Check if container is running.
 if [ "$(docker container inspect -f '{{.State.Running}}' $CONTAINER_NAME)" = true ]; then
@@ -34,11 +19,18 @@ if [ "$(docker container inspect -f '{{.State.Running}}' $CONTAINER_NAME)" = tru
 
     cd "$BACKUP_DIR" || exit 1;
 
+    docker cp wordpress:/var/www/"$DOMAIN" .
+
     # Archive volume.
-    tar -czf "$DB_NAME" -C "$VOL_PATH" "$DOMAIN"
+    tar -czf "$DB_NAME" "$DOMAIN"
+    rm -r "$DOMAIN"
+
+    # Encrypt archive.
+    openssl enc -aes-256-cbc -pbkdf2 -in "$DB_NAME" -out "$DB_NAME".crypt -pass file:/home/backup_user/crypto.key
+    rm "$DB_NAME"
 
     # Send archive off-site.
-    scp -P 50 -i /root/backup.key "$DB_NAME" backup_user@hemlis.com:./Backups/
+    scp -P 50 -i ~/.ssh/backup.key "$DB_NAME".crypt backup_user@hemlis.com:./Backups/wordpress/
 
     # Only keep 4 backups, wordpress themes etc. probably doesnt change that often.
     find . -type f -name \*.wp.tar.gz | sort -r | tail -n +5 | xargs -d '\n' rm 2>/dev/null
