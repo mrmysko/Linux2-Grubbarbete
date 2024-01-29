@@ -19,10 +19,10 @@ if [ $# -eq 0 ]; then
     echo "Argument required."; usage; exit 2;
 fi
 
-while getopts "f:h:" opt; do
+while getopts "c:f:" opt; do
     case ${opt} in
+        c) CONTAINER_NAME=${OPTARG} ;;
         f) FILE=${OPTARG} ;;
-        h) DOMAIN=${OPTARG} ;;
         *) usage; exit 1 ;;
     esac
 done
@@ -31,7 +31,8 @@ DB_FILE="$(basename -- "$FILE" .crypt)"
 
 openssl enc -d -aes-256-cbc -pbkdf2 -in "$FILE" -out "$DB_FILE" -pass file:/root/crypto.key 2>/dev/null
 
-ldapadd -x -c -w "${PASS:-"ldap_password"}" -H ldap://"${DOMAIN:-"localhost"}":"${PORT:-"389"}" \
+docker cp "$DB_FILE" ldap:.
+docker exec "${$CONTAINER_NAME:-"ldap"}" ldapadd -x -c -w "${PASS:-"ldap_password"}" \
     -D "cn=${LDAP_USER:-"admin"},dc=hemlis,dc=com" \
     -f "$DB_FILE"
 

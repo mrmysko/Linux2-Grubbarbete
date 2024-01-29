@@ -23,7 +23,7 @@ ARCHIVE_FILE="$(basename -- "$FILE" .crypt)"
 openssl enc -d -aes-256-cbc -pbkdf2 -in "$FILE" -out "$ARCHIVE_FILE" -pass file:/root/crypto.key
 
 # Unpack it and remove archive.
-tar -xzf "$ARCHIVE_FILE"
+tar --same-owner -xzf "$ARCHIVE_FILE"
 rm "$ARCHIVE_FILE"
 
 # Import to mysql.

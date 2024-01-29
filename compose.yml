@@ -10,8 +10,8 @@ services:
       - MYSQL_PASSWORD_FILE=/run/secrets/wp_admin_password
     env_file:
       - .env
-    ports:
-      - 3306:3306
+    #ports:
+      #- 3306:3306
     restart: "unless-stopped"
     secrets:
       - mysql_root_password
@@ -30,9 +30,9 @@ services:
       - LDAP_READONLY_USER_PASSWORD_FILE=/run/secrets/ldap_readonly_password
     env_file:
       - .env
-    ports:
-      - 389:389
-      - 389:389/udp
+    #ports:
+      #- 389:389
+      #- 389:389/udp
       #- 636:636
       #- 636:636/udp
     restart: "unless-stopped"
@@ -100,7 +100,3 @@ volumes:
 networks:
   defaultNet:
     name: "defaultNet"
-    ipam:
-      config:
-        - subnet: 172.50.1.0/24
-          gateway: 172.50.1.1
