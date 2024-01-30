@@ -38,7 +38,7 @@ openssl enc -d -aes-256-cbc -pbkdf2 -in "$FILE" -out "$DB_FILE" -pass file:/root
 # Check if checksum match.
 if md5sum --status -c "$BACKUP_PATH"/"$DB_FILE".md5; then
 
-    echo "Checksum match, importing..."
+    echo "Checksum OK, importing..."
 
     docker cp "$DB_FILE" ldap:.
     docker exec "${CONTAINER_NAME:-"ldap"}" ldapadd -x -c -w "${PASS:-"ldap_password"}" \

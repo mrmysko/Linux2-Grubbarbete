@@ -33,7 +33,7 @@ tar --same-owner -xzf "$ARCHIVE_FILE"
 DB_FILE=$(basename -- "$ARCHIVE_FILE" .tar.gz)
 
 if md5sum --status -c "${CHECKSUM_FILE:-"$BACKUP_PATH"/"$DB_FILE.md5"}"; then
-    echo "Checksum match."
+    echo "Checksum OK."
 else 
     echo "Checksum fail."
     rm "$DB_FILE"

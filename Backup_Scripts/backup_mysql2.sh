@@ -74,7 +74,7 @@ if [ "$(docker container inspect -f '{{.State.Running}}' mysql)" = true ]; then
   
   tar --same-owner -xzf "$ARCHIVE_NAME"
 
-  if md5sum -c "$DB_NAME".md5; then
+  if md5sum --status -c "$DB_NAME".md5; then
       echo "Checksum OK."
       rm "$DB_NAME" "$ARCHIVE_NAME"
   else
