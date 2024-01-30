@@ -8,7 +8,6 @@
 
 # Depends on ldap-utils
 
-# Todo - Lägg krypterings-nyckeln på ett säkert ställe.
 # Todo - Mer dynamiskt, specificera host,port,utfil, etc...med getopts.
 # Todo - Failsafes, testa så saker fungerar och hantera errors. Är remote-servern nere? Gör en retry kanske?
 # Todo - scp skapar inte en domän-folder på remoten. Det blir en fil som heter domänen istället.

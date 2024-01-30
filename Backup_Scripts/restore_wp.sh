@@ -2,6 +2,9 @@
 
 # Decrypt a wordpress db.
 
+# Todo - Allow to specify checksum-file.
+# Todo - In case of a checksum fail, should the file be removed?
+
 usage() { echo "Usage: $0 -f <filename>"; }
 
 # Check for root privilegies.
@@ -19,4 +22,14 @@ done
 
 #ARCHIVE_FILE=$(sed 's/\.[^.]*$//' "$FILE")
 
-openssl enc -d -aes-256-cbc -pbkdf2 -in "$FILE" -out "$(basename -- "$FILE" .crypt)" -pass file:/root/crypto.key
+BACKUP_PATH=$(dirname "$FILE")
+ARCHIVE_FILE=$(basename -- "$FILE" .crypt)
+
+openssl enc -d -aes-256-cbc -pbkdf2 -in "$FILE" -out "$ARCHIVE_FILE" -pass file:/root/crypto.key
+
+if md5sum --status -c "$BACKUP_PATH"/"$ARCHIVE_FILE".md5; then
+    echo "Checksum match."
+else
+    echo "Checksum fail."
+    rm "$ARCHIVE_FILE"
+fi

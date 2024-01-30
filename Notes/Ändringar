@@ -1,0 +1,9 @@
+- Fick inte TLS att funwgera mellan Apache/MySQL/LDAP.
+
+- py_import fungerar inte.
+
+- Inte tid att lägga till verifiering av backup-checksum. 
+
+- Hann inte konvertera csv till ldif 100%.
+
+- Versionshantering och uppdateringar av imagen.

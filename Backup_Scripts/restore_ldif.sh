@@ -29,13 +29,25 @@ while getopts "c:f:" opt; do
     esac
 done
 
+BACKUP_PATH=$(dirname "$FILE")
 DB_FILE="$(basename -- "$FILE" .crypt)"
 
 openssl enc -d -aes-256-cbc -pbkdf2 -in "$FILE" -out "$DB_FILE" -pass file:/root/crypto.key 2>/dev/null
 
-docker cp "$DB_FILE" ldap:.
-docker exec "${CONTAINER_NAME:-"ldap"}" ldapadd -x -c -w "${PASS:-"ldap_password"}" \
-    -D "cn=${LDAP_USER:-"admin"},dc=hemlis,dc=com" \
-    -f "$DB_FILE"
+# Check if checksum match.
+if md5sum --status -c "$BACKUP_PATH"/"$DB_FILE".md5; then
 
-rm "$DB_FILE"
+    echo "Checksum match, importing..."
+
+    docker cp "$DB_FILE" ldap:.
+    docker exec "${CONTAINER_NAME:-"ldap"}" ldapadd -x -c -w "${PASS:-"ldap_password"}" \
+        -D "cn=${LDAP_USER:-"admin"},dc=hemlis,dc=com" \
+        -f "$DB_FILE"
+
+    rm "$DB_FILE"
+
+else 
+    echo "Checksum fail."
+    rm "$DB_FILE"
+    exit 1
+fi
