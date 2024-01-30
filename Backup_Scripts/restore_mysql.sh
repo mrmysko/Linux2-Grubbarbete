@@ -10,14 +10,14 @@ usage() { echo "Usage: $0 -f <filename>"; }
 # Check for root privilegies.
 if [ $EUID -ne "0" ]; then
     echo "$0 is not running as root. Try using sudo."
-    exit 2;
+    exit 1;
 fi
 
 while getopts "c:f:" opt; do
     case "${opt}" in
         c) CHECKSUM_FILE=${OPTARG} ;;
         f) FILE=${OPTARG} ;;
-        *) usage; exit 1 ;;
+        *) usage; exit 2 ;;
     esac
 done
 #shift $((OPTIND +1))
@@ -37,6 +37,7 @@ if md5sum --status -c "${CHECKSUM_FILE:-"$BACKUP_PATH"/"$DB_FILE.md5"}"; then
 else 
     echo "Checksum fail."
     rm "$DB_FILE"
+    rm "$ARCHIVE_FILE"; exit 3;
 fi
 
 rm "$ARCHIVE_FILE"
