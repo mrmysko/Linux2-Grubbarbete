@@ -14,7 +14,7 @@ DB_NAME="$DB_DATE-$DOMAIN.wp.tar.gz"
 LOG_PATH="/var/log/backups.log"
 
 (
-echo "Running $0..."
+echo "$(date +'[%m-%d-%y %R]') Running $0..."
 
 # Check if container is running.
 if [ "$(docker container inspect -f '{{.State.Running}}' $CONTAINER_NAME)" = true ]; then
@@ -37,9 +37,22 @@ if [ "$(docker container inspect -f '{{.State.Running}}' $CONTAINER_NAME)" = tru
 
     # Encrypt archive.
     openssl enc -aes-256-cbc -pbkdf2 -in "$DB_NAME" -out "$DB_NAME".crypt -pass file:/home/backup_user/crypto.key
+
     rm "$DB_NAME"
 
     chmod o-rwx "$DB_NAME".crypt
+
+    # VERIFYING CHECKSUM
+    openssl enc -d -aes-256-cbc -pbkdf2 -in "$DB_NAME".crypt -out "$DB_NAME" -pass file:/home/backup_user/crypto.key
+    
+    if md5sum --status -c "$DB_NAME".md5; then
+        echo "Checksum OK."
+        rm "$DB_NAME"
+    else
+        echo "Checksum fail."
+        rm "$DB_NAME"{,.crypt,.md5}
+        exit 2
+    fi
 
     # Send archive off-site.
     scp -P 50 -i ~/.ssh/backup.key "$DB_NAME"{.md5,.crypt} backup_user@annandoman.com:./Backups/wordpress/

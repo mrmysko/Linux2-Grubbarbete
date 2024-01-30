@@ -24,7 +24,7 @@ ARCHIVE_NAME="$DB_NAME.tar.gz"
 LOG_PATH="/var/log/backups.log"
 
 (
-echo "Running $0..."
+echo "$(date +'[%m-%d-%y %R]') Running $0..."
 
 # Check if container is running.
 if [ "$(docker container inspect -f '{{.State.Running}}' mysql)" = true ]; then
@@ -69,6 +69,20 @@ if [ "$(docker container inspect -f '{{.State.Running}}' mysql)" = true ]; then
 
   chmod o-rwx "$ARCHIVE_NAME".crypt
 
+  # VERIFYING BACKUP - reversing encryption and checking sum.
+  openssl enc -d -aes-256-cbc -pbkdf2 -in "$ARCHIVE_NAME".crypt -out "$ARCHIVE_NAME" -pass file:/home/backup_user/crypto.key
+  
+  tar --same-owner -xzf "$ARCHIVE_NAME"
+
+  if md5sum -c "$DB_NAME".md5; then
+      echo "Checksum OK."
+      rm "$DB_NAME" "$ARCHIVE_NAME"
+  else
+      echo "Checksum fail."
+      rm "$DB_NAME" "$ARCHIVE_NAME"{,.crypt,.md5}
+      exit 3
+  fi
+
   echo 'Backup was successfully created'  
 
   # Send backup off-site
@@ -76,7 +90,7 @@ if [ "$(docker container inspect -f '{{.State.Running}}' mysql)" = true ]; then
 
   # Delete old backups 
   find . -type f -name \*.sql.tar.gz.crypt | sort -r | tail -n +15 | xargs -d '\n' rm 2>/dev/null
-  find . -type f -name \*.sql.tar.gz.md5 | sort -r | tail -n +15 | xargs -d '\n' rm 2>/dev/null
+  find . -type f -name \*.sql.md5 | sort -r | tail -n +15 | xargs -d '\n' rm 2>/dev/null
 
 else
   echo "Container not found."; exit 1
