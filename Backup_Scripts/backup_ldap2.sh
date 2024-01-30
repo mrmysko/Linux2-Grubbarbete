@@ -39,6 +39,9 @@ if [ "$(docker container inspect -f '{{.State.Running}}' $CONTAINER_NAME)" = tru
         -D "cn=${LDAP_USER:-"admin"},${DN:-"dc=hemlis,dc=com"}" \
         -b "${DN:-"dc=hemlis,dc=com"}" objectClass=top -LLL > "$DB_NAME"
 
+    # Create md5 checksum
+    md5sum "$DB_NAME" > "$DB_NAME".md5
+
     # Encrypt file.
     openssl enc -aes-256-cbc -pbkdf2 -in "$DB_NAME" -out "$DB_NAME".crypt -pass file:/home/backup_user/crypto.key
 
@@ -52,6 +55,8 @@ if [ "$(docker container inspect -f '{{.State.Running}}' $CONTAINER_NAME)" = tru
     scp -P 50 -i ~/.ssh/backup.key "$DB_NAME".crypt backup_user@hemlis.com:./Backups/ldap/
 
     find . -type f -name \*.ldif.crypt | sort -r | tail -n +15 | xargs -d '\n' rm 2>/dev/null
+    find . -type f -name \*.ldif.md5 | sort -r | tail -n +15 | xargs -d '\n' rm 2>/dev/null
+
 
 else 
     echo "Error: Container not found."

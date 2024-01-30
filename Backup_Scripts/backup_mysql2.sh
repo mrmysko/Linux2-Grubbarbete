@@ -38,6 +38,9 @@ if [ "$(docker container inspect -f '{{.State.Running}}' mysql)" = true ]; then
     --ignore-table=mysql.innodb_index_stats \
     --ignore-table=mysql.innodb_table_stats > "$DB_NAME"
 
+  # Create md5 checksum
+  md5sum "$DB_NAME" > "$DB_NAME".md5
+
   if [ $? -eq 0 ]; then
     echo 'Sql dump created' 
   else
@@ -71,6 +74,8 @@ if [ "$(docker container inspect -f '{{.State.Running}}' mysql)" = true ]; then
 
   # Delete old backups 
   find . -type f -name \*.sql.tar.gz.crypt | sort -r | tail -n +15 | xargs -d '\n' rm 2>/dev/null
+  find . -type f -name \*.sql.tar.gz.md5 | sort -r | tail -n +15 | xargs -d '\n' rm 2>/dev/null
+
 else
   echo "Container not found."; exit 1
 fi

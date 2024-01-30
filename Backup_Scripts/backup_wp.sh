@@ -27,6 +27,9 @@ if [ "$(docker container inspect -f '{{.State.Running}}' $CONTAINER_NAME)" = tru
     tar -czf "$DB_NAME" "$DOMAIN"
     rm -r "$DOMAIN"
 
+    # Create md5 checksum
+    md5sum "$DB_NAME" > "$DB_NAME".md5
+
     # Encrypt archive.
     openssl enc -aes-256-cbc -pbkdf2 -in "$DB_NAME" -out "$DB_NAME".crypt -pass file:/home/backup_user/crypto.key
     rm "$DB_NAME"
@@ -37,7 +40,8 @@ if [ "$(docker container inspect -f '{{.State.Running}}' $CONTAINER_NAME)" = tru
     scp -P 50 -i ~/.ssh/backup.key "$DB_NAME".crypt backup_user@hemlis.com:./Backups/wordpress/
 
     # Only keep 4 backups, wordpress themes etc. probably doesnt change that often.
-    find . -type f -name \*.wp.tar.gz | sort -r | tail -n +5 | xargs -d '\n' rm 2>/dev/null
+    find . -type f -name \*.wp.tar.gz.crypt | sort -r | tail -n +5 | xargs -d '\n' rm 2>/dev/null
+    find . -type f -name \*.wp.tar.gz.md5 | sort -r | tail -n +5 | xargs -d '\n' rm 2>/dev/null
 
 else 
     echo "Error: Container not found."
