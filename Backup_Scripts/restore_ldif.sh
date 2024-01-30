@@ -3,6 +3,7 @@
 # Decrypt an ldif backup and import it.
 
 # Todo - Check if container is up.
+# Todo - Allow to specify checksum-file.
 
 #DOMAIN
 #LDAP_USER
