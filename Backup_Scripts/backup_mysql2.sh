@@ -70,7 +70,7 @@ if [ "$(docker container inspect -f '{{.State.Running}}' mysql)" = true ]; then
   echo 'Backup was successfully created'  
 
   # Send backup off-site
-  scp -P 50 -i ~/.ssh/backup.key backup_user@hemlis.com:./Backups/mysql/\{"$ARCHIVE_NAME".crypt, "$ARCHIVE_NAME".md5\} ./
+  scp -P 50 -i ~/.ssh/backup.key "$ARCHIVE_NAME"{.md5,.crypt} backup_user@hemlis.com:./Backups/mysql/
 
   # Delete old backups 
   find . -type f -name \*.sql.tar.gz.crypt | sort -r | tail -n +15 | xargs -d '\n' rm 2>/dev/null

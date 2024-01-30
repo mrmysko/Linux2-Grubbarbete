@@ -37,7 +37,7 @@ if [ "$(docker container inspect -f '{{.State.Running}}' $CONTAINER_NAME)" = tru
     chmod o-rwx "$DB_NAME".crypt
 
     # Send archive off-site.
-    scp -P 50 -i ~/.ssh/backup.key "$DB_NAME".crypt backup_user@hemlis.com:./Backups/wordpress/\{"$DB_NAME".crypt, "$DB_NAME".md5\} ./
+    scp -P 50 -i ~/.ssh/backup.key "$DB_NAME"{.md5,.crypt} backup_user@hemlis.com:./Backups/wordpress/
 
     # Only keep 4 backups, wordpress themes etc. probably doesnt change that often.
     find . -type f -name \*.wp.tar.gz.crypt | sort -r | tail -n +5 | xargs -d '\n' rm 2>/dev/null

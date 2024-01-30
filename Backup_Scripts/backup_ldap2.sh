@@ -52,7 +52,7 @@ if [ "$(docker container inspect -f '{{.State.Running}}' $CONTAINER_NAME)" = tru
     chmod o-rwx "$DB_NAME".crypt
 
     # Send backup off-site.
-    scp -P 50 -i ~/.ssh/backup.key "$DB_NAME".crypt backup_user@hemlis.com:./Backups/ldap/\{"$DB_NAME".crypt, "$DB_NAME".md5\} ./
+    scp -P 50 -i ~/.ssh/backup.key "$DB_NAME"{.md5,.crypt} backup_user@hemlis.com:./Backups/ldap/
 
     find . -type f -name \*.ldif.crypt | sort -r | tail -n +15 | xargs -d '\n' rm 2>/dev/null
     find . -type f -name \*.ldif.md5 | sort -r | tail -n +15 | xargs -d '\n' rm 2>/dev/null
