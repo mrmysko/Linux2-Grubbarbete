@@ -27,6 +27,7 @@ ARCHIVE_FILE=$(basename -- "$FILE" .crypt)
 
 openssl enc -d -aes-256-cbc -pbkdf2 -in "$FILE" -out "$ARCHIVE_FILE" -pass file:/root/crypto.key
 
+# Check checksum
 if md5sum --status -c "$BACKUP_PATH"/"$ARCHIVE_FILE".md5; then
     echo "Checksum OK."
 else
