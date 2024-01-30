@@ -29,7 +29,7 @@ Done:
     - Secrets för lösenord.
     - Skapar namngedda volymer för viktiga folders.
     Scripts:
-    - Backup-script av LDAP, MySQL och Wordpress som krypterar databaserna, och skickar dom off-site. (Cronjob)
+    - Backupscript av LDAP, MySQL och Wordpress som krypterar databaserna genererar en md5sum, och skickar dom off-site. (Cronjob)
     - Script för att läsa in en krypterad LDAP-databas.
     Host:
     - OpenSSH-server med nyckelautentisering.
