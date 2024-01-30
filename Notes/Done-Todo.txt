@@ -30,16 +30,14 @@ Done:
     - Skapar namngedda volymer för viktiga folders.
     Scripts:
     - Backupscript av LDAP, MySQL och Wordpress som krypterar databaserna genererar en md5sum, och skickar dom off-site. (Cronjob)
-    - Script för att läsa in en krypterad LDAP-databas.
+    - Script för att restorea krypterade wordpress-, mysql- och ldap-databaser.
     Host:
     - OpenSSH-server med nyckelautentisering.
-    - backup_user kör backup-scripts.
+    - backup_user kör backup-scripts. Har inte tillgång till systemet, och chroot på remote server.
 
 Todo:
 
-Fixa:       Backup-scripts kör docker exec istället. Då kommer man åt containers utan ip och kan stänga portar utåt.
-
-Fixa:       Hasha filen med md5sum -> Lägg hashen i arkivet med databasen. -> Verifiera md5 summan när databasen packas upp.
+Fixa:       Verifiera checksumen i restore scripten.
 
 Kolla:      Om backup-scriptsen kräver tillgång till saker i root-foldern. Isätllet för att kolla i script och köra om \
             bara chowna scripten till root? Eller sätt setuid/setgid till root? Vad är best practice?
