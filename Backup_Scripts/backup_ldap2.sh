@@ -25,6 +25,11 @@ DB_DATE=$(date +'%m-%d-%y_%H-%M')
 
 DB_NAME="$DB_DATE-${DOMAIN:-"db"}.ldif"
 
+LOG_PATH="/var/log/backups.log"
+
+(
+echo "Running $0..."
+
 if [ "$(docker container inspect -f '{{.State.Running}}' $CONTAINER_NAME)" = true ]; then
 
     if [ ! -d "$BACKUP_DIR" ]; then
@@ -62,3 +67,5 @@ else
     echo "Error: Container not found."
     exit 1
 fi
+
+) 2>&1 | tee -a "$LOG_PATH"

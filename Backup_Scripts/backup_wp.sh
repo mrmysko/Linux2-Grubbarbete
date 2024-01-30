@@ -11,6 +11,11 @@ CONTAINER_NAME="wordpress"
 DB_DATE=$(date +'%m-%d-%y_%H-%M')
 DB_NAME="$DB_DATE-$DOMAIN.wp.tar.gz"
 
+LOG_PATH="/var/log/backups.log"
+
+(
+echo "Running $0..."
+
 # Check if container is running.
 if [ "$(docker container inspect -f '{{.State.Running}}' $CONTAINER_NAME)" = true ]; then
 
@@ -47,3 +52,5 @@ else
     echo "Error: Container not found."
     exit 1
 fi
+
+) 2>&1 | tee -a "$LOG_PATH"

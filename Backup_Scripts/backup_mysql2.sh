@@ -3,8 +3,7 @@
 # Put this file in /home/backup_user/
 
 # Todo - Clean up tests
-
-# Det här funkar inte eftersom kali kör mariadb och mysqldumpar inte likadana databas.
+# Todo - Format log entries.
 
 DOMAIN="hemlis.com"
 
@@ -14,8 +13,6 @@ BACKUP_DIR="/mnt/Backups/mysql/$DOMAIN"
 # MySQL user
 USER=root
 
-# MySQL password 
-
 # How to expose this file to backup_user, but not give everyone access...only root can read this atm
 # PASSWORD_FILE="/home/backup_user/Secrets/mysql_root_password.txt"
 PASSWORD=mysql_password
@@ -23,6 +20,11 @@ PASSWORD=mysql_password
 DB_DATE=$(date +'%m-%d-%y_%H-%M')
 DB_NAME="$DB_DATE-${DOMAIN:-"db"}.sql"
 ARCHIVE_NAME="$DB_NAME.tar.gz"
+
+LOG_PATH="/var/log/backups.log"
+
+(
+echo "Running $0..."
 
 # Check if container is running.
 if [ "$(docker container inspect -f '{{.State.Running}}' mysql)" = true ]; then
@@ -70,7 +72,7 @@ if [ "$(docker container inspect -f '{{.State.Running}}' mysql)" = true ]; then
   echo 'Backup was successfully created'  
 
   # Send backup off-site
-  scp -P 50 -i ~/.ssh/backup.key "$ARCHIVE_NAME"{.md5,.crypt} backup_user@annandoman.com:./Backups/mysql/
+  scp -P 50 -i ~/.ssh/backup.key "$ARCHIVE_NAME.crypt" "$DB_NAME.md5" backup_user@annandoman.com:./Backups/mysql/
 
   # Delete old backups 
   find . -type f -name \*.sql.tar.gz.crypt | sort -r | tail -n +15 | xargs -d '\n' rm 2>/dev/null
@@ -79,3 +81,5 @@ if [ "$(docker container inspect -f '{{.State.Running}}' mysql)" = true ]; then
 else
   echo "Container not found."; exit 1
 fi
+
+) 2>&1 | tee -a "$LOG_PATH"
