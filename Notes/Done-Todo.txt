@@ -116,8 +116,8 @@ Caveat:
     körs på och för att inte låta den användaren logga in så kan man specificera DenyUser i sshd-conf
 
 
-Vad finns inte backup på:
-- lösenordsfiler/krypteringsnycklar/ssh-nycklar.
+Vad finns inte i backuper:
+- lösenordsfiler/krypteringsnycklar/ssh-nycklar. (Lägg dom på ett usb-minne elr nått KEK)
 - SSH-server config.
 - Apache-config.
 - (Vad är ens önskvärt att ha backup på? Har man databaserna så kan man ju bygga upp nya system runt dom.)

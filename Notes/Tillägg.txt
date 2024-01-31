@@ -1,0 +1,17 @@
+- Fick inte TLS att funwgera mellan Apache/MySQL/LDAP.
+
+- py_import fungerar inte.
+
+- Hann inte konvertera csv till ldif och tillbaka.
+
+- Versionshantering och uppdateringar av imagen.
+
+- Authldap uppdaterar inte roll. Kan inte php.
+
+- Automatisera mera. Testa mer.
+
+- Fixa fail2ban.
+
+- Fixa övervakning av loggar etc.
+
+- Fixa apache-config.
