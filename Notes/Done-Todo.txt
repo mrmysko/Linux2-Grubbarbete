@@ -29,7 +29,10 @@ Done:
     - Secrets för lösenord.
     - Skapar namngedda volymer för viktiga folders.
     Scripts:
-    - Backupscript av LDAP, MySQL och Wordpress som krypterar databaserna genererar en md5sum, och skickar dom off-site. (Cronjob)
+    - Backupscript av LDAP, MySQL och Wordpress
+        - Krypterar databaserna 
+        - Genererar en md5-checksum, verifierar backupen.
+        - Sparar lokalt och off-site med cronjob.
     - Script för att restorea krypterade wordpress-, mysql- och ldap-databaser.
     Host:
     - OpenSSH-server med nyckelautentisering.
@@ -37,10 +40,6 @@ Done:
 
 Todo:
 
-Fixa:       Verifiera checksumen i restore scripten.
-
-Kolla:      Om backup-scriptsen kräver tillgång till saker i root-foldern. Isätllet för att kolla i script och köra om \
-            bara chowna scripten till root? Eller sätt setuid/setgid till root? Vad är best practice?
 
 Kolla:      mysql image, det kan bli problem om man importerar en gammal db till en ny image...så vi kanske borde välja 
             en image och inte köra på :latest?
@@ -91,10 +90,8 @@ Apache imagen kollar inte längre efter senaste wordpress iom att build.sh inte 
 Hårdkoda inte LAM master password i config.cfg och LAM mysql-databasen.
 authldap ska hämta roll från primary group fältet.(gidNumber)
 Apache server config
-Containers kör som root...
 Subdomäner
-IP-tables för att droppa trafik som inte kommer mellan containers.
-Fail2Ban på apache, ssh. (iptables för mysql och openldap?)
+Fail2Ban på apache, ssh.
 Let's encrypt
 övervakning
 hasha lösenord i filer?
