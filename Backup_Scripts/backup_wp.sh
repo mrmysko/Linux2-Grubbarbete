@@ -14,7 +14,7 @@ DB_NAME="$DB_DATE-$DOMAIN.wp.tar.gz"
 LOG_PATH="/var/log/backups.log"
 
 (
-echo "$(date +'[%m-%d-%y %R]') Running $0..."
+echo "$(date +'[%m-%d-%y %R]') $(basename "$0")..."
 
 # Check if container is running.
 if [ "$(docker container inspect -f '{{.State.Running}}' $CONTAINER_NAME)" = true ]; then

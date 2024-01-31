@@ -28,7 +28,7 @@ DB_NAME="$DB_DATE-${DOMAIN:-"db"}.ldif"
 LOG_PATH="/var/log/backups.log"
 
 (
-echo "$(date +'[%m-%d-%y %R]') Running $0..."
+echo "$(date +'[%m-%d-%y %R]') Running $(basename "$0")..."
 
 if [ "$(docker container inspect -f '{{.State.Running}}' $CONTAINER_NAME)" = true ]; then
 
