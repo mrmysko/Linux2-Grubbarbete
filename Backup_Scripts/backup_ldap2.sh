@@ -19,6 +19,8 @@
 
 DOMAIN="hemlis.com"
 BACKUP_DIR="/mnt/Backups/ldap/$DOMAIN"
+
+# This can probably be fetched with docker inspect -f 
 CONTAINER_NAME="ldap"
 
 DB_DATE=$(date +'%m-%d-%y_%H-%M')
